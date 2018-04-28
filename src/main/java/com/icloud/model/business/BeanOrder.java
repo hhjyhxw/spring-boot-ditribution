@@ -1,0 +1,239 @@
+package com.icloud.model.business;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+public class BeanOrder implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;//订单id
+
+    private String orderNo;//订单编号
+
+    private Integer score;//积分
+
+    private Integer coupon;//优惠券值
+
+    private String goodName;//商品名称
+
+    private Long userId;//用户id
+
+    private String openid;//用户openid
+
+    private String orderType;//订单类型 0 默认兑换订单,
+
+    private String orderStatus;//订单状态 0：未支付，1：已支付  ，2已完成
+
+    private String shippingStatus;//发货状态 1：已发货 0：未发货
+
+    private String deleteStatus;//删除状态 1：已删除 0：未删除
+
+    private String couponId;//优惠券id
+
+    private Date createTime;//订单创建时间
+
+    private Date modifyTime;//订单修改时间
+    
+    private String name;//收货人姓名
+    private String phone;//收货人手机
+    private String provinceName;
+    private String cityName;
+    private String countyName;
+    private String townsName;
+    private String detailAddress;
+    private String zipCode;
+
+    
+   private List<BeanOrderItem> orderItemList;//订单明细
+   
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo == null ? null : orderNo.trim();
+    }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
+    public Integer getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(Integer coupon) {
+        this.coupon = coupon;
+    }
+
+    public String getGoodName() {
+        return goodName;
+    }
+
+    public void setGoodName(String goodName) {
+        this.goodName = goodName == null ? null : goodName.trim();
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid == null ? null : openid.trim();
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType == null ? null : orderType.trim();
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus == null ? null : orderStatus.trim();
+    }
+
+    public String getShippingStatus() {
+        return shippingStatus;
+    }
+
+    public void setShippingStatus(String shippingStatus) {
+        this.shippingStatus = shippingStatus == null ? null : shippingStatus.trim();
+    }
+
+    public String getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(String deleteStatus) {
+        this.deleteStatus = deleteStatus == null ? null : deleteStatus.trim();
+    }
+
+    public String getCouponId() {
+        return couponId;
+    }
+
+    public void setCouponId(String couponId) {
+        this.couponId = couponId;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getProvinceName() {
+		return provinceName;
+	}
+
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getCountyName() {
+		return countyName;
+	}
+
+	public void setCountyName(String countyName) {
+		this.countyName = countyName;
+	}
+
+	public String getTownsName() {
+		return townsName;
+	}
+
+	public void setTownsName(String townsName) {
+		this.townsName = townsName;
+	}
+
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public List<BeanOrderItem> getOrderItemList() {
+		return orderItemList;
+	}
+
+	public void setOrderItemList(List<BeanOrderItem> orderItemList) {
+		this.orderItemList = orderItemList;
+	}
+
+    
+}

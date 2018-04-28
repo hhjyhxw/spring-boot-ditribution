@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>订单明细</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+	</head>
+
+	<body>
+	    
+	    <label>djfie</label>
+	    
+	    <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script>
+			layui.config({
+				base: '../../plugins/layui/modules/'
+			});
+
+			
+		</script>
+	
+	  
+	</body>
+    
+</html>

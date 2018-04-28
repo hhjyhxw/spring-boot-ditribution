@@ -1,0 +1,261 @@
+/**
+ * @author
+ * @version
+ * 2018年2月8日 上午10:53:38
+ */
+package com.icloud.service.interfaces.impl;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import com.icloud.common.ConfigUtil;
+import com.icloud.common.HttpUtils;
+import com.icloud.common.JsonToMapUtil;
+import com.icloud.common.MD5Utils;
+import com.icloud.service.interfaces.SmokeBeanInterfaceService;
+
+/**
+ * 
+ * 类名称: SmokeBeanInterfaceServiceImpl
+ * 类描述: 真龙乐豆查询 充值 消费接口 实现类
+ * 创建人: zhangdehai
+ * 创建时间:2018年2月8日 上午10:53:54
+ */
+@Service
+public class SmokeBeanInterfaceServiceImpl implements SmokeBeanInterfaceService{
+
+	public final static Logger log = LoggerFactory.getLogger(SmokeBeanInterfaceServiceImpl.class);
+	private static Map<String,String> beanCodeMap = new HashMap<String,String>();
+	
+	
+	public static Map<String, String> getBeanCodeMap() {
+		return beanCodeMap;
+	}
+
+	public static void setBeanCodeMap(Map<String, String> beanCodeMap) {
+		SmokeBeanInterfaceServiceImpl.beanCodeMap = beanCodeMap;
+	}
+
+	/**
+	 * status:
+	 * "0",成功；
+	 * "1":
+	 * "2":"无法获取用户信息"
+	 * "3":
+	 * "4":"烟豆数量为0"
+	 * "5":
+	 * "6":"签名校验失败"
+	 * "7":参数为空
+	 * "8":"系统异常"
+	 * "9":"重复充值（同样参数重新请求）
+	 * "11":"充值失败"
+	 * errormsg
+	 */
+	static {
+		beanCodeMap.put("1", "扣减乐豆失败,请稍后再试");
+		beanCodeMap.put("2", "无法获取用户信息");
+		beanCodeMap.put("3", "无法获取用户信息");
+		beanCodeMap.put("4", "烟豆数量为0");
+		beanCodeMap.put("5", "无法获取用户信息");
+		beanCodeMap.put("6", "签名校验失败");
+		beanCodeMap.put("7", "参数为空");
+		beanCodeMap.put("8", "系统异常,请稍后再试");
+		beanCodeMap.put("9", "重复充值");
+		beanCodeMap.put("10", "接口调用失败");
+		beanCodeMap.put("11", "充值失败");
+	}
+	
+	@Override
+	public Map<String, String> queryFansBeans(String openid) {
+		String app_id =  ConfigUtil.get("app_id");
+		NameValuePair app_idPair = new BasicNameValuePair("app_id",app_id);
+		NameValuePair openidPair = new BasicNameValuePair("openid",openid);
+		//加密
+		String signStr  =  app_id+openid+ConfigUtil.get("app_key");
+		String signs = MD5Utils.encode2hex(signStr.toString());
+		NameValuePair signPair = new BasicNameValuePair("sign", signs);
+		
+		log.warn("乐豆查询接口参数："
+				+" \r\n app_id="+app_id
+				+" \r\n openid="+openid
+				+" \r\n app_key="+ConfigUtil.get("app_key")
+				+" \r\n sgin="+signs);
+		List<NameValuePair> pair = new ArrayList<NameValuePair>();
+		pair.add(app_idPair);
+		pair.add(openidPair);
+		pair.add(signPair);
+		String result  = "";
+		try{
+			result = HttpUtils.postMethod(ConfigUtil.get("queryFansBeansUrl"), pair);
+			if(result!=null){
+				return JsonToMapUtil.getMapFromJson(result);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public Map<String, String> rechargeFansBeans(String openid,
+			String qrcodeNo, String orderno, String smokeBeans,
+			String smokeBrand, String type, String desc) {
+		String app_id =  ConfigUtil.get("app_id");
+		NameValuePair app_idPair = new BasicNameValuePair("app_id",app_id);
+		NameValuePair openidPair = new BasicNameValuePair("openid",openid);
+		NameValuePair qrcodeNoPair = new BasicNameValuePair("qrcodeNo",qrcodeNo);
+		NameValuePair ordernoPair = new BasicNameValuePair("orderno",orderno);
+		NameValuePair smokeBeansPair = new BasicNameValuePair("smokeBeans",smokeBeans);
+		NameValuePair smokeBrandPair = new BasicNameValuePair("smokeBrand",smokeBrand);
+		NameValuePair typePair = new BasicNameValuePair("type",type);
+		NameValuePair descPair = new BasicNameValuePair("desc",desc);
+		//加密
+		String signStr  = app_id + qrcodeNo + orderno + openid + smokeBeans
+		+ smokeBrand + desc + ConfigUtil.get("app_key");
+		String signs = MD5Utils.encode2hex(signStr.toString());
+		NameValuePair signPair = new BasicNameValuePair("sign", signs);
+		
+		log.warn("乐豆充值接口参数："
+				+" \r\n app_id="+app_id
+				+" \r\n qrcodeNo="+qrcodeNo
+				+" \r\n orderno="+orderno
+				+" \r\n openid="+openid
+				+" \r\n smokeBeans="+smokeBeans
+				+" \r\n desc="+desc
+				+" \r\n app_key="+ConfigUtil.get("app_key")
+				+" \r\n sgin="+signs);
+		List<NameValuePair> pair = new ArrayList<NameValuePair>();
+		pair.add(app_idPair);
+		pair.add(qrcodeNoPair);
+		pair.add(ordernoPair);
+		pair.add(openidPair);
+		pair.add(smokeBeansPair);
+		pair.add(smokeBrandPair);
+		pair.add(typePair);
+		pair.add(descPair);
+		pair.add(signPair);
+		String result  = "";
+		try{
+			result = HttpUtils.postMethod(ConfigUtil.get("rechargeFansBeansUrl"), pair);
+			if(result!=null){
+				return JsonToMapUtil.getMapFromJson(result);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
+	@Override
+	public Map<String, String> consumeFansBeans(String openid,
+			String orderno, String smokeBeans, String consumeType, String desc) {
+			
+		String app_id =  ConfigUtil.get("app_id");
+		NameValuePair app_idPair = new BasicNameValuePair("app_id",app_id);
+		NameValuePair openidPair = new BasicNameValuePair("openid",openid);
+		NameValuePair ordernoPair = new BasicNameValuePair("orderno",orderno);
+		NameValuePair smokeBeansPair = new BasicNameValuePair("smokeBeans",smokeBeans);
+		NameValuePair consumeTypePair = new BasicNameValuePair("consumeType",consumeType);
+		NameValuePair descPair = new BasicNameValuePair("desc",desc);
+		//加密
+		String signStr  = app_id + orderno + openid + smokeBeans+consumeType
+		 + desc + ConfigUtil.get("app_key");
+		String signs = MD5Utils.encode2hex(signStr.toString());
+		NameValuePair signPair = new BasicNameValuePair("sign", signs);
+		
+		log.warn("乐豆消费接口参数："
+				+" \r\n app_id="+app_id
+				+" \r\n orderno="+orderno
+				+" \r\n openid="+openid
+				+" \r\n smokeBeans="+smokeBeans
+				+" \r\n desc="+desc
+				+" \r\n app_key="+ConfigUtil.get("app_key")
+				+" \r\n sgin="+signs);
+		List<NameValuePair> pair = new ArrayList<NameValuePair>();
+		pair.add(app_idPair);
+		pair.add(ordernoPair);
+		pair.add(openidPair);
+		pair.add(smokeBeansPair);
+		pair.add(consumeTypePair);
+		pair.add(descPair);
+		pair.add(signPair);
+		String result  = "";
+		try{
+			result = HttpUtils.postMethod(ConfigUtil.get("consumeFansBeansUrl"), pair);
+			if(result!=null){
+				return JsonToMapUtil.getMapFromJson(result);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@Override
+	public Map<String, String> queryFansBeans(String app_id, String openid,
+			String sign) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, String> rechargeFansBeans(String app_id, String openid,
+			String qrcodeNo, String orderno, String smokeBeans,
+			String smokeBrand, String type, String desc, String sign) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, String> consumeFansBeans(String app_id, String openid,
+			String orderno, String smokeBeans, String consumeType, String desc,
+			String sign) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+//	//页面分享jsjdk测试
+//	public  Map<String, String> queryss(String app_id,String url){
+//		NameValuePair app_idPair = new BasicNameValuePair("app_id",app_id);
+//		NameValuePair urlPair = new BasicNameValuePair("url",url);
+//		String signStr  = app_id + url + "H5annualReport";
+//		String signs = MD5Utils.encode2hex(signStr);
+//		NameValuePair signPair = new BasicNameValuePair("sign", signs);
+//		List<NameValuePair> pair = new ArrayList<NameValuePair>();
+//		pair.add(app_idPair);
+//		pair.add(urlPair);
+//		pair.add(signPair);
+//		String result  = "";
+//		try{
+//			result = HttpUtils.postMethod("http://wx.thewm.cn/integral/signManage!getJsSdkConfig.action", pair);
+////			result = HttpUtils.postMethod("http://127.0.0.1:8080/integral/signManage!getJsSdkConfig.action", pair);
+//			if(result!=null){
+//				return JsonToMapUtil.getMapFromJson(result);
+//			}
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		return null;
+//		
+//	} 
+//	
+//	
+//	  public static void main(String[] args){
+//			 String signstre  = "H5annualReport"+"rs"+"H5annualReport";
+//			 String url = "";
+//			 System.out.println(MD5Utils.encode2hex(signstre));
+////					String  sss=new String(Base64.decode("c3Nzc3Nm"));
+////					System.out.println(sss);
+//		  }
+
+}

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icloud.dao.business.TbeanGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.icloud.model.business.TbeanGoods" >
+    <id column="ID" property="id" jdbcType="NUMERIC" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="GOOD_IMAGE" property="goodImage" jdbcType="VARCHAR" />
+    <result column="SCORE" property="score" jdbcType="NUMERIC" />
+    <result column="STORE" property="store" jdbcType="NUMERIC" />
+    <result column="FREEZE_STORE" property="freezeStore" jdbcType="NUMERIC" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="DELETE_STATUS" property="deleteStatus" jdbcType="VARCHAR" />
+    <result column="CATEGORIES_ID" property="categoriesId" jdbcType="NUMERIC" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="OPERATE_IP" property="operateIp" jdbcType="VARCHAR" />
+    <result column="REAL_SALES" property="realSales" jdbcType="NUMERIC" />
+    <result column="VIRTL_SALES" property="virtlSales" jdbcType="NUMERIC" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="SORT_NUM" property="sortNum" jdbcType="NUMERIC" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.icloud.model.business.TbeanGoodsWithBLOBs" extends="BaseResultMap" >
+    <result column="GOOD_DETAIL" property="goodDetail" jdbcType="CLOB" />
+    <result column="GOOD_DESC" property="goodDesc" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, GOOD_IMAGE, SCORE, STORE, FREEZE_STORE, STATUS, DELETE_STATUS, CATEGORIES_ID, 
+    OPERATOR, OPERATE_IP, REAL_SALES, VIRTL_SALES, CREATE_TIME, MODIFY_TIME, SORT_NUM, 
+    MEMO
+  </sql>
+  <sql id="Blob_Column_List" >
+    GOOD_DETAIL, GOOD_DESC
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_BEAN_GOODS
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_BEAN_GOODS
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.icloud.model.business.TbeanGoodsWithBLOBs" >
+  <selectKey keyProperty="id" resultType="Long" order="BEFORE">
+			select seq_t_bean_goods.nextval from dual
+	</selectKey>
+    insert into T_BEAN_GOODS (ID, NAME, GOOD_IMAGE, 
+      SCORE, STORE, FREEZE_STORE, 
+      STATUS, DELETE_STATUS, CATEGORIES_ID, 
+      OPERATOR, OPERATE_IP, REAL_SALES, 
+      VIRTL_SALES, CREATE_TIME, MODIFY_TIME, 
+      SORT_NUM, MEMO, GOOD_DETAIL, 
+      GOOD_DESC)
+    values (#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{goodImage,jdbcType=VARCHAR}, 
+      #{score,jdbcType=NUMERIC}, #{store,jdbcType=NUMERIC}, #{freezeStore,jdbcType=NUMERIC}, 
+      #{status,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, #{categoriesId,jdbcType=NUMERIC}, 
+      #{operator,jdbcType=VARCHAR}, #{operateIp,jdbcType=VARCHAR}, #{realSales,jdbcType=NUMERIC}, 
+      #{virtlSales,jdbcType=NUMERIC}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{sortNum,jdbcType=NUMERIC}, #{memo,jdbcType=VARCHAR}, #{goodDetail,jdbcType=CLOB}, 
+      #{goodDesc,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icloud.model.business.TbeanGoodsWithBLOBs" >
+    insert into T_BEAN_GOODS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="goodImage != null" >
+        GOOD_IMAGE,
+      </if>
+      <if test="score != null" >
+        SCORE,
+      </if>
+      <if test="store != null" >
+        STORE,
+      </if>
+      <if test="freezeStore != null" >
+        FREEZE_STORE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="deleteStatus != null" >
+        DELETE_STATUS,
+      </if>
+      <if test="categoriesId != null" >
+        CATEGORIES_ID,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+      <if test="operateIp != null" >
+        OPERATE_IP,
+      </if>
+      <if test="realSales != null" >
+        REAL_SALES,
+      </if>
+      <if test="virtlSales != null" >
+        VIRTL_SALES,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="sortNum != null" >
+        SORT_NUM,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="goodDetail != null" >
+        GOOD_DETAIL,
+      </if>
+      <if test="goodDesc != null" >
+        GOOD_DESC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=NUMERIC},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goodImage != null" >
+        #{goodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=NUMERIC},
+      </if>
+      <if test="store != null" >
+        #{store,jdbcType=NUMERIC},
+      </if>
+      <if test="freezeStore != null" >
+        #{freezeStore,jdbcType=NUMERIC},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null" >
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="categoriesId != null" >
+        #{categoriesId,jdbcType=NUMERIC},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operateIp != null" >
+        #{operateIp,jdbcType=VARCHAR},
+      </if>
+      <if test="realSales != null" >
+        #{realSales,jdbcType=NUMERIC},
+      </if>
+      <if test="virtlSales != null" >
+        #{virtlSales,jdbcType=NUMERIC},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortNum != null" >
+        #{sortNum,jdbcType=NUMERIC},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodDetail != null" >
+        #{goodDetail,jdbcType=CLOB},
+      </if>
+      <if test="goodDesc != null" >
+        #{goodDesc,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icloud.model.business.TbeanGoodsWithBLOBs" >
+    update T_BEAN_GOODS
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goodImage != null" >
+        GOOD_IMAGE = #{goodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        SCORE = #{score,jdbcType=NUMERIC},
+      </if>
+      <if test="store != null" >
+        STORE = #{store,jdbcType=NUMERIC},
+      </if>
+      <if test="freezeStore != null" >
+        FREEZE_STORE = #{freezeStore,jdbcType=NUMERIC},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null" >
+        DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="categoriesId != null" >
+        CATEGORIES_ID = #{categoriesId,jdbcType=NUMERIC},
+      </if>
+      <if test="operator != null" >
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operateIp != null" >
+        OPERATE_IP = #{operateIp,jdbcType=VARCHAR},
+      </if>
+      <if test="realSales != null" >
+        REAL_SALES = #{realSales,jdbcType=NUMERIC},
+      </if>
+      <if test="virtlSales != null" >
+        VIRTL_SALES = #{virtlSales,jdbcType=NUMERIC},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortNum != null" >
+        SORT_NUM = #{sortNum,jdbcType=NUMERIC},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodDetail != null" >
+        GOOD_DETAIL = #{goodDetail,jdbcType=CLOB},
+      </if>
+      <if test="goodDesc != null" >
+        GOOD_DESC = #{goodDesc,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.icloud.model.business.TbeanGoodsWithBLOBs" >
+    update T_BEAN_GOODS
+    set NAME = #{name,jdbcType=VARCHAR},
+      GOOD_IMAGE = #{goodImage,jdbcType=VARCHAR},
+      SCORE = #{score,jdbcType=NUMERIC},
+      STORE = #{store,jdbcType=NUMERIC},
+      FREEZE_STORE = #{freezeStore,jdbcType=NUMERIC},
+      STATUS = #{status,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CATEGORIES_ID = #{categoriesId,jdbcType=NUMERIC},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      OPERATE_IP = #{operateIp,jdbcType=VARCHAR},
+      REAL_SALES = #{realSales,jdbcType=NUMERIC},
+      VIRTL_SALES = #{virtlSales,jdbcType=NUMERIC},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      SORT_NUM = #{sortNum,jdbcType=NUMERIC},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      GOOD_DETAIL = #{goodDetail,jdbcType=CLOB},
+      GOOD_DESC = #{goodDesc,jdbcType=CLOB}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icloud.model.business.TbeanGoods" >
+    update T_BEAN_GOODS
+    set NAME = #{name,jdbcType=VARCHAR},
+      GOOD_IMAGE = #{goodImage,jdbcType=VARCHAR},
+      SCORE = #{score,jdbcType=NUMERIC},
+      STORE = #{store,jdbcType=NUMERIC},
+      FREEZE_STORE = #{freezeStore,jdbcType=NUMERIC},
+      STATUS = #{status,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CATEGORIES_ID = #{categoriesId,jdbcType=NUMERIC},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      OPERATE_IP = #{operateIp,jdbcType=VARCHAR},
+      REAL_SALES = #{realSales,jdbcType=NUMERIC},
+      VIRTL_SALES = #{virtlSales,jdbcType=NUMERIC},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      SORT_NUM = #{sortNum,jdbcType=NUMERIC},
+      MEMO = #{memo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

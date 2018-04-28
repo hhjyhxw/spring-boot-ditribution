@@ -1,0 +1,39 @@
+/**
+ * @author
+ * @version
+ * 2018年2月27日 下午5:57:07
+ */
+package com.icloud.service.interfaces;
+
+import java.util.List;
+import java.util.Map;
+
+import com.icloud.vo.BeanCouponVo;
+
+/**
+ * 类名称: CouponInterfaceService
+ * 类描述: 优惠券接口
+ * 创建人: zhangdehai
+ * 创建时间:2018年2月27日 下午5:57:07
+ */
+public interface CouponInterfaceService {
+	
+	/**
+	* Description:查询优惠券列表
+	* @author zhangdehai
+	* @param openid
+	* @date 2018年2月27日下午5:58:22
+	 */
+	public List<BeanCouponVo> queryBeanCouponList(String openid);
+	
+	/**
+	* Description:消费优惠券
+	* @author zhangdehai
+	* @param ticketId
+	* @param openid
+	* @return  
+	* @date 2018年2月27日下午6:00:30
+	 */
+	public Map<String,String> consumeCoupon(String ticketId,String openid);
+
+}

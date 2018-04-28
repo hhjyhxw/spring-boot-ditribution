@@ -1,0 +1,574 @@
+@charset "UTF-8";
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+	display: block;
+}
+
+audio,
+canvas,
+video {
+	display: inline-block;
+}
+
+audio:not([controls]) {
+	display: none;
+	height: 0;
+}
+
+[hidden],
+template {
+	display: none;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+}
+
+a {
+	background: transparent;
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	outline: 0;
+}
+
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+
+b,
+strong {
+	font-weight: bold;
+}
+
+dfn {
+	font-style: italic;
+}
+
+mark {
+	background: #ff0;
+	color: #000;
+}
+
+code,
+kbd,
+pre,
+samp {
+	font-family: monospace, serif;
+	font-size: 1em;
+}
+
+pre {
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+q {
+	quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+
+small {
+	font-size: 80%;
+}
+
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+img {
+	border: 0;
+}
+
+svg:not(:root) {
+	overflow: hidden;
+}
+
+fieldset {
+	border: 1px solid #c0c0c0;
+	margin: 0 2px;
+	padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+	border: 0;
+	padding: 0;
+	white-space: normal;
+}
+
+button,
+input,
+select,
+textarea {
+	font-family: inherit;
+	font-size: 100%;
+	margin: 0;
+	vertical-align: baseline;
+}
+
+button,
+input {
+	line-height: normal;
+}
+
+button,
+select {
+	text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+
+button[disabled],
+input[disabled] {
+	cursor: default;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+}
+
+input {
+	outline: none;
+}
+
+input[type="search"] {
+	-webkit-appearance: none;
+	box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+textarea {
+	overflow: auto;
+	vertical-align: top;
+}
+
+optgroup {
+	font-weight: bold;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html {
+	-webkit-tap-highlight-color: transparent;
+	outline: none;
+}
+
+img {
+	vertical-align: middle;
+}
+
+a,
+img {
+	-webkit-touch-callout: none;
+}
+
+label {
+	font-weight: normal;
+}
+
+textarea {
+	resize: vertical;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+form {
+	margin: 0;
+	font-weight: normal;
+}
+
+ul,
+ol,
+li,
+dl,
+dd {
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+ol {
+	list-style: none outside none;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+::-webkit-scrollbar {
+	width: 0;
+	display: none;
+}
+
+::-webkit-scrollbar-track {
+	width: 0;
+	display: none;
+}
+
+::-webkit-scrollbar-thumb {
+	width: 0;
+	display: none;
+}
+
+
+/*color: #0088cc; */
+
+
+/*color: #006699; */
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+	color: #cccccc;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+	color: #cccccc;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+	color: #cccccc;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+	color: #cccccc;
+}
+
+html,
+body {
+	background-color: #EBEBEB;
+	min-width: 320px;
+	font-family: "Arial", "微软雅黑";
+	height: 100%;
+	-webkit-tap-highlight-color: transparent;
+}
+
+html.scroll,
+html.scroll body {
+	overflow: hidden;
+}
+
+html {
+	font-size: 12px;
+}
+
+@media only screen and (min-width: 375px) {
+	html {
+		font-size: 14px;
+	}
+}
+
+@media only screen and (min-width: 414px) {
+	html {
+		font-size: 14px;
+	}
+}
+@media only screen and (min-width: 500px) {
+	html {
+		font-size: 1.3rem;
+	}
+}
+* {
+	box-sizing: border-box;
+}
+
+html.gray,
+html.gray body {
+	background-color: #EBEBEB;
+}
+
+html.height,
+html.height body {
+	height: 100%;
+	overflow: hidden;
+}
+
+
+.paddign1 {
+	padding: 1rem;
+}
+
+.paddign2 {
+	padding: 2rem;
+}
+.paddign-t2 {
+	padding-top: 2rem;
+}
+.paddign-t6 {
+	padding-top: 12%;
+}
+.padding-rl1 {
+	padding: 0 1rem;
+}
+
+.padding-rl2 {
+	padding: 0 2rem;
+}
+
+.padding-rl3 {
+	padding: 1rem 2rem;
+}
+
+.padding-tb1 {
+	padding: 1rem 0;
+}
+
+.padding-l2 {
+	padding-left: 2rem;
+}
+
+.padding-t1 {
+	padding-top: 1rem;
+}
+
+.padding-b1 {
+	padding-bottom: 1rem;
+}
+
+.padding-lr2 {
+	padding: 0 2rem 0 2rem;
+}
+.padding-lr1 {
+	padding: 0 1rem 0 1rem;
+}
+.mg-bt1 {
+	margin: 1rem 0;
+}
+
+.mg-bt2 {
+	margin: 2rem 0;
+}
+
+.mg-b2 {
+	margin: 0 0 2rem 0;
+}
+.mg-b1 {
+	margin-bottom: 1rem;
+}
+.mg-t1 {
+	margin-top: 1rem;
+}
+.mg-t2 {
+	margin-top: 2rem;
+}
+.mg-tb4{
+	margin-top: 4rem;
+}
+.mg-b4{
+	margin-bottom: 4rem;
+}
+.mg1 {
+	margin: 1rem;
+}
+.mg-t10{
+	margin-top:10px;
+}
+.w10 {
+	width: 10rem;
+}
+
+.w5 {
+	width: 5rem;
+}
+
+.lineH2 {
+	line-height: 2rem;
+}
+
+.lh40 {
+	line-height: 2.5rem;
+}
+
+.lh30 {
+	line-height: 2.3rem;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.rel {
+	position: relative;
+}
+
+.ab {
+	position: absolute;
+}
+
+.border-r {
+	border-radius: 10px;
+}
+
+.red {
+	color: #E65252;
+}
+.orange{
+	color: #ee5a18;
+}
+.orange2{
+	color: #f4ad33;
+}
+.blue{
+	color: #137bd7;
+}
+.col-666 {
+	color: #666666;
+}
+
+.col-000 {
+	color: #000;
+}
+.col-fff {
+	color: #fff;
+}
+.green {
+	color: #5bca4c;
+}
+
+.col-333 {
+	color: #333333;
+}
+.yellow{
+	color: #ffe167;
+}
+
+.col-999 {
+	color: #999999;
+}
+
+.font-32 {
+	font-size: 2rem;
+	vertical-align: middle;
+}
+
+.font-20 {
+	font-size: 1.25rem;
+}
+
+.font-28 {
+	font-size: 1.75rem;
+}
+
+.font-26 {
+	font-size: 1.625rem;
+}
+.font-50{font-size: 3rem;}
+.fb {
+	font-weight: bold;
+}
+
+.fb2 {
+	font-weight: 600;
+}
+
+.border-b {
+	border-bottom: solid 1px #dddddd;
+}
+
+.middle {
+	vertical-align: middle;
+}
+.middle-top {
+	vertical-align: top;
+}
+.align-left {
+	text-align: left;
+}
+
+.align-right {
+	text-align: right;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.inline-d {
+	display: inline-block;
+}
+
+.bg-e4e4e4 {
+	background: #e4e4e4;
+}
+
+.bg-white,
+.bg-white body {
+	background-color: #fff;
+}
+
+.telephone {
+	color: #23A1F1;
+}

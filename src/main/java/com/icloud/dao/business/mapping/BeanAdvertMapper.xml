@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icloud.dao.business.BeanAdvertMapper" >
+  <resultMap id="BaseResultMap" type="com.icloud.model.business.BeanAdvert" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="ad_image" property="adImage" jdbcType="VARCHAR" />
+    <result column="sort_num" property="sortNum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, ad_image, sort_num, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bean_advert
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_bean_advert
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.icloud.model.business.BeanAdvert" >
+    insert into t_bean_advert (id, name, ad_image, 
+      sort_num, status)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=CHAR}, #{adImage,jdbcType=VARCHAR}, 
+      #{sortNum,jdbcType=INTEGER}, #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icloud.model.business.BeanAdvert" >
+    insert into t_bean_advert
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="adImage != null" >
+        ad_image,
+      </if>
+      <if test="sortNum != null" >
+        sort_num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="adImage != null" >
+        #{adImage,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNum != null" >
+        #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icloud.model.business.BeanAdvert" >
+    update t_bean_advert
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="adImage != null" >
+        ad_image = #{adImage,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNum != null" >
+        sort_num = #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icloud.model.business.BeanAdvert" >
+    update t_bean_advert
+    set name = #{name,jdbcType=CHAR},
+      ad_image = #{adImage,jdbcType=VARCHAR},
+      sort_num = #{sortNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+   
+  <select id="findForList" parameterType="com.icloud.model.business.BeanAdvert" resultMap="BaseResultMap">
+		 select 
+	    <include refid="Base_Column_List" />
+	    from t_bean_advert t
+		<where>
+			 <if test="id != null" >
+      		  and t.id =  #{id,jdbcType=INTEGER}
+     		 </if>
+     		 <if test="name!=null and name!='' ">
+					and t.name like concat(concat('%',#{name}),'%')
+			</if>
+     		  <if test="status!=null and status!=''">
+				and t.status = #{status,jdbcType=CHAR}
+			</if>
+		</where>
+		order by t.sort_num asc
+	</select>
+</mapper>

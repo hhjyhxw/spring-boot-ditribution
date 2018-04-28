@@ -1,0 +1,18 @@
+package com.icloud.dao.business;
+
+import com.icloud.model.business.TbeanOrderItem;
+import java.math.BigDecimal;
+
+public interface TbeanOrderItemMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(TbeanOrderItem record);
+
+    int insertSelective(TbeanOrderItem record);
+
+    TbeanOrderItem selectByPrimaryKey(BigDecimal id);
+
+    int updateByPrimaryKeySelective(TbeanOrderItem record);
+
+    int updateByPrimaryKey(TbeanOrderItem record);
+}

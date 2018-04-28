@@ -1,0 +1,67 @@
+package com.icloud.service.business;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageInfo;
+import com.icloud.dao.business.BeanOrderItemMapper;
+import com.icloud.model.business.BeanOrderItem;
+import com.icloud.service.BaseService;
+
+@Service
+public class BeanOrderItemService implements BaseService<BeanOrderItem>{
+
+	@Autowired
+	private BeanOrderItemMapper beanOrderItemMapper;
+	
+	@Override
+	public void save(BeanOrderItem t) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(BeanOrderItem t) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<BeanOrderItem> findList(BeanOrderItem t) throws Exception {
+		List<BeanOrderItem> list = beanOrderItemMapper.findList(t);
+		return list;
+	}
+
+	@Override
+	public Integer findCount(BeanOrderItem t) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BeanOrderItem findByKey(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PageInfo<BeanOrderItem> findByPage(int pageNo, int pageSize,
+			BeanOrderItem t) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<BeanOrderItem> findListByOrderId(Long id) {
+		List<BeanOrderItem> list = beanOrderItemMapper.findListByOrderId(id);
+		return list;
+	}
+
+}

@@ -1,0 +1,16 @@
+/**
+ * @author
+ * @version
+ * 2018年2月27日 下午4:52:58
+ */
+package com.icloud.vo;
+
+/**
+ * 类名称: BeanCouponVo
+ * 类描述: 紫光优惠券vo
+ * 创建人: zhangdehai
+ * 创建时间:2018年2月27日 下午4:52:58
+ */
+public class BeanCouponVo {
+
+}

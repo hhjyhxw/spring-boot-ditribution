@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icloud.dao.business.TbeanOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.icloud.model.business.TbeanOrder" >
+    <id column="ID" property="id" jdbcType="NUMERIC" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="SCORE" property="score" jdbcType="NUMERIC" />
+    <result column="COUPON" property="coupon" jdbcType="NUMERIC" />
+    <result column="GOOD_NAME" property="goodName" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="NUMERIC" />
+    <result column="OPENID" property="openid" jdbcType="VARCHAR" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+    <result column="ORDER_STATUS" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="SHIPPING_STATUS" property="shippingStatus" jdbcType="VARCHAR" />
+    <result column="DELETE_STATUS" property="deleteStatus" jdbcType="VARCHAR" />
+    <result column="COUPON_ID" property="couponId" jdbcType="NUMERIC" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_NO, SCORE, COUPON, GOOD_NAME, USER_ID, OPENID, ORDER_TYPE, ORDER_STATUS, 
+    SHIPPING_STATUS, DELETE_STATUS, COUPON_ID, CREATE_TIME, MODIFY_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BEAN_ORDER
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_BEAN_ORDER
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.icloud.model.business.TbeanOrder" >
+    <selectKey keyProperty="id" resultType="Long" order="BEFORE">
+			select seq_t_bean_order.nextval from dual
+	</selectKey>
+    insert into T_BEAN_ORDER (ID, ORDER_NO, SCORE, 
+      COUPON, GOOD_NAME, USER_ID, 
+      OPENID, ORDER_TYPE, ORDER_STATUS, 
+      SHIPPING_STATUS, DELETE_STATUS, COUPON_ID, 
+      CREATE_TIME, MODIFY_TIME)
+    values (#{id,jdbcType=DECIMAL}, #{orderNo,jdbcType=VARCHAR}, #{score,jdbcType=DECIMAL}, 
+      #{coupon,jdbcType=DECIMAL}, #{goodName,jdbcType=VARCHAR}, #{userId,jdbcType=DECIMAL}, 
+      #{openid,jdbcType=VARCHAR}, #{orderType,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, 
+      #{shippingStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, #{couponId,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icloud.model.business.TbeanOrder" >
+    insert into T_BEAN_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="score != null" >
+        SCORE,
+      </if>
+      <if test="coupon != null" >
+        COUPON,
+      </if>
+      <if test="goodName != null" >
+        GOOD_NAME,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="openid != null" >
+        OPENID,
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE,
+      </if>
+      <if test="orderStatus != null" >
+        ORDER_STATUS,
+      </if>
+      <if test="shippingStatus != null" >
+        SHIPPING_STATUS,
+      </if>
+      <if test="deleteStatus != null" >
+        DELETE_STATUS,
+      </if>
+      <if test="couponId != null" >
+        COUPON_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="coupon != null" >
+        #{coupon,jdbcType=DECIMAL},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingStatus != null" >
+        #{shippingStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null" >
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null" >
+        #{couponId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icloud.model.business.TbeanOrder" >
+    update T_BEAN_ORDER
+    <set >
+      <if test="orderNo != null" >
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        SCORE = #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="coupon != null" >
+        COUPON = #{coupon,jdbcType=DECIMAL},
+      </if>
+      <if test="goodName != null" >
+        GOOD_NAME = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="openid != null" >
+        OPENID = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingStatus != null" >
+        SHIPPING_STATUS = #{shippingStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null" >
+        DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null" >
+        COUPON_ID = #{couponId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icloud.model.business.TbeanOrder" >
+    update T_BEAN_ORDER
+    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      SCORE = #{score,jdbcType=DECIMAL},
+      COUPON = #{coupon,jdbcType=DECIMAL},
+      GOOD_NAME = #{goodName,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      OPENID = #{openid,jdbcType=VARCHAR},
+      ORDER_TYPE = #{orderType,jdbcType=VARCHAR},
+      ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      SHIPPING_STATUS = #{shippingStatus,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      COUPON_ID = #{couponId,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

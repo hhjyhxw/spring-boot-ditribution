@@ -1,0 +1,81 @@
+/**
+ * 
+ */
+package com.icloud.web.util;
+
+import static org.junit.Assert.fail;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import com.icloud.model.business.BeanOrder;
+import com.icloud.model.business.BeanOrderItem;
+
+/**
+ * @author huang
+ *
+ */
+public class TestDataUtil {
+
+	public static List<BeanOrder> setBeanOrderData() {
+		List<BeanOrder> list = new ArrayList<>();
+
+		for (int i = 1; i < 15; i++) {
+			BeanOrder beanOrder = new BeanOrder();
+			beanOrder.setId(Long.parseLong(i+""));
+			beanOrder.setCoupon(40+i);
+			beanOrder.setCouponId(i);
+			beanOrder.setCreateTime(new Date());
+			beanOrder.setDeleteStatus(i % 2==0?"1":"0");
+			beanOrder.setGoodName("a" + i);
+			beanOrder.setOpenid("djfijuhefkjei"+i);
+			beanOrder.setOrderNo("100000"+i);
+			beanOrder.setOrderStatus(i%2==0?"0":"1");
+			beanOrder.setOrderType(i%2==0?"0":"1");
+			beanOrder.setScore(20);
+			list.add(beanOrder);
+		}
+		
+		return list;
+	}
+	
+	public static Map<String, Object> setBeanOrderItem(){
+		List<BeanOrder> beanOrders = TestDataUtil.setBeanOrderData();
+		List<BeanOrderItem> tItems = new ArrayList<>();
+		Map<String, Object> map = new HashMap<>();
+		for (BeanOrder beanOrder : beanOrders) {
+			int n = 1+(int)Math.random()*5;
+			System.out.println("====N===== > " + n );
+			for (int i = 1; i <= n; i++) {
+				System.out.println();
+				BeanOrderItem beanOrderItem = new BeanOrderItem();
+				beanOrderItem.setOrderId(beanOrder.getId());
+				beanOrderItem.setGoodId(1+(int)Math.random()*20);
+				beanOrderItem.setGoodImage("http://shdfhen.com");
+				beanOrderItem.setGoodName("aa"+i+ beanOrder.getGoodName());
+				beanOrderItem.setGoodQuantities(1+(int)Math.random()*20);
+				beanOrderItem.setScore(1+(int)Math.random()*10);
+				tItems.add(beanOrderItem);
+			}
+			map.put(beanOrder.getOrderNo(), tItems);
+			
+		}
+		return map;
+	}
+	
+	public static void main(String[] args) {
+		List<BeanOrder> list = TestDataUtil.setBeanOrderData();
+		Map<String, Object> beanOrderItemsMap = TestDataUtil.setBeanOrderItem();
+		for (BeanOrder beanOrder : list) {
+			List<BeanOrderItem> beanOrderItems = (List<BeanOrderItem>) beanOrderItemsMap.get(beanOrder.getOrderNo());
+			for (BeanOrderItem beanOrderItem : beanOrderItems) {
+				System.out.println(beanOrderItem.getOrderId());
+			}
+		}
+	}
+	
+}

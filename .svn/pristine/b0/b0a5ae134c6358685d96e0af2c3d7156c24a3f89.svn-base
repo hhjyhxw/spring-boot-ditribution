@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>编辑收获地址</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../ldsc/css/reset.css">
+		<link rel="stylesheet" href="../../ldsc/css/myStyle.css">
+		<script src="../../ldsc/js/jquery-2.1.4.js"></script>
+		<script src="../../ldsc/js/global.js"></script>
+		<link rel="stylesheet" href="../../css/table.css" />
+	    <script src="../../js/jquery.min.js"></script>
+	    
+	    
+	    <script>
+	      $(function(){
+	        window.onload=function(){
+	        var id = $(" input[ name='id' ] ").val();
+	        if(id == "" || id == null || id == undefined){
+	          getAreas(1,'province');
+	        }else{
+	          setProvince();
+	        }
+	        }
+	      })
+	      
+	      var areas;
+	      
+	      function setProvince(){
+	        //getAreas(1,'province');
+	        
+	        
+	      }
+          
+          
+	      
+	      function selectArea(level,next_level){
+	        var options = $("#"+level +" option:selected");
+	        $("#"+level+"Name").attr("value",options.text());
+	        getAreas(options.val(),next_level);
+	      }
+	      
+	      function setCountyName(){
+	        var options = $("#county option:selected");
+	        $("#countyName").attr("value",options.text());
+	      }
+	      
+	      function getAreas(parentId,selectName){
+	        
+	        $.ajax({
+	          url:'http://localhost:8080/frontpage/address/findArea',
+	          type:'GET',
+	          data:{'parentId':parentId},
+	          dataType:'json',
+	          headers : {
+					        'Content-Type' : 'application/json;charset=utf-8'
+					    },
+			  async: true,
+	          success:function(data){
+	            
+	            var selectObj = document.getElementById(selectName);
+	            $('#'+selectName).empty();
+	            selectObj.add(new Option("请选择"));
+	            $.each(data.data.areas, function(commentIndex, comment){
+	                selectObj.add(new Option(comment.name,comment.id));
+	             });
+	          }
+	        });
+	      }
+	      
+	      //提交前检查必须的参数是否已填写
+	      function checkParams(){
+	        var name = document.getElementById("name").value;
+	        var phone = document.getElementById("phone").value;
+	        var provinceId = document.getElementById("province").value;
+	        var cityId = document.getElementById("city").value;
+	        var countyId = document.getElementById("county").value;
+	        var detailAddress = document.getElementById("detailAddress").value;
+	        alert(name);
+	        if(name == null || name == ""){
+	          alert("收货人不能为空！");
+	          return false;
+	        }
+	        if(phone == null || phone == ""){
+	          alert("联系方式不能为空！");
+	          return false;
+	        }
+	        if(provinceId == null || provinceId == ""){
+	          alert("请选择所在的省份！");
+	          return false;
+	        }
+	        if(cityId == null || cityId == ""){
+	          alert("请选择所在的城市！");
+	          return false;
+	        }
+	        if(countyId == null || countyId == ""){
+	          alert("请选择所在的区或县！");
+	          return false;
+	        }
+	        if(detailAddress == null || detailAddress == ""){
+	          alert("请填写你的详细收货地址(街道、门牌等)！");
+	          return false;
+	        }else{
+	          document.getElementById("formId").submit();
+	        }
+	      }
+	      
+	      function save(){
+	       alert(123);
+	      }
+	    </script>
+	    
+	</head>
+    
+	<body>
+	
+		<div>
+		  <form action="http://localhost:8080/frontpage/address/saveAddr" method="post" id="formId">
+		  <input type="hidden" name="id" id="addrId" value="${(beanAddr.id)!}"/>
+		  <input type="hidden" name="provinceName" id="provinceName" value="${(beanAddr.provinceName)!}" />
+		  <input type="hidden" name="cityName" id="cityName" value="${(beanAddr.cityName)!}" />
+		  <input type="hidden" name="countyName" id="countyName" value="${(beanAddr.countyName)!}" />
+		  <input type="hidden" name="userId" id="countyName" value="${(beanAddr.userId)!}" />
+		    收货人:<input type="text" id="name" name="name" value="${(beanAddr.name)!}" />
+		  <br/> 
+		    联系方式:<input type="text" id="phone" name="phone" value="${(beanAddr.phone)!}" />
+		  <br/> 
+		   所在地区:
+		  <select id="province" name="provinceId" onchange="selectArea('province','city')" value='${(beanAddr.provinceId)!}' >
+		  </select>
+		  <select id="city" name="cityId" onchange="selectArea('city','county')">
+		  </select>
+		  <select id="county" name="countyId" onchange="setCountyName()">
+		  </select>
+		  <br/>
+		  详细地址:<input type="text" id="detailAddress" name="detailAddress" value='${(beanAddr.detailAddress)!}' />
+		  <br>
+		  <input type="button" value="保存" class="btn2" onclick="checkParams()" />
+		  </form>
+		  
+		</div>
+		
+		
+    
+	</body>
+
+</html>

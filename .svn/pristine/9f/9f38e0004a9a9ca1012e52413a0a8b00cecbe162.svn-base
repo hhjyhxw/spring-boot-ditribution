@@ -1,0 +1,175 @@
+package com.icloud.model.business;
+
+import java.util.Date;
+
+public class BeanGoods {
+    private Integer id;
+
+    private String name;
+
+    private String goodImage;
+
+    private Integer score;
+
+    private Integer store;
+
+    private Integer freezeStore;
+
+    private String status;
+
+    private String deleteStatus;
+
+    private Integer categoriesId;
+
+    private String operator;
+
+    private String operateIp;
+
+    private Integer realSales;
+
+    private Integer virtlSales;
+
+    private Date createTime;
+
+    private Date modifyTime;
+
+    private Integer sortNum;
+
+    private String memo;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getGoodImage() {
+        return goodImage;
+    }
+
+    public void setGoodImage(String goodImage) {
+        this.goodImage = goodImage == null ? null : goodImage.trim();
+    }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
+    public Integer getStore() {
+        return store;
+    }
+
+    public void setStore(Integer store) {
+        this.store = store;
+    }
+
+    public Integer getFreezeStore() {
+        return freezeStore;
+    }
+
+    public void setFreezeStore(Integer freezeStore) {
+        this.freezeStore = freezeStore;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
+    }
+
+    public String getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(String deleteStatus) {
+        this.deleteStatus = deleteStatus == null ? null : deleteStatus.trim();
+    }
+
+    public Integer getCategoriesId() {
+        return categoriesId;
+    }
+
+    public void setCategoriesId(Integer categoriesId) {
+        this.categoriesId = categoriesId;
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator == null ? null : operator.trim();
+    }
+
+    public String getOperateIp() {
+        return operateIp;
+    }
+
+    public void setOperateIp(String operateIp) {
+        this.operateIp = operateIp == null ? null : operateIp.trim();
+    }
+
+    public Integer getRealSales() {
+        return realSales;
+    }
+
+    public void setRealSales(Integer realSales) {
+        this.realSales = realSales;
+    }
+
+    public Integer getVirtlSales() {
+        return virtlSales;
+    }
+
+    public void setVirtlSales(Integer virtlSales) {
+        this.virtlSales = virtlSales;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public Integer getSortNum() {
+        return sortNum;
+    }
+
+    public void setSortNum(Integer sortNum) {
+        this.sortNum = sortNum;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo == null ? null : memo.trim();
+    }
+}

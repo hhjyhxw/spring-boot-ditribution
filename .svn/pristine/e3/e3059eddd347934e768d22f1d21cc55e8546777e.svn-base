@@ -1,0 +1,36 @@
+package com.icloud.service.bms;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.icloud.dao.bms.TbmsAdminRoleMapper;
+import com.icloud.model.bms.TbmsAdminRole;
+
+@Service
+public class AdminRoleService{
+
+	@Autowired
+	private TbmsAdminRoleMapper bmsAdminRoleMapper;
+	public int insert(TbmsAdminRole record) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int insertSelective(TbmsAdminRole record) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void delele(Long adminId) {
+		// TODO Auto-generated method stub
+		bmsAdminRoleMapper.deleleByAdmin(adminId);
+	}
+
+	public void batchInsert(List<TbmsAdminRole> list) {
+		// TODO Auto-generated method stub
+		bmsAdminRoleMapper.batchInsert(list);
+	}
+
+}

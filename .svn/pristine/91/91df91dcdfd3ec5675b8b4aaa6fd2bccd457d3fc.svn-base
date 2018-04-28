@@ -1,0 +1,68 @@
+package com.icloud.service.bms;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.icloud.dao.bms.TbmsAdminMapper;
+import com.icloud.model.bms.TbmsAdmin;
+@Service
+public class AdminService{
+
+	@Autowired
+	private TbmsAdminMapper bmsAdminMapper;
+	
+	public TbmsAdmin login(TbmsAdmin admin) throws Exception {
+		// TODO Auto-generated method stub
+		List<TbmsAdmin> list = bmsAdminMapper.findForList(admin);
+		if(null!=list&&0<list.size()){
+			return list.get(0);
+		}
+		return null;
+		
+	}
+
+	public int selectCountByAccount(TbmsAdmin admin) {
+		// TODO Auto-generated method stub
+		return bmsAdminMapper.findCountByAccount(admin);
+	}
+
+	public void save(TbmsAdmin admin) throws Exception {
+		// TODO Auto-generated method stub
+		bmsAdminMapper.insert(admin);
+	}
+
+	public void update(TbmsAdmin admin) throws Exception {
+		// TODO Auto-generated method stub
+		bmsAdminMapper.updateByPrimaryKey(admin);
+	}
+
+	public List<TbmsAdmin> findList(TbmsAdmin t) throws Exception {
+		// TODO Auto-generated method stub
+		return bmsAdminMapper.findForList(t);
+	}
+
+
+	public void delete(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		bmsAdminMapper.deleteByPrimaryKey(id);
+	}
+
+	public TbmsAdmin findByKey(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return bmsAdminMapper.selectByPrimaryKey(id);
+	}
+
+	public PageInfo<TbmsAdmin> findByPage(int pageNo, int pageSize,TbmsAdmin admin) throws Exception {
+		// TODO Auto-generated method stub
+		 PageHelper.startPage(pageNo, pageSize);
+		 PageInfo<TbmsAdmin> page = new PageInfo<TbmsAdmin>(bmsAdminMapper.findForList(admin));
+		 return page;
+	}
+
+	
+
+}

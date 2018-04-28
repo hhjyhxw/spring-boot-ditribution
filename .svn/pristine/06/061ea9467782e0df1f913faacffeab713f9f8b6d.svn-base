@@ -1,0 +1,35 @@
+package com.icloud.web.business.front.order;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.icloud.model.business.BeanOrder;
+import com.icloud.service.business.BeanOrderService;
+import com.icloud.web.AppBaseController;
+
+@Controller
+@RequestMapping(value = "${frontPath}/beanGoods")
+public class BeanOrderFrontController extends AppBaseController{
+	
+	@Autowired
+	private BeanOrderService beanOrderService;
+
+	/**
+	* Description:我的订单列表
+	* @author zhangdehai
+	* @throws Exception  
+	* @date 2018年2月27日下午5:10:43
+	 */
+	@RequestMapping(value = "/orderList")
+	public String orderList() throws Exception{
+		BeanOrder t = new BeanOrder();
+		t.setUserId(getMemberId());
+		List<BeanOrder> beanOrderList = beanOrderService.findList(t);
+		request.setAttribute("beanOrderList", beanOrderList);
+		return "front/order/orderList";
+	}
+
+}

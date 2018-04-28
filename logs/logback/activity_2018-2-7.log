@@ -1,0 +1,289 @@
+2018-2-7 14:44:20 main INFO No active profile set, falling back to default profiles: default
+2018-2-7 14:44:28 main INFO Started BeanApplication in 10.742 seconds (JVM running for 11.339)
+2018-2-7 14:46:46 main INFO No active profile set, falling back to default profiles: default
+2018-2-7 14:46:54 main INFO Started BeanApplication in 10.121 seconds (JVM running for 10.719)
+2018-2-7 14:48:52 main INFO No active profile set, falling back to default profiles: default
+2018-2-7 14:49:00 main INFO Started BeanApplication in 10.319 seconds (JVM running for 10.949)
+2018-2-7 14:49:54 http-nio-8080-exec-3 DEBUG ==>  Preparing: select id, account, password_prompt, pass_word, is_lock, create_date from t_bms_admin t WHERE t.account like concat(concat('%',?),'%') ORDER BY t.create_date desc 
+2018-2-7 14:49:54 http-nio-8080-exec-3 DEBUG ==> Parameters: admin(String)
+2018-2-7 14:49:54 http-nio-8080-exec-3 DEBUG <==      Total: 1
+2018-2-7 14:49:54 http-nio-8080-exec-3 DEBUG ==>  Preparing: select distinct t.id, t.menu_name, t.menu_url, t.parent_id, t.sort_num from t_bms_menu t ,t_bms_admin a,t_bms_admin_role ar ,t_bms_role_menu rm where a.id=ar.admin_id and ar.role_id=rm.role_id and t.id=rm.menu_id and a.id=? order by t.sort_num asc 
+2018-2-7 14:49:54 http-nio-8080-exec-3 DEBUG ==> Parameters: 1(Integer)
+2018-2-7 14:49:54 http-nio-8080-exec-3 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 14:49:54 http-nio-8080-exec-3 DEBUG ====> Parameters: 0(Integer)
+2018-2-7 14:49:54 http-nio-8080-exec-3 DEBUG <====      Total: 0
+2018-2-7 14:49:54 http-nio-8080-exec-3 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 14:49:54 http-nio-8080-exec-3 DEBUG ====> Parameters: 1(Integer)
+2018-2-7 14:49:54 http-nio-8080-exec-3 DEBUG <====      Total: 1
+2018-2-7 14:49:54 http-nio-8080-exec-3 DEBUG <==      Total: 5
+2018-2-7 14:49:54 http-nio-8080-exec-2 DEBUG ==>  Preparing: select distinct t.id, t.menu_name, t.menu_url, t.parent_id, t.sort_num from t_bms_menu t ,t_bms_admin a,t_bms_admin_role ar ,t_bms_role_menu rm where a.id=ar.admin_id and ar.role_id=rm.role_id and t.id=rm.menu_id and a.id=? order by t.sort_num asc 
+2018-2-7 14:49:54 http-nio-8080-exec-2 DEBUG ==> Parameters: 1(Integer)
+2018-2-7 14:49:54 http-nio-8080-exec-2 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 14:49:54 http-nio-8080-exec-2 DEBUG ====> Parameters: 0(Integer)
+2018-2-7 14:49:54 http-nio-8080-exec-2 DEBUG <====      Total: 0
+2018-2-7 14:49:54 http-nio-8080-exec-2 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 14:49:54 http-nio-8080-exec-2 DEBUG ====> Parameters: 1(Integer)
+2018-2-7 14:49:54 http-nio-8080-exec-2 DEBUG <====      Total: 1
+2018-2-7 14:49:54 http-nio-8080-exec-2 DEBUG <==      Total: 5
+2018-2-7 14:49:56 http-nio-8080-exec-5 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 14:49:56 http-nio-8080-exec-5 DEBUG ==> Parameters: 0(String)
+2018-2-7 14:49:56 http-nio-8080-exec-5 DEBUG <==      Total: 1
+2018-2-7 14:49:56 http-nio-8080-exec-5 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 14:49:56 http-nio-8080-exec-5 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 14:49:56 http-nio-8080-exec-5 DEBUG <==      Total: 4
+2018-2-7 14:49:57 http-nio-8080-exec-7 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 14:49:57 http-nio-8080-exec-7 DEBUG ==> Parameters: 3(Integer)
+2018-2-7 14:49:57 http-nio-8080-exec-7 DEBUG <==      Total: 1
+2018-2-7 14:50:01 http-nio-8080-exec-6 DEBUG ==>  Preparing: update t_bean_goods SET name = ?, score = ?, store = ?, status = ?, operator = ?, operate_ip = ?, virtl_sales = ?, modify_time = ?, sort_num = ?, good_detail = ?, good_desc = ? where id = ? 
+2018-2-7 14:50:01 http-nio-8080-exec-6 DEBUG ==> Parameters: test(String), 0(Integer), 0(Integer), 1(String), admin(String), 0:0:0:0:0:0:0:1(String), 100(Integer), 2018-02-07 14:50:01.456(Timestamp), 10(Integer), java.io.StringReader@4068e3b6(StringReader), java.io.StringReader@45ae660(StringReader), 3(Integer)
+2018-2-7 14:50:01 http-nio-8080-exec-6 DEBUG <==    Updates: 1
+2018-2-7 14:50:01 http-nio-8080-exec-2 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 14:50:01 http-nio-8080-exec-2 DEBUG ==> Parameters: 0(String)
+2018-2-7 14:50:01 http-nio-8080-exec-2 DEBUG <==      Total: 1
+2018-2-7 14:50:01 http-nio-8080-exec-2 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 14:50:01 http-nio-8080-exec-2 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 14:50:01 http-nio-8080-exec-2 DEBUG <==      Total: 4
+2018-2-7 14:50:04 http-nio-8080-exec-4 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 14:50:04 http-nio-8080-exec-4 DEBUG ==> Parameters: 3(Integer)
+2018-2-7 14:50:04 http-nio-8080-exec-4 DEBUG <==      Total: 1
+2018-2-7 14:54:49 main INFO No active profile set, falling back to default profiles: default
+2018-2-7 14:54:58 main INFO Started BeanApplication in 12.241 seconds (JVM running for 12.995)
+2018-2-7 14:56:53 http-nio-8080-exec-1 DEBUG ==>  Preparing: update t_bean_goods SET name = ?, score = ?, store = ?, status = ?, operate_ip = ?, virtl_sales = ?, modify_time = ?, sort_num = ?, good_detail = ?, good_desc = ? where id = ? 
+2018-2-7 14:56:53 http-nio-8080-exec-1 DEBUG ==> Parameters: test(String), 0(Integer), 0(Integer), 1(String), 0:0:0:0:0:0:0:1(String), 100(Integer), 2018-02-07 14:55:54.432(Timestamp), 10(Integer), java.io.StringReader@2a2da2f9(StringReader), java.io.StringReader@65f0623d(StringReader), 3(Integer)
+2018-2-7 14:56:53 http-nio-8080-exec-1 DEBUG <==    Updates: 1
+2018-2-7 14:56:53 http-nio-8080-exec-2 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 14:56:53 http-nio-8080-exec-2 DEBUG ==> Parameters: 0(String)
+2018-2-7 14:56:53 http-nio-8080-exec-2 DEBUG <==      Total: 1
+2018-2-7 14:56:53 http-nio-8080-exec-2 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 14:56:53 http-nio-8080-exec-2 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 14:56:53 http-nio-8080-exec-2 DEBUG <==      Total: 4
+2018-2-7 14:57:37 http-nio-8080-exec-9 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 14:57:37 http-nio-8080-exec-9 DEBUG ==> Parameters: 3(Integer)
+2018-2-7 14:57:37 http-nio-8080-exec-9 DEBUG <==      Total: 1
+2018-2-7 14:59:35 http-nio-8080-exec-2 DEBUG ==>  Preparing: update t_bean_goods SET name = ?, score = ?, store = ?, status = ?, operate_ip = ?, virtl_sales = ?, modify_time = ?, sort_num = ?, good_detail = ?, good_desc = ? where id = ? 
+2018-2-7 14:59:35 http-nio-8080-exec-2 DEBUG ==> Parameters: test(String), 200(Integer), 0(Integer), 1(String), 0:0:0:0:0:0:0:1(String), 100(Integer), 2018-02-07 14:58:11.038(Timestamp), 10(Integer), java.io.StringReader@af1cfa7(StringReader), java.io.StringReader@2925cb0f(StringReader), 3(Integer)
+2018-2-7 14:59:35 http-nio-8080-exec-2 DEBUG <==    Updates: 1
+2018-2-7 14:59:35 http-nio-8080-exec-2 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 14:59:35 http-nio-8080-exec-2 DEBUG ==> Parameters: 0(String)
+2018-2-7 14:59:35 http-nio-8080-exec-2 DEBUG <==      Total: 1
+2018-2-7 14:59:35 http-nio-8080-exec-2 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 14:59:35 http-nio-8080-exec-2 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 14:59:35 http-nio-8080-exec-2 DEBUG <==      Total: 4
+2018-2-7 14:59:38 http-nio-8080-exec-2 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 14:59:38 http-nio-8080-exec-2 DEBUG ==> Parameters: 3(Integer)
+2018-2-7 14:59:38 http-nio-8080-exec-2 DEBUG <==      Total: 1
+2018-2-7 15:00:51 http-nio-8080-exec-10 DEBUG ==>  Preparing: update t_bean_goods SET name = ?, score = ?, store = ?, status = ?, operate_ip = ?, virtl_sales = ?, modify_time = ?, sort_num = ?, good_detail = ?, good_desc = ? where id = ? 
+2018-2-7 15:00:51 http-nio-8080-exec-10 DEBUG ==> Parameters: test(String), 0(Integer), 0(Integer), 1(String), 0:0:0:0:0:0:0:1(String), 100(Integer), 2018-02-07 15:00:04.332(Timestamp), 10(Integer), java.io.StringReader@7d079900(StringReader), java.io.StringReader@79381278(StringReader), 3(Integer)
+2018-2-7 15:00:51 http-nio-8080-exec-10 DEBUG <==    Updates: 1
+2018-2-7 15:00:51 http-nio-8080-exec-10 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 15:00:51 http-nio-8080-exec-10 DEBUG ==> Parameters: 0(String)
+2018-2-7 15:00:51 http-nio-8080-exec-10 DEBUG <==      Total: 1
+2018-2-7 15:00:51 http-nio-8080-exec-10 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 15:00:51 http-nio-8080-exec-10 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 15:00:51 http-nio-8080-exec-10 DEBUG <==      Total: 4
+2018-2-7 15:01:40 http-nio-8080-exec-10 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 15:01:40 http-nio-8080-exec-10 DEBUG ==> Parameters: 3(Integer)
+2018-2-7 15:01:40 http-nio-8080-exec-10 DEBUG <==      Total: 1
+2018-2-7 15:03:10 http-nio-8080-exec-7 DEBUG ==>  Preparing: select id, account, password_prompt, pass_word, is_lock, create_date from t_bms_admin t WHERE t.account like concat(concat('%',?),'%') ORDER BY t.create_date desc 
+2018-2-7 15:03:10 http-nio-8080-exec-7 DEBUG ==> Parameters: admin(String)
+2018-2-7 15:03:10 http-nio-8080-exec-7 DEBUG <==      Total: 1
+2018-2-7 15:03:10 http-nio-8080-exec-7 DEBUG ==>  Preparing: select distinct t.id, t.menu_name, t.menu_url, t.parent_id, t.sort_num from t_bms_menu t ,t_bms_admin a,t_bms_admin_role ar ,t_bms_role_menu rm where a.id=ar.admin_id and ar.role_id=rm.role_id and t.id=rm.menu_id and a.id=? order by t.sort_num asc 
+2018-2-7 15:03:10 http-nio-8080-exec-7 DEBUG ==> Parameters: 1(Integer)
+2018-2-7 15:03:10 http-nio-8080-exec-7 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:03:10 http-nio-8080-exec-7 DEBUG ====> Parameters: 0(Integer)
+2018-2-7 15:03:10 http-nio-8080-exec-7 DEBUG <====      Total: 0
+2018-2-7 15:03:10 http-nio-8080-exec-7 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:03:10 http-nio-8080-exec-7 DEBUG ====> Parameters: 1(Integer)
+2018-2-7 15:03:10 http-nio-8080-exec-7 DEBUG <====      Total: 1
+2018-2-7 15:03:10 http-nio-8080-exec-7 DEBUG <==      Total: 5
+2018-2-7 15:03:10 http-nio-8080-exec-1 DEBUG ==>  Preparing: select distinct t.id, t.menu_name, t.menu_url, t.parent_id, t.sort_num from t_bms_menu t ,t_bms_admin a,t_bms_admin_role ar ,t_bms_role_menu rm where a.id=ar.admin_id and ar.role_id=rm.role_id and t.id=rm.menu_id and a.id=? order by t.sort_num asc 
+2018-2-7 15:03:10 http-nio-8080-exec-1 DEBUG ==> Parameters: 1(Integer)
+2018-2-7 15:03:10 http-nio-8080-exec-1 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:03:10 http-nio-8080-exec-1 DEBUG ====> Parameters: 0(Integer)
+2018-2-7 15:03:10 http-nio-8080-exec-1 DEBUG <====      Total: 0
+2018-2-7 15:03:10 http-nio-8080-exec-1 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:03:10 http-nio-8080-exec-1 DEBUG ====> Parameters: 1(Integer)
+2018-2-7 15:03:10 http-nio-8080-exec-1 DEBUG <====      Total: 1
+2018-2-7 15:03:10 http-nio-8080-exec-1 DEBUG <==      Total: 5
+2018-2-7 15:03:12 http-nio-8080-exec-3 DEBUG ==>  Preparing: select distinct t.id, t.menu_name, t.menu_url, t.parent_id, t.sort_num from t_bms_menu t ,t_bms_admin a,t_bms_admin_role ar ,t_bms_role_menu rm where a.id=ar.admin_id and ar.role_id=rm.role_id and t.id=rm.menu_id and a.id=? order by t.sort_num asc 
+2018-2-7 15:03:12 http-nio-8080-exec-3 DEBUG ==> Parameters: 1(Integer)
+2018-2-7 15:03:13 http-nio-8080-exec-3 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:03:13 http-nio-8080-exec-3 DEBUG ====> Parameters: 0(Integer)
+2018-2-7 15:03:13 http-nio-8080-exec-3 DEBUG <====      Total: 0
+2018-2-7 15:03:13 http-nio-8080-exec-3 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:03:13 http-nio-8080-exec-3 DEBUG ====> Parameters: 1(Integer)
+2018-2-7 15:03:13 http-nio-8080-exec-3 DEBUG <====      Total: 1
+2018-2-7 15:03:13 http-nio-8080-exec-3 DEBUG <==      Total: 5
+2018-2-7 15:03:14 http-nio-8080-exec-5 DEBUG ==>  Preparing: SELECT count(0) FROM t_bms_menu t 
+2018-2-7 15:03:14 http-nio-8080-exec-5 DEBUG ==> Parameters: 
+2018-2-7 15:03:14 http-nio-8080-exec-5 DEBUG <==      Total: 1
+2018-2-7 15:03:14 http-nio-8080-exec-5 DEBUG ==>  Preparing: select t.id, t.menu_name, t.menu_url, t.parent_id, t.sort_num from t_bms_menu t ORDER BY t.sort_num ASC,t.parent_id asc limit ?,? 
+2018-2-7 15:03:14 http-nio-8080-exec-5 DEBUG ==> Parameters: 0(Integer), 10(Integer)
+2018-2-7 15:03:14 http-nio-8080-exec-5 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:03:14 http-nio-8080-exec-5 DEBUG ====> Parameters: 0(Integer)
+2018-2-7 15:03:14 http-nio-8080-exec-5 DEBUG <====      Total: 0
+2018-2-7 15:03:14 http-nio-8080-exec-5 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:03:14 http-nio-8080-exec-5 DEBUG ====> Parameters: 1(Integer)
+2018-2-7 15:03:14 http-nio-8080-exec-5 DEBUG <====      Total: 1
+2018-2-7 15:03:14 http-nio-8080-exec-5 DEBUG <==      Total: 5
+2018-2-7 15:10:43 main INFO No active profile set, falling back to default profiles: default
+2018-2-7 15:10:54 main INFO Started BeanApplication in 13.725 seconds (JVM running for 14.526)
+2018-2-7 15:11:04 http-nio-8080-exec-4 DEBUG ==>  Preparing: select id, account, password_prompt, pass_word, is_lock, create_date from t_bms_admin t WHERE t.account like concat(concat('%',?),'%') ORDER BY t.create_date desc 
+2018-2-7 15:11:04 http-nio-8080-exec-4 DEBUG ==> Parameters: admin(String)
+2018-2-7 15:11:04 http-nio-8080-exec-4 DEBUG <==      Total: 1
+2018-2-7 15:11:04 http-nio-8080-exec-4 DEBUG ==>  Preparing: select distinct t.id, t.menu_name, t.menu_url, t.parent_id, t.sort_num from t_bms_menu t ,t_bms_admin a,t_bms_admin_role ar ,t_bms_role_menu rm where a.id=ar.admin_id and ar.role_id=rm.role_id and t.id=rm.menu_id and a.id=? order by t.sort_num asc 
+2018-2-7 15:11:04 http-nio-8080-exec-4 DEBUG ==> Parameters: 1(Integer)
+2018-2-7 15:11:04 http-nio-8080-exec-4 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:11:04 http-nio-8080-exec-4 DEBUG ====> Parameters: 0(Integer)
+2018-2-7 15:11:04 http-nio-8080-exec-4 DEBUG <====      Total: 0
+2018-2-7 15:11:04 http-nio-8080-exec-4 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:11:04 http-nio-8080-exec-4 DEBUG ====> Parameters: 1(Integer)
+2018-2-7 15:11:04 http-nio-8080-exec-4 DEBUG <====      Total: 1
+2018-2-7 15:11:04 http-nio-8080-exec-4 DEBUG <==      Total: 5
+2018-2-7 15:11:04 http-nio-8080-exec-2 DEBUG ==>  Preparing: select distinct t.id, t.menu_name, t.menu_url, t.parent_id, t.sort_num from t_bms_menu t ,t_bms_admin a,t_bms_admin_role ar ,t_bms_role_menu rm where a.id=ar.admin_id and ar.role_id=rm.role_id and t.id=rm.menu_id and a.id=? order by t.sort_num asc 
+2018-2-7 15:11:04 http-nio-8080-exec-2 DEBUG ==> Parameters: 1(Integer)
+2018-2-7 15:11:04 http-nio-8080-exec-2 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:11:04 http-nio-8080-exec-2 DEBUG ====> Parameters: 0(Integer)
+2018-2-7 15:11:04 http-nio-8080-exec-2 DEBUG <====      Total: 0
+2018-2-7 15:11:04 http-nio-8080-exec-2 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:11:04 http-nio-8080-exec-2 DEBUG ====> Parameters: 1(Integer)
+2018-2-7 15:11:04 http-nio-8080-exec-2 DEBUG <====      Total: 1
+2018-2-7 15:11:04 http-nio-8080-exec-2 DEBUG <==      Total: 5
+2018-2-7 15:11:06 http-nio-8080-exec-5 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 15:11:06 http-nio-8080-exec-5 DEBUG ==> Parameters: 0(String)
+2018-2-7 15:11:06 http-nio-8080-exec-5 DEBUG <==      Total: 1
+2018-2-7 15:11:06 http-nio-8080-exec-5 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 15:11:06 http-nio-8080-exec-5 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 15:11:06 http-nio-8080-exec-5 DEBUG <==      Total: 4
+2018-2-7 15:11:07 http-nio-8080-exec-7 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 15:11:07 http-nio-8080-exec-7 DEBUG ==> Parameters: 3(Integer)
+2018-2-7 15:11:07 http-nio-8080-exec-7 DEBUG <==      Total: 1
+2018-2-7 15:11:24 http-nio-8080-exec-5 DEBUG ==>  Preparing: update t_bean_goods SET name = ?, score = ?, store = ?, status = ?, operator = ?, operate_ip = ?, virtl_sales = ?, modify_time = ?, sort_num = ?, good_detail = ?, good_desc = ? where id = ? 
+2018-2-7 15:11:24 http-nio-8080-exec-5 DEBUG ==> Parameters: test(String), 0(Integer), 0(Integer), 1(String), admin(String), 0:0:0:0:0:0:0:1(String), 100(Integer), 2018-02-07 15:11:20.256(Timestamp), 10(Integer), java.io.StringReader@57d30593(StringReader), java.io.StringReader@4101ec81(StringReader), 3(Integer)
+2018-2-7 15:11:24 http-nio-8080-exec-5 DEBUG <==    Updates: 1
+2018-2-7 15:11:24 http-nio-8080-exec-2 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 15:11:24 http-nio-8080-exec-2 DEBUG ==> Parameters: 0(String)
+2018-2-7 15:11:24 http-nio-8080-exec-2 DEBUG <==      Total: 1
+2018-2-7 15:11:24 http-nio-8080-exec-2 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 15:11:24 http-nio-8080-exec-2 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 15:11:24 http-nio-8080-exec-2 DEBUG <==      Total: 4
+2018-2-7 15:12:55 http-nio-8080-exec-1 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 15:12:55 http-nio-8080-exec-1 DEBUG ==> Parameters: 3(Integer)
+2018-2-7 15:12:55 http-nio-8080-exec-1 DEBUG <==      Total: 1
+2018-2-7 15:14:32 main INFO No active profile set, falling back to default profiles: default
+2018-2-7 15:14:42 main INFO Started BeanApplication in 12.166 seconds (JVM running for 12.969)
+2018-2-7 15:15:15 http-nio-8080-exec-4 DEBUG ==>  Preparing: select id, account, password_prompt, pass_word, is_lock, create_date from t_bms_admin t WHERE t.account like concat(concat('%',?),'%') ORDER BY t.create_date desc 
+2018-2-7 15:15:15 http-nio-8080-exec-4 DEBUG ==> Parameters: admin(String)
+2018-2-7 15:15:15 http-nio-8080-exec-4 DEBUG <==      Total: 1
+2018-2-7 15:15:15 http-nio-8080-exec-4 DEBUG ==>  Preparing: select distinct t.id, t.menu_name, t.menu_url, t.parent_id, t.sort_num from t_bms_menu t ,t_bms_admin a,t_bms_admin_role ar ,t_bms_role_menu rm where a.id=ar.admin_id and ar.role_id=rm.role_id and t.id=rm.menu_id and a.id=? order by t.sort_num asc 
+2018-2-7 15:15:15 http-nio-8080-exec-4 DEBUG ==> Parameters: 1(Integer)
+2018-2-7 15:15:16 http-nio-8080-exec-4 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:15:16 http-nio-8080-exec-4 DEBUG ====> Parameters: 0(Integer)
+2018-2-7 15:15:16 http-nio-8080-exec-4 DEBUG <====      Total: 0
+2018-2-7 15:15:16 http-nio-8080-exec-4 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:15:16 http-nio-8080-exec-4 DEBUG ====> Parameters: 1(Integer)
+2018-2-7 15:15:16 http-nio-8080-exec-4 DEBUG <====      Total: 1
+2018-2-7 15:15:16 http-nio-8080-exec-4 DEBUG <==      Total: 5
+2018-2-7 15:15:16 http-nio-8080-exec-3 DEBUG ==>  Preparing: select distinct t.id, t.menu_name, t.menu_url, t.parent_id, t.sort_num from t_bms_menu t ,t_bms_admin a,t_bms_admin_role ar ,t_bms_role_menu rm where a.id=ar.admin_id and ar.role_id=rm.role_id and t.id=rm.menu_id and a.id=? order by t.sort_num asc 
+2018-2-7 15:15:16 http-nio-8080-exec-3 DEBUG ==> Parameters: 1(Integer)
+2018-2-7 15:15:16 http-nio-8080-exec-3 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:15:16 http-nio-8080-exec-3 DEBUG ====> Parameters: 0(Integer)
+2018-2-7 15:15:16 http-nio-8080-exec-3 DEBUG <====      Total: 0
+2018-2-7 15:15:16 http-nio-8080-exec-3 DEBUG ====>  Preparing: select id, menu_name, menu_url, parent_id, sort_num, status from t_bms_menu where id = ? 
+2018-2-7 15:15:16 http-nio-8080-exec-3 DEBUG ====> Parameters: 1(Integer)
+2018-2-7 15:15:16 http-nio-8080-exec-3 DEBUG <====      Total: 1
+2018-2-7 15:15:16 http-nio-8080-exec-3 DEBUG <==      Total: 5
+2018-2-7 15:16:16 http-nio-8080-exec-7 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 15:16:16 http-nio-8080-exec-7 DEBUG ==> Parameters: 0(String)
+2018-2-7 15:16:16 http-nio-8080-exec-7 DEBUG <==      Total: 1
+2018-2-7 15:16:16 http-nio-8080-exec-7 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 15:16:16 http-nio-8080-exec-7 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 15:16:16 http-nio-8080-exec-7 DEBUG <==      Total: 4
+2018-2-7 15:16:17 http-nio-8080-exec-4 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 15:16:17 http-nio-8080-exec-4 DEBUG ==> Parameters: 3(Integer)
+2018-2-7 15:16:17 http-nio-8080-exec-4 DEBUG <==      Total: 1
+2018-2-7 15:16:29 http-nio-8080-exec-8 DEBUG ==>  Preparing: update t_bean_goods SET name = ?, score = ?, store = ?, status = ?, operator = ?, operate_ip = ?, virtl_sales = ?, modify_time = ?, sort_num = ?, good_detail = ?, good_desc = ? where id = ? 
+2018-2-7 15:16:29 http-nio-8080-exec-8 DEBUG ==> Parameters: test(String), 300(Integer), 200(Integer), 1(String), admin(String), 0:0:0:0:0:0:0:1(String), 100(Integer), 2018-02-07 15:16:28.32(Timestamp), 10(Integer), java.io.StringReader@7d6e47b1(StringReader), java.io.StringReader@6f070be2(StringReader), 3(Integer)
+2018-2-7 15:16:29 http-nio-8080-exec-8 DEBUG <==    Updates: 1
+2018-2-7 15:16:29 http-nio-8080-exec-8 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 15:16:29 http-nio-8080-exec-8 DEBUG ==> Parameters: 0(String)
+2018-2-7 15:16:29 http-nio-8080-exec-8 DEBUG <==      Total: 1
+2018-2-7 15:16:29 http-nio-8080-exec-8 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 15:16:29 http-nio-8080-exec-8 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 15:16:29 http-nio-8080-exec-8 DEBUG <==      Total: 4
+2018-2-7 15:16:32 http-nio-8080-exec-10 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 15:16:32 http-nio-8080-exec-10 DEBUG ==> Parameters: 3(Integer)
+2018-2-7 15:16:32 http-nio-8080-exec-10 DEBUG <==      Total: 1
+2018-2-7 15:16:53 http-nio-8080-exec-5 ERROR 进入文本编辑器图片上传后台
+2018-2-7 15:16:53 http-nio-8080-exec-5 ERROR D:\Workspaces\ptw\zl-bean\src\main\webapp\upload\image\
+2018-2-7 15:16:53 http-nio-8080-exec-5 INFO 返回參數:{"msg":"上传成功","code":0,"data":{"src":"/upload/image//4db30a4413f74ab08ea5e8df209cb56e.png","title":"图片"}}
+2018-2-7 15:16:54 http-nio-8080-exec-4 DEBUG ==>  Preparing: update t_bean_goods SET name = ?, score = ?, store = ?, status = ?, operator = ?, operate_ip = ?, virtl_sales = ?, modify_time = ?, sort_num = ?, good_detail = ?, good_desc = ? where id = ? 
+2018-2-7 15:16:54 http-nio-8080-exec-4 DEBUG ==> Parameters: test(String), 300(Integer), 200(Integer), 1(String), admin(String), 0:0:0:0:0:0:0:1(String), 100(Integer), 2018-02-07 15:16:54.43(Timestamp), 10(Integer), java.io.StringReader@68e0a183(StringReader), java.io.StringReader@1fab5033(StringReader), 3(Integer)
+2018-2-7 15:16:54 http-nio-8080-exec-4 DEBUG <==    Updates: 1
+2018-2-7 15:16:54 http-nio-8080-exec-4 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 15:16:54 http-nio-8080-exec-4 DEBUG ==> Parameters: 0(String)
+2018-2-7 15:16:54 http-nio-8080-exec-4 DEBUG <==      Total: 1
+2018-2-7 15:16:54 http-nio-8080-exec-4 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 15:16:54 http-nio-8080-exec-4 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 15:16:54 http-nio-8080-exec-4 DEBUG <==      Total: 4
+2018-2-7 15:17:45 http-nio-8080-exec-5 ERROR 进入文本编辑器图片上传后台
+2018-2-7 15:17:45 http-nio-8080-exec-5 ERROR D:\Workspaces\ptw\zl-bean\src\main\webapp\upload\image\
+2018-2-7 15:17:45 http-nio-8080-exec-5 INFO 返回參數:{"msg":"上传成功","code":0,"data":{"src":"/upload/image//2d6c3c47466a4571a3c68d95f8bff978.png","title":"图片"}}
+2018-2-7 15:17:52 http-nio-8080-exec-4 ERROR D:\Workspaces\ptw\zl-bean\src\main\webapp\upload\image\
+2018-2-7 15:17:52 http-nio-8080-exec-4 DEBUG ==>  Preparing: insert into t_bean_goods (id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo, good_detail, good_desc) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2018-2-7 15:17:52 http-nio-8080-exec-4 DEBUG ==> Parameters: null, aa(String), /upload/image/b3a92d4b6f704f74b8de4663138cfcfb_btn_7.png(String), 500(Integer), 500(Integer), 0(Integer), 1(String), 0(String), null, admin(String), 0:0:0:0:0:0:0:1(String), null, 100(Integer), 2018-02-07 15:17:52.394(Timestamp), 2018-02-07 15:17:52.39(Timestamp), 99999(Integer), null, java.io.StringReader@1efd11bf(StringReader), java.io.StringReader@4f4b3961(StringReader)
+2018-2-7 15:17:52 http-nio-8080-exec-4 DEBUG <==    Updates: 1
+2018-2-7 15:17:52 http-nio-8080-exec-4 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 15:17:52 http-nio-8080-exec-4 DEBUG ==> Parameters: 0(String)
+2018-2-7 15:17:52 http-nio-8080-exec-4 DEBUG <==      Total: 1
+2018-2-7 15:17:52 http-nio-8080-exec-4 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 15:17:52 http-nio-8080-exec-4 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 15:17:52 http-nio-8080-exec-4 DEBUG <==      Total: 5
+2018-2-7 15:17:54 http-nio-8080-exec-5 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 15:17:54 http-nio-8080-exec-5 DEBUG ==> Parameters: 7(Integer)
+2018-2-7 15:17:54 http-nio-8080-exec-5 DEBUG <==      Total: 1
+2018-2-7 15:18:02 http-nio-8080-exec-2 DEBUG ==>  Preparing: update t_bean_goods SET name = ?, score = ?, store = ?, status = ?, operator = ?, operate_ip = ?, virtl_sales = ?, modify_time = ?, good_detail = ?, good_desc = ? where id = ? 
+2018-2-7 15:18:02 http-nio-8080-exec-2 DEBUG ==> Parameters: aa(String), 500(Integer), 503(Integer), 1(String), admin(String), 0:0:0:0:0:0:0:1(String), 100(Integer), 2018-02-07 15:18:02.438(Timestamp), java.io.StringReader@4f4487ea(StringReader), java.io.StringReader@6725a085(StringReader), 7(Integer)
+2018-2-7 15:18:02 http-nio-8080-exec-2 DEBUG <==    Updates: 1
+2018-2-7 15:18:02 http-nio-8080-exec-2 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 15:18:02 http-nio-8080-exec-2 DEBUG ==> Parameters: 0(String)
+2018-2-7 15:18:02 http-nio-8080-exec-2 DEBUG <==      Total: 1
+2018-2-7 15:18:02 http-nio-8080-exec-2 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 15:18:02 http-nio-8080-exec-2 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 15:18:02 http-nio-8080-exec-2 DEBUG <==      Total: 5
+2018-2-7 15:18:04 http-nio-8080-exec-10 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 15:18:04 http-nio-8080-exec-10 DEBUG ==> Parameters: 7(Integer)
+2018-2-7 15:18:04 http-nio-8080-exec-10 DEBUG <==      Total: 1
+2018-2-7 15:18:13 http-nio-8080-exec-1 DEBUG ==>  Preparing: update t_bean_goods SET name = ?, score = ?, store = ?, status = ?, operator = ?, operate_ip = ?, virtl_sales = ?, modify_time = ?, sort_num = ?, good_detail = ?, good_desc = ? where id = ? 
+2018-2-7 15:18:13 http-nio-8080-exec-1 DEBUG ==> Parameters: aa(String), 500(Integer), 503(Integer), 1(String), admin(String), 0:0:0:0:0:0:0:1(String), 100(Integer), 2018-02-07 15:18:13.636(Timestamp), 500(Integer), java.io.StringReader@2150bb30(StringReader), java.io.StringReader@591a51b9(StringReader), 7(Integer)
+2018-2-7 15:18:13 http-nio-8080-exec-1 DEBUG <==    Updates: 1
+2018-2-7 15:18:13 http-nio-8080-exec-1 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 15:18:13 http-nio-8080-exec-1 DEBUG ==> Parameters: 0(String)
+2018-2-7 15:18:13 http-nio-8080-exec-1 DEBUG <==      Total: 1
+2018-2-7 15:18:13 http-nio-8080-exec-1 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 15:18:13 http-nio-8080-exec-1 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 15:18:13 http-nio-8080-exec-1 DEBUG <==      Total: 5
+2018-2-7 15:18:15 http-nio-8080-exec-3 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 15:18:15 http-nio-8080-exec-3 DEBUG ==> Parameters: 4(Integer)
+2018-2-7 15:18:15 http-nio-8080-exec-3 DEBUG <==      Total: 1
+2018-2-7 15:18:20 http-nio-8080-exec-2 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 15:18:20 http-nio-8080-exec-2 DEBUG ==> Parameters: 7(Integer)
+2018-2-7 15:18:20 http-nio-8080-exec-2 DEBUG <==      Total: 1
+2018-2-7 15:18:26 http-nio-8080-exec-8 DEBUG ==>  Preparing: update t_bean_goods SET name = ?, score = ?, store = ?, status = ?, operator = ?, operate_ip = ?, virtl_sales = ?, modify_time = ?, sort_num = ?, good_detail = ?, good_desc = ? where id = ? 
+2018-2-7 15:18:26 http-nio-8080-exec-8 DEBUG ==> Parameters: aa(String), 500(Integer), 503(Integer), 1(String), admin(String), 0:0:0:0:0:0:0:1(String), 100(Integer), 2018-02-07 15:18:26.191(Timestamp), 2(Integer), java.io.StringReader@3e865ddd(StringReader), java.io.StringReader@4dedc77d(StringReader), 7(Integer)
+2018-2-7 15:18:26 http-nio-8080-exec-8 DEBUG <==    Updates: 1
+2018-2-7 15:18:26 http-nio-8080-exec-8 DEBUG ==>  Preparing: SELECT count(0) FROM t_bean_goods t WHERE t.delete_status = ? 
+2018-2-7 15:18:26 http-nio-8080-exec-8 DEBUG ==> Parameters: 0(String)
+2018-2-7 15:18:26 http-nio-8080-exec-8 DEBUG <==      Total: 1
+2018-2-7 15:18:26 http-nio-8080-exec-8 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo from t_bean_goods t WHERE t.delete_status = ? order by t.sort_num asc,t.modify_time desc limit ?,? 
+2018-2-7 15:18:26 http-nio-8080-exec-8 DEBUG ==> Parameters: 0(String), 0(Integer), 10(Integer)
+2018-2-7 15:18:26 http-nio-8080-exec-8 DEBUG <==      Total: 5
+2018-2-7 15:18:28 http-nio-8080-exec-9 DEBUG ==>  Preparing: select id, name, good_image, score, store, freeze_store, status, delete_status, categories_id, operator, operate_ip, real_sales, virtl_sales, create_time, modify_time, sort_num, memo , good_detail, good_desc from t_bean_goods where id = ? 
+2018-2-7 15:18:28 http-nio-8080-exec-9 DEBUG ==> Parameters: 7(Integer)
+2018-2-7 15:18:28 http-nio-8080-exec-9 DEBUG <==      Total: 1
+2018-2-7 15:18:38 http-nio-8080-exec-1 DEBUG ==>  Preparing: SELECT count(0) FROM t_bms_role t 
+2018-2-7 15:18:38 http-nio-8080-exec-1 DEBUG ==> Parameters: 
+2018-2-7 15:18:38 http-nio-8080-exec-1 DEBUG <==      Total: 1
+2018-2-7 15:18:38 http-nio-8080-exec-1 DEBUG ==>  Preparing: select t.* from t_bms_role t limit ?,? 
+2018-2-7 15:18:38 http-nio-8080-exec-1 DEBUG ==> Parameters: 0(Integer), 10(Integer)
+2018-2-7 15:18:38 http-nio-8080-exec-1 DEBUG <==      Total: 2

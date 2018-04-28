@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icloud.dao.business.BeanGoodsClassMapper" >
+  <resultMap id="BaseResultMap" type="com.icloud.model.business.BeanGoodsClass" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="sort_num" property="sortNum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, sort_num, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bean_goods_class
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_bean_goods_class
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.icloud.model.business.BeanGoodsClass" >
+    insert into t_bean_goods_class (id, name, sort_num, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=CHAR}, #{sortNum,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icloud.model.business.BeanGoodsClass" >
+    insert into t_bean_goods_class
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sortNum != null" >
+        sort_num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="sortNum != null" >
+        #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icloud.model.business.BeanGoodsClass" >
+    update t_bean_goods_class
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="sortNum != null" >
+        sort_num = #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icloud.model.business.BeanGoodsClass" >
+    update t_bean_goods_class
+    set name = #{name,jdbcType=CHAR},
+      sort_num = #{sortNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+   <select id="findForList" parameterType="com.icloud.model.business.BeanGoodsClass" resultMap="BaseResultMap">
+		 select 
+	    <include refid="Base_Column_List" />
+	    from t_bean_goods_class t
+		<where>
+			 <if test="id != null" >
+      		  and t.id =  #{id,jdbcType=INTEGER}
+     		 </if>
+     		 <if test="name!=null and name!='' ">
+					and t.name like concat(concat('%',#{name}),'%')
+			</if>
+     		  <if test="status!=null and status!=''">
+				and t.status = #{status,jdbcType=VARCHAR}
+			</if>
+		</where>
+		order by t.sort_num asc
+	</select>
+</mapper>

@@ -1,0 +1,10 @@
+package com.icloud.web.business.front.beans;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping(value = "${frontPath}/beanGoods")
+public class BeanGoodFrontController {
+
+}

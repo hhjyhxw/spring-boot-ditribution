@@ -1,0 +1,36 @@
+package com.icloud.web.business.front.coupon;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.icloud.common.ResponseUtils;
+import com.icloud.service.interfaces.CouponInterfaceService;
+import com.icloud.web.AppBaseController;
+
+@Controller
+@RequestMapping(value = "${frontPath}/beanCoupon")
+public class BeanCouponFrontController extends AppBaseController{
+	
+	@Qualifier("couponInterfaceServiceImpl")
+	private CouponInterfaceService couponInterfaceServiceImpl;
+
+	/**
+	* Description:紫光优惠券查询
+	* @author zhangdehai
+	* @param type 0:可用抵价券，1：已消耗，2：全部
+	* @throws Exception  
+	* @date 2018年2月27日下午4:54:03
+	 */
+	@RequestMapping(value = "/queryCouponsList")
+	@ResponseBody
+	public String queryCouponsList(String type) throws Exception{
+		String result = couponInterfaceServiceImpl.queryBeanCouponJsonString(getOpenId(), type);
+		if(result!=null){
+			ResponseUtils.renderJson(respone,result);
+		}
+		return null;
+	}
+	
+}

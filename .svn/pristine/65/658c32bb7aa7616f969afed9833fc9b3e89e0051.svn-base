@@ -1,0 +1,118 @@
+package com.icloud.web.order;
+
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.github.pagehelper.PageInfo;
+import com.icloud.common.ResponseUtils;
+import com.icloud.model.business.BeanOrder;
+import com.icloud.model.business.BeanOrderItem;
+import com.icloud.service.business.BeanOrderItemService;
+import com.icloud.service.business.BeanOrderService;
+import com.icloud.web.BaseController;
+
+@Controller
+@RequestMapping("${backPath}/beanOrders")
+public class BeanOrderController extends BaseController<BeanOrder>{
+
+	@Autowired 
+	private BeanOrderService beanOrderService;
+	
+	@Autowired
+	private BeanOrderItemService beanOrderItemService;
+	
+	/**
+	 * 获取 订单列表
+	 * @param request
+	 * @param beanOrder
+	 * @return
+	 */
+	@RequestMapping("/list")
+	@Override
+	public String list(HttpServletRequest request, BeanOrder t)
+			throws Exception {
+		log.warn("获取订单列表！");
+		
+		String pageNumStr = request.getParameter("pageNum");
+		Long pageNum = (long) 1;
+		if(pageNumStr != null && !"".equals(pageNumStr)) {
+			pageNum = Long.parseLong(pageNumStr);
+		}
+		 
+		log.warn("当前页数：" + pageNum);
+		PageInfo<BeanOrder> pageInfo = beanOrderService.findByPage(1, 10, t);
+		log.warn("查询结果：" + pageInfo.toString());
+		//pageInfo.setList(new ArrayList<>());
+		request.setAttribute("page", pageInfo);
+		request.setAttribute("record", t);
+		return "business/orders/bean_orders_list";
+	}
+
+	@RequestMapping("/asynList")
+	@Override
+	public String getList(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		System.out.println("Test asynList");
+		return null;
+	}
+
+	@Override
+	public String toinput(Integer id, HttpServletRequest request)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String input(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@RequestMapping("/delete")
+	@Override
+	public String del(Integer id, HttpServletResponse response)
+			throws Exception {
+		log.warn("参数：id = " + id);
+		//beanOrderService.delete(Long.valueOf(id));
+		ResponseUtils.renderHtml(response, "0000");
+		return null;
+	}
+	
+	@RequestMapping("/orderDetail")
+	public String orderDetail(HttpServletRequest request,
+			HttpServletResponse response,BeanOrderItem t) throws Exception {
+		log.warn("to orderDetail");
+		String idStr = request.getParameter("id");
+		Long id = 0L;
+		if (idStr != null && !"".equals(idStr)) {
+			id = Long.valueOf(idStr);
+		}
+		log.warn("参数：id = " + id);
+		BeanOrder beanOrder = beanOrderService.findByKey(id);
+		t.setOrderId(id);
+		List<BeanOrderItem> beanOrderItems = beanOrderItemService.findList(t);
+		//List<BeanOrderItem> beanOrderItems = beanOrderItemService.findListByOrderId(id);
+		request.setAttribute("beanOrder", beanOrder);
+        request.setAttribute("beanOrderItems", beanOrderItems);
+		return "business/orders/bean_orders_detail";
+	}
+	
+	public List<BeanOrder> getBeanOrderList(int num){
+		
+		return new ArrayList<>();
+	}
+
+	
+}

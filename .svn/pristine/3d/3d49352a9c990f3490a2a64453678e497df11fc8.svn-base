@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>订单列表</title>
+		<link rel="stylesheet" href="../../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/global.css" media="all">
+		<link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/table.css" />
+	</head>
+
+	<body>
+	        <div style="margin:0 auto;width:100%;">
+	        <fieldset class="layui-elem-field">
+	        <legend>查询条件</legend>
+			<form action="" method="post">
+				<#-- 查询条件的 -->
+				<div class="layui-field-box">
+				<label class="layui-form-label">订单号</label>
+			    <div class="layui-input-inline" style="width:13%">
+			        <input type="text" id="orderNo"  placeholder="" style="height:30px;" class="layui-input">
+		  		</div>
+				
+		       <a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+					<i class="layui-icon">&#xe615;</i> 查找
+				</a>
+				
+			</div>
+			</form>	
+			</fieldset>
+			</div>
+			<fieldset class="layui-elem-field">
+				<legend>订单列表</legend>
+				
+				<div class="layui-field-box">
+					<table class="site-table table-hover">
+						<thead>
+							<tr>
+								<th>订单号</th>
+							    <th>商品名称</th>
+							    <th>积分</th>
+							    <th>优惠券值</th>
+							    <th>订单状态</th>
+							    <th>创建时间</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+						<#if page.list?? && (page.list?size > 0)> 
+						<#list page.list as order>
+						    <tr>
+						    	
+						        <td>
+						            ${order.orderNo!""}
+						        </td>
+						        <td>
+						        	${order.goodName!""}
+						        </td>
+						        <td>
+						        	${order.score!""}
+						        </td>
+						        <td>
+						        	${order.coupon!""}
+						        </td>
+						        <td>
+						        	${order.orderStatus!""}
+						        </td>
+						        <td>
+						        	${order.createTime?string("yyyy-MM-dd HH:mm:ss")}
+						        </td>
+								<th>
+								<div class="layui-btn-group">
+								 	<button class="layui-btn layui-btn-small" onclick="detail(${order.id})">
+								    	<#-- <i class="layui-icon">&#xe642;</i> -->&nbsp;订单明细
+								  	</button>
+									 
+								  	<button class="layui-btn layui-btn-small" onclick="delById(${order.id})">
+								    	<i class="layui-icon">&#xe640;</i>&nbsp;删除
+								  	</button>
+									
+								  	
+								</div>
+								</th>
+							</tr>
+						</#list>
+						</#if>
+						</tbody>
+					</table>
+
+				</div>
+				
+			</fieldset>
+			<div class="admin-table-page layui-field-box">
+				<div id="page" class="page">
+				总共${page.total}条记录，分${page.pages}页显示，每页${page.pageSize}条记录，当前第${page.pageNum}页
+			    <span style="float:right;margin-right:10%;">
+				    <a class="" href="${request.contextPath}/backpage/beanOrders/list?pageNnm=1">首页 </a>
+			        <#if page.HasPreviousPage??>
+			        <a class="" href="${request.contextPath}/backpage/beanOrders/list?pageNum=${page.pageNum-1}">上一页 </a>
+			        <#else>
+			        <a class="" href="${request.contextPath}/backpage/beanOrders/list?pageNum=1">上一页 </a>
+			        </#if>
+				    <#if page.HasNextPage??>
+				    <a class="" href="${request.contextPath}/backpage/beanOrders/list?pageNum=${page.pageNum+1}">下一页 </a>
+				    <#else>
+				    <a class="" href="${request.contextPath}/backpage/beanOrders/list?pageNum=${page.pages}">下一页 </a>
+				    </#if>
+				    <a class="" href="${request.contextPath}/backpage/beanOrders/list?pageNum=${page.pages}">末页 </a>
+				    <input type="text" name="pageNum" style="width:30px;"/>
+				    <button id="skip">GO</button>
+			    </span>
+				</div>
+				
+			</div>
+		</div>
+        <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script>
+			layui.config({
+				base: '../../plugins/layui/modules/'
+			});
+			
+			
+			//订单明细
+			function detail(id){
+				window.location.href = "${request.contextPath}/backpage/beanOrders/orderDetail?id="+id;
+			}
+			
+			//查询
+			$('#search').on('click', function() {
+				var orderNo = $('#orderNo').val();
+				window.location.href = "${request.contextPath}/backpage/beanOrders/list?orderNo="+orderNo;
+			});
+			
+			//删除
+			function delById(id){
+			    layui.use(['layer', 'form'], function(){
+				  var layer = layui.layer
+				  ,form = layui.form;
+				  //询问框
+				layer.confirm('您确定要删除该订单吗？', {
+				  btn: ['确定','取消'] //按钮
+				}, function(){
+				  var url = '${request.contextPath}/backpage/beanOrders/delete';
+					$.post(url, {
+		                'id':id
+		            }, function(ret) {
+					    if(ret == "0000"){
+					    	layer.msg("删除成功");
+					    	window.location.href = "${request.contextPath}/backpage/beanOrders/list";
+					    }else{
+					    	layer.msg("删除失败");
+					    }
+		            });
+				}, function(){
+				 
+				  });
+				});
+			    
+				
+			}
+			
+		
+			
+	    </script>
+	</body>
+
+</html>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icloud.dao.bms.BmsRoleMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.icloud.model.bms.BmsRoleMenu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="menu_id" property="menuId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_id, menu_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bms_role_menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_bms_role_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.icloud.model.bms.BmsRoleMenu" >
+    insert into t_bms_role_menu (id, role_id, menu_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.icloud.model.bms.BmsRoleMenu" >
+    insert into t_bms_role_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icloud.model.bms.BmsRoleMenu" >
+    update t_bms_role_menu
+    <set >
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icloud.model.bms.BmsRoleMenu" >
+    update t_bms_role_menu
+    set role_id = #{roleId,jdbcType=INTEGER},
+      menu_id = #{menuId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+ 	<delete id="delete" parameterType="com.icloud.model.bms.BmsRoleMenu">
+		delete from t_bms_role_menu
+		<where>
+			<if test="null!=menuId">
+				menu_id=#{menuId}
+			</if>
+			<if test="null!=roleId">
+				or role_id=#{roleId}
+			</if>
+		</where>
+	</delete>
+	<insert id="batchInsert" parameterType="java.util.List">
+		INSERT INTO t_bms_role_menu (role_id, menu_id)values
+		<foreach collection="list" item="item" index="index" separator="," >
+			(#{item.roleId},#{item.menuId})
+		</foreach>
+	</insert>
+</mapper>

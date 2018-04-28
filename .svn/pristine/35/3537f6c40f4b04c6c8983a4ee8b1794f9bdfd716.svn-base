@@ -1,0 +1,59 @@
+#spring.application.name=hyzy-activities
+#server.port=8087
+#server.context-path=/hyzyactivities
+
+#server.ssl.key-store=keystore.p12
+#server.ssl.key-store-password=111111
+#server.ssl.keyStoreType=PKCS12
+#server.ssl.keyAlias:tomcat
+
+#spring.rabbitmq.host=localhost
+#spring.rabbitmq.port=5672
+#spring.rabbitmq.username=guest
+#spring.rabbitmq.password=guest
+
+#spring redis session \u5171\u4eab
+spring.session.store-type=Redis
+spring.redis.database=0
+spring.redis.host=127.0.0.1
+#spring.redis.host=118.89.50.18
+spring.redis.password=nnyr2018
+spring.redis.port=6379
+spring.redis.pool.max-idle=25
+spring.redis.pool.min-idle=1
+spring.redis.pool.max-active=25
+spring.redis.pool.max-wait=1000
+
+#ribbon\u7684\u914d\u7f6e
+# Max number of retries on the same server (excluding the first try)  
+sample-client.ribbon.MaxAutoRetries=1  
+# Max number of next servers to retry (excluding the first server)  
+sample-client.ribbon.MaxAutoRetriesNextServer=1  
+# Whether all operations can be retried for this client  
+sample-client.ribbon.OkToRetryOnAllOperations=true  
+# Interval to refresh the server list from the source  
+sample-client.ribbon.ServerListRefreshInterval=2000  
+# Connect timeout used by Apache HttpClient  
+sample-client.ribbon.ConnectTimeout=6000  
+# Read timeout used by Apache HttpClient  
+sample-client.ribbon.ReadTimeout=6000  
+# Initial list of servers, can be changed via Archaius dynamic property at runtime  
+#sample-client.ribbon.listOfServers=www.microsoft.com:80,www.yahoo.com:80,www.google.com:80  
+sample-client.ribbon.EnablePrimeConnections=true 
+
+ 
+spring.freemarker.template-loader-path=classpath:/templates
+#\u8bbe\u5b9a\u9759\u6001\u6587\u4ef6\u8def\u5f84\uff0cjs,css\u7b49
+spring.freemarker.allow-request-override=false
+spring.freemarker.cache=false
+spring.freemarker.check-template-location=true
+spring.freemarker.charset=UTF-8
+spring.freemarker.content-type=text/html
+spring.freemarker.expose-spring-macro-helpers=true
+spring.freemarker.expose-request-attributes=true
+spring.freemarker.expose-session-attributes=true
+spring.freemarker.request-context-attribute=request
+spring.freemarker.suffix=.ftl
+
+logging.level.org.springframework=INFO
+logging.level.org.spring.springboot.dao=INFO

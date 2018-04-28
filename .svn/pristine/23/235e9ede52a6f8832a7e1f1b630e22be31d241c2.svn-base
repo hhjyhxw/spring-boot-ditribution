@@ -1,0 +1,73 @@
+package com.icloud.service.business;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.icloud.dao.business.BeanOrderMapper;
+import com.icloud.model.business.BeanOrder;
+
+@Service
+public class BeanOrderService{
+
+	@Autowired
+	private BeanOrderMapper beanOrderMapper;
+	@Transactional
+	public void save(BeanOrder t) {
+		// TODO Auto-generated method stub
+		beanOrderMapper.insert(t);
+	}
+
+	public void update(BeanOrder t)  {
+		// TODO Auto-generated method stub
+		beanOrderMapper.updateByPrimaryKey(t);
+	}
+
+	public List<BeanOrder> findList(BeanOrder t)  {
+		// TODO Auto-generated method stub
+		return beanOrderMapper.findForList(t);
+	}
+
+	public Integer findCount(BeanOrder t)  {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void delete(Long id)  {
+		// TOdeleteDO Auto-generated method stub
+		beanOrderMapper.deleteByPrimaryKey(id);
+	}
+
+	public BeanOrder findByKey(Long id) throws Exception {
+		return beanOrderMapper.selectByPrimaryKey(id);
+	}
+
+	public PageInfo<BeanOrder> findByPage(int pageNo, int pageSize, BeanOrder t)
+			{
+		PageHelper.startPage(pageNo, pageSize);
+		PageInfo<BeanOrder> pageInfo = new PageInfo<>(beanOrderMapper.findForList(t));
+		return pageInfo;
+	}
+//	@Transactional
+//	@Rollback(false)
+	public String getLastOrderNo() {
+		return beanOrderMapper.getOrderNo();
+	}
+
+	public PageInfo<BeanOrder> findByPage(int pageNo, int pageSize,
+			Map<String, Object> map) {
+		PageHelper.startPage(pageNo, pageSize);
+		PageInfo<BeanOrder> pageInfo = new PageInfo<>(beanOrderMapper.findForListByPage(map));
+		return pageInfo;
+	}
+
+	public void updateBatch(List<String> orderNos) {
+		beanOrderMapper.updateBatch(orderNos);
+	}
+
+}

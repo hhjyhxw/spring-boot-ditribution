@@ -1,0 +1,20 @@
+package com.icloud.dao.business;
+
+import com.icloud.model.business.TbeanGoods;
+import com.icloud.model.business.TbeanGoodsWithBLOBs;
+
+public interface TbeanGoodsMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(TbeanGoodsWithBLOBs record);
+
+    int insertSelective(TbeanGoodsWithBLOBs record);
+
+    TbeanGoodsWithBLOBs selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(TbeanGoodsWithBLOBs record);
+
+    int updateByPrimaryKeyWithBLOBs(TbeanGoodsWithBLOBs record);
+
+    int updateByPrimaryKey(TbeanGoods record);
+}

@@ -1,0 +1,36 @@
+package com.icloud.service.bms;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.icloud.dao.bms.TbmsRoleMenuMapper;
+import com.icloud.model.bms.TbmsRoleMenu;
+
+@Service
+public class RoleMenuService{
+
+	@Autowired
+	private TbmsRoleMenuMapper bmsRoleMenuMapper;
+	
+	public int insert(TbmsRoleMenu record) {
+		// TODO Auto-generated method stub
+		return bmsRoleMenuMapper.insert(record);
+	}
+
+	public int insertSelective(TbmsRoleMenu record) {
+		// TODO Auto-generated method stub
+		return bmsRoleMenuMapper.insert(record);
+	}
+
+	public void delete(TbmsRoleMenu record) {
+		// TODO Auto-generated method stub
+		bmsRoleMenuMapper.delete(record);
+	}
+
+	public void batchInsert(List<TbmsRoleMenu> list) {
+		bmsRoleMenuMapper.batchInsert(list);
+	}
+
+}

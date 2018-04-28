@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>商品详情</title>
+	</head>
+
+	<body>
+		欢迎${beanFans.nickname}登陆!
+	</body>
+
+</html>

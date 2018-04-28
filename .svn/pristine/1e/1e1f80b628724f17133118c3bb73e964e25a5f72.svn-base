@@ -1,0 +1,29 @@
+package com.icloud.dao.bms;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.icloud.dao.BaseDao;
+import com.icloud.model.bms.TbmsRole;
+
+public interface TbmsRoleMapper extends BaseDao<TbmsRole>{
+    int deleteByPrimaryKey(BigDecimal id);
+
+    int insert(TbmsRole record);
+
+    int insertSelective(TbmsRole record);
+
+    TbmsRole selectByPrimaryKey(BigDecimal id);
+
+    int updateByPrimaryKeySelective(TbmsRole record);
+
+    int updateByPrimaryKey(TbmsRole record);
+    
+    
+    
+    List<TbmsRole> selectByAdmin(Long adminId);
+    
+    List<TbmsRole> selectAll();
+    
+    int selectCountByName(String roleName);
+}

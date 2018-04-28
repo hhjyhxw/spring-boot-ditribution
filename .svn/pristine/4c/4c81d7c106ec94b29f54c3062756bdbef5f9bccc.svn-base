@@ -1,0 +1,13 @@
+
+#db msql
+spring.datasource.driverClassName=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://gz-cdb-o77g5le8.sql.tencentcdb.com:63194/ldscdb?useUnicode=true&characterEncoding=utf-8
+#spring.datasource.url=jdbc:mysql://10.1.0.146:3306/ldscdb?useUnicode=true&characterEncoding=UTF-8
+spring.datasource.username=ldsctest
+spring.datasource.password=nnyr2018
+spring.datasource.max-active=10
+spring.datasource.maxActive=5
+spring.datasource.maxIdle=3
+
+
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icloud.dao.bms.TbmsRoleMenuMapper">
+  <resultMap id="BaseResultMap" type="com.icloud.model.bms.TbmsRoleMenu">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="ROLE_ID" jdbcType="NUMERIC" property="roleId" />
+    <result column="MENU_ID" jdbcType="NUMERIC" property="menuId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ROLE_ID, MENU_ID
+  </sql>
+  
+ 	<delete id="delete" parameterType="com.icloud.model.bms.TbmsRoleMenu">
+		delete from T_BMS_ROLE_MENU
+		<where>
+			<if test="null!=menuId">
+				menu_id=#{menuId}
+			</if>
+			<if test="null!=roleId">
+				or role_id=#{roleId}
+			</if>
+		</where>
+	</delete>
+	<insert id="batchInsert" parameterType="java.util.List">
+		INSERT INTO T_BMS_ROLE_MENU (id, role_id, menu_id) select seq_t_bms_role_menu.nextval,temp.* from (
+		<foreach collection="list" item="item" index="index"
+			separator="union" >
+			select #{item.roleId},#{item.menuId} from dual
+		</foreach>
+		) temp 
+	</insert>
+
+	<insert id="insert" parameterType="com.icloud.model.bms.TbmsRoleMenu">
+		insert into T_BMS_ROLE_MENU (id,
+		role_id, menu_id
+		)
+		values (seq_t_bms_role_menu.nextval,
+		#{roleId,jdbcType=VARCHAR},
+		#{menuId,jdbcType=VARCHAR}
+		)
+	</insert>
+ 
+</mapper>

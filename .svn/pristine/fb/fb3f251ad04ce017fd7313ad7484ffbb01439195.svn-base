@@ -1,0 +1,17 @@
+package com.icloud.dao.business;
+
+import com.icloud.model.business.BeanAddress;
+
+public interface BeanAddressMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(BeanAddress record);
+
+    int insertSelective(BeanAddress record);
+
+    BeanAddress selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(BeanAddress record);
+
+    int updateByPrimaryKey(BeanAddress record);
+}

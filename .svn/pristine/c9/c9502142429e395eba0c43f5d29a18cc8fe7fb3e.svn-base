@@ -1,0 +1,156 @@
+package com.icloud.web.business.back.orders;
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
+import com.icloud.common.ResponseUtils;
+import com.icloud.model.business.BeanOrder;
+import com.icloud.model.business.BeanOrderItem;
+import com.icloud.service.business.BeanOrderItemService;
+import com.icloud.service.business.BeanOrderService;
+import com.icloud.web.BaseController;
+import com.icloud.web.util.ClassUtil;
+
+@Controller
+@RequestMapping("${backPath}/beanOrders")
+public class BeanOrderController extends BaseController<BeanOrder>{
+
+	@Autowired 
+	private BeanOrderService beanOrderService;
+	
+	@Autowired
+	private BeanOrderItemService beanOrderItemService;
+	
+	/**
+	 * 获取 订单列表
+	 * @param request
+	 * @param beanOrder
+	 * @return
+	 */
+	@RequestMapping("/list")
+	@Override
+	public String list(HttpServletRequest request, BeanOrder t)
+			throws Exception {
+		log.warn("获取订单列表！");
+	    String start = request.getParameter("startTime");
+	    String end = request.getParameter("endTime");
+		String pageNumStr = request.getParameter("pageNum");
+		int pageNum = 1;
+		if(pageNumStr != null && !"".equals(pageNumStr)) {
+			pageNum = Integer.parseInt(pageNumStr);
+		}
+		
+		log.warn("当前页数：" + pageNum);
+		Map<String, Object> map = new HashMap<>();
+		map = ClassUtil.setConditionMap(t);
+		map.put("start", start);
+		map.put("end", end);
+		System.out.println(map.get("start"));
+		PageInfo<BeanOrder> pageInfo = beanOrderService.findByPage(pageNum, 10, map);
+		//PageInfo<BeanOrder> pageInfo = beanOrderService.findByPage(1, 10, t);
+		log.warn("查询结果：" + pageInfo.toString());
+		//pageInfo.setList(new ArrayList<>());
+		request.setAttribute("page", pageInfo);
+		request.setAttribute("record", t);
+		request.setAttribute("start", start);
+		request.setAttribute("end", end);
+		return "business/orders/bean_orders_list";
+	}
+
+	@RequestMapping("/asynList")
+	@Override
+	public String getList(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		System.out.println("Test asynList");
+		return null;
+	}
+
+	@Override
+	public String toinput(Integer id, HttpServletRequest request)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String input(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@RequestMapping("/delete")
+	@Override
+	public String del(Integer id, HttpServletResponse response)
+			throws Exception {
+		log.warn("参数：id = " + id);
+		beanOrderService.delete(Long.valueOf(id));
+		ResponseUtils.renderHtml(response, "0000");
+		return null;
+	}
+	
+	@RequestMapping("/orderDetail")
+	public String orderDetail(HttpServletRequest request,
+			HttpServletResponse response,BeanOrderItem t) throws Exception {
+		log.warn("to orderDetail");
+		String idStr = request.getParameter("id");
+		Long id = 0L;
+		if (idStr != null && !"".equals(idStr)) {
+			id = Long.valueOf(idStr);
+		}
+		log.warn("参数：id = " + id);
+		BeanOrder beanOrder = beanOrderService.findByKey(id);
+		t.setOrderId(id);
+		List<BeanOrderItem> beanOrderItems = beanOrderItemService.findList(t);
+		//List<BeanOrderItem> beanOrderItems = beanOrderItemService.findListByOrderId(id);
+		request.setAttribute("beanOrder", beanOrder);
+        request.setAttribute("beanOrderItems", beanOrderItems);
+		return "business/orders/bean_orders_detail";
+	}
+	
+	
+	public List<BeanOrder> getBeanOrderList(int num){
+		
+		return new ArrayList<>();
+	}
+    
+	@RequestMapping("/deliveryGoods")
+	public String deliveryGoods(HttpServletRequest request,HttpServletResponse response) {
+		String orderNoListStr = request.getParameter("operatorOrderNos");
+		log.warn("传入批量更新的参数:" + orderNoListStr);
+		List<String> orderNosList = Arrays.asList(orderNoListStr.split(","));
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		try {
+			beanOrderService.updateBatch(orderNosList);
+			resultMap.put("code", "200");
+		} catch (Exception e) {
+			resultMap.put("code", "400");
+			e.printStackTrace();
+			
+		}
+		
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", resultMap);
+		ResponseUtils.renderJson(response, jsonObject.toJSONString());
+		return null;
+		//
+		//
+	}
+	
+}

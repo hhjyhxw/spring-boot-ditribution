@@ -1,0 +1,17 @@
+package com.icloud.dao.business;
+
+import com.icloud.model.business.TbeanOrder;
+
+public interface TbeanOrderMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(TbeanOrder record);
+
+    int insertSelective(TbeanOrder record);
+
+    TbeanOrder selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(TbeanOrder record);
+
+    int updateByPrimaryKey(TbeanOrder record);
+}

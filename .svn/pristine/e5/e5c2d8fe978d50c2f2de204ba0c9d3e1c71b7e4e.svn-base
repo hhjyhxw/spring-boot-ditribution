@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>管理收获地址</title>
+		<link rel="stylesheet" href="../../ldsc/css/reset.css">
+		<link rel="stylesheet" href="../../ldsc/css/myStyle.css">
+		<script src="../../ldsc/js/jquery-2.1.4.js"></script>
+		<script src="../../ldsc/js/global.js"></script>
+    <style type="text/css">
+			@font-face {
+		        font-family: 'PingFang';
+		        src: url('/images/PingFang Regular.ttf'),
+			}
+
+	</style>
+	
+	<script type = "text/javascript">
+	
+	  	    
+	 	
+	</script>
+	    
+	    
+	    
+	
+	</head>
+
+	<body style="background: #e4ecff; overflow: hidden; width: 100%;">
+		<div class="flex">
+			<div class="body">
+				<div class="oderHead"><span></span>管理收货地址</div>
+				<#list addrs as address>
+				<div class="addressUnit onDefault">
+					<div class="nameTel">
+						<p>${address.name}</p>
+						<p>${address.phone}</p>
+					</div>
+					<p class="fullAddress">${address.provinceName}${address.cityName}${address.countyName}${address.detailAddress}</p>
+					<div class="defaultBtn">
+						<p><span></span>默认地址</p>
+						<p><a href="http://localhost:8080/frontpage/address/toAddrEdit?id=${address.id}">编辑</a>
+						<a href="http://localhost:8080/frontpage/address/deleteAddr?id=${address.id}"">删除</a></p>
+					</div>
+				</div>
+				</#list>
+				<div class="saveAddressBtn"><a href="http://localhost:8080/frontpage/address/toAddrEdit?userId=${userId}">添加新地址</a></div>
+			</div>
+		</div>
+		
+	</body>
+
+</html>

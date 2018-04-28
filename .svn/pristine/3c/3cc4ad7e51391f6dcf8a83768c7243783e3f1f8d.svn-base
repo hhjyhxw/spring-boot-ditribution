@@ -1,0 +1,5 @@
+package com.icloud.web.business.front;
+
+public class FrontBeanGoodsController {
+
+}

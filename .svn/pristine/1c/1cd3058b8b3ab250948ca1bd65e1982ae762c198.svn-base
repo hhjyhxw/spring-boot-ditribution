@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icloud.dao.bms.BmsMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.icloud.model.bms.BmsMenu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="sort_num" property="sortNum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <collection property="parent" column="parent_id" select="com.icloud.dao.bms.BmsMenuMapper.selectByPrimaryKey" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, menu_name, menu_url, parent_id, sort_num, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bms_menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_bms_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.icloud.model.bms.BmsMenu" >
+    insert into t_bms_menu (id, menu_name, menu_url, 
+      parent_id, sort_num, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=INTEGER}, #{sortNum,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.icloud.model.bms.BmsMenu" >
+    insert into t_bms_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="menuUrl != null" >
+        menu_url,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="sortNum != null" >
+        sort_num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNum != null" >
+        #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icloud.model.bms.BmsMenu" >
+    update t_bms_menu
+    <set >
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNum != null" >
+        sort_num = #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icloud.model.bms.BmsMenu" >
+    update t_bms_menu
+    set menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      sort_num = #{sortNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  	<select id="selectMenuByUser" parameterType="com.icloud.model.bms.BmsAdmin"
+		resultMap="BaseResultMap">
+		select distinct t.id, t.menu_name, t.menu_url,
+		t.parent_id,
+		t.sort_num from t_bms_menu t ,t_bms_admin a,t_bms_admin_role ar ,t_bms_role_menu rm
+		where a.id=ar.admin_id and ar.role_id=rm.role_id and t.id=rm.menu_id
+		and a.id=#{id} order by t.sort_num asc
+	</select>
+	
+	<select id="selectByRole" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select m.* from t_bms_menu m,t_bms_role r,t_bms_role_menu rm where m.id=rm.menu_id
+		and rm.role_id=r.id and r.id=#{roleId}
+	</select>
+	<select id="selectAllList" resultMap="BaseResultMap">
+		select t.id, t.menu_name,
+		t.menu_url,
+		t.parent_id, t.sort_num from t_bms_menu t order by t.sort_num
+		asc
+	</select>
+	
+	<select id="selectParentMenu" resultMap="BaseResultMap">
+		select t.id,
+		t.menu_name, t.menu_url,
+		t.parent_id, t.sort_num from t_bms_menu t where
+		t.parent_id=0
+	</select>
+	
+	<select id="selectCountByName" parameterType="java.lang.String"
+		resultType="Integer">
+		select count(1) from t_bms_menu t where t.menu_name=#{menuName}
+	</select>
+	
+		<select id="countByParent" parameterType="java.lang.Integer"
+		resultType="Integer">
+		select count(1) from t_bms_menu t where t.parent_id=#{id}
+	</select>
+	
+	
+	<select id="findForList" parameterType="com.icloud.model.bms.BmsMenu"
+		resultMap="BaseResultMap">
+		select t.id, t.menu_name,
+		t.menu_url,
+		t.parent_id, t.sort_num from
+		t_bms_menu t
+		<where>
+			<if test="menuName!=null">
+				and t.menu_name like concat(concat('%',#{menuName}),'%')
+			</if>
+		</where>
+		ORDER BY t.sort_num ASC,t.parent_id asc
+	</select>
+</mapper>

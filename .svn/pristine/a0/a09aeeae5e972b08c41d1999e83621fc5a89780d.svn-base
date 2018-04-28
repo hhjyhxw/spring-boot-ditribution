@@ -1,0 +1,73 @@
+/**
+ * @author
+ * @version
+ * 2018年2月28日 上午10:51:55
+ */
+package com.icloud.service.business;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.icloud.dao.business.BeanGoodsClassMapper;
+import com.icloud.model.business.BeanGoodsClass;
+import com.icloud.service.BaseService;
+
+/**
+ * 类名称: BeanGoodsClassService
+ * 类描述: 
+ * 创建人: zhangdehai
+ * 创建时间:2018年2月28日 上午10:51:55
+ */
+public class BeanGoodsClassService  implements BaseService<BeanGoodsClass>{
+
+	@Autowired
+	private BeanGoodsClassMapper beanGoodsClassMapper;
+	@Override
+	public void save(BeanGoodsClass t) throws Exception {
+		// TODO Auto-generated method stub
+		beanGoodsClassMapper.insert(t);
+	}
+
+	@Override
+	public void update(BeanGoodsClass t) throws Exception {
+		// TODO Auto-generated method stub
+		beanGoodsClassMapper.updateByPrimaryKeySelective(t);
+		
+	}
+
+	@Override
+	public List<BeanGoodsClass> findList(BeanGoodsClass t) throws Exception {
+		// TODO Auto-generated method stub
+		return beanGoodsClassMapper.findForList(t);
+	}
+
+	@Override
+	public Integer findCount(BeanGoodsClass t) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		beanGoodsClassMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public BeanGoodsClass findByKey(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return beanGoodsClassMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public PageInfo<BeanGoodsClass> findByPage(int pageNo, int pageSize,
+			BeanGoodsClass t) throws Exception {
+	 PageHelper.startPage(pageNo, pageSize);
+	 PageInfo<BeanGoodsClass> page = new PageInfo<BeanGoodsClass>(beanGoodsClassMapper.findForList(t));
+	 return page;
+	}
+
+}

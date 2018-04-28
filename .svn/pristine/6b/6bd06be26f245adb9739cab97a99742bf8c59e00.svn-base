@@ -1,0 +1,17 @@
+package com.icloud.dao.business;
+
+import com.icloud.model.business.BeanOrder;
+
+public interface BeanOrderMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(BeanOrder record);
+
+    int insertSelective(BeanOrder record);
+
+    BeanOrder selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(BeanOrder record);
+
+    int updateByPrimaryKey(BeanOrder record);
+}

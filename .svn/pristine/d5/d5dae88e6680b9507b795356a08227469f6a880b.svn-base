@@ -1,0 +1,28 @@
+package com.icloud.dao.bms;
+
+import java.util.List;
+
+import com.icloud.dao.BaseDao;
+import com.icloud.model.bms.TbmsAdmin;
+import com.icloud.model.bms.TbmsMenu;
+
+public interface TbmsMenuMapper extends BaseDao<TbmsMenu>{
+	
+    int deleteByPrimaryKey(Long id);
+    int insert(TbmsMenu record);
+    int insertSelective(TbmsMenu record);
+    
+    int updateByPrimaryKeySelective(TbmsMenu record);
+    
+    List<TbmsMenu> selectMenuByUser(TbmsAdmin admin);
+
+    List<TbmsMenu> selectParentMenu();
+    
+    List<TbmsMenu> selectAllList();
+    
+    List<TbmsMenu> selectByRole(Long roleId);
+    
+    int selectCountByName(String menuName);
+    
+    int countByParent(Long parentId);
+}

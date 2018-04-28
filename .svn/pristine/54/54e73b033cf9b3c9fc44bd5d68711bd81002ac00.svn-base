@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icloud.dao.bms.TbmsRoleMapper">
+  <resultMap id="BaseResultMap" type="com.icloud.model.bms.TbmsRole">
+    <id column="ID" jdbcType="NUMERIC" property="id" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ROLE_NAME, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_BMS_ROLE
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_BMS_ROLE
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.icloud.model.bms.TbmsRole">
+  	<selectKey keyProperty="id" resultType="Long" order="BEFORE">
+			select seq_t_bms_role.nextval from dual
+	</selectKey>
+    insert into T_BMS_ROLE (ID, ROLE_NAME, STATUS
+      )
+    values (#{id,jdbcType=NUMERIC}, #{roleName,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.icloud.model.bms.TbmsRole">
+    insert into T_BMS_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="roleName != null">
+        ROLE_NAME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=NUMERIC},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icloud.model.bms.TbmsRole">
+    update T_BMS_ROLE
+    <set>
+      <if test="roleName != null">
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icloud.model.bms.TbmsRole">
+    update T_BMS_ROLE
+    set ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  
+  	<select id="findForList" parameterType="com.icloud.model.bms.TbmsRole"
+		resultMap="BaseResultMap">
+		select t.* from T_BMS_ROLE t
+		<where>
+			<if test="roleName!=null">
+				and t.role_name like concat(concat('%',#{roleName}),'%')
+			</if>
+		</where>
+	</select>
+
+	<select id="selectByAdmin" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select t.id,t.role_name from T_BMS_ROLE t ,T_BMS_ADMIN_ROLE ar where
+		t.id=ar.role_id and ar.admin_id=#{adminId}
+	</select>
+	
+	<select id="selectAll"  resultMap="BaseResultMap">
+		select t.id,t.role_name from T_BMS_ROLE t 
+	</select>
+	
+		<select id="selectCountByName" parameterType="String"
+		resultType="Integer">
+		select count(1) from T_BMS_ROLE t where t.role_name=#{roleName}
+	</select>
+</mapper>

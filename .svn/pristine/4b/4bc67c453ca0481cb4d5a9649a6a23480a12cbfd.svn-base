@@ -1,0 +1,15 @@
+package com.icloud.dao.bms;
+
+import java.util.List;
+
+import com.icloud.model.bms.TbmsRoleMenu;
+
+public interface TbmsRoleMenuMapper {
+	   int insert(TbmsRoleMenu record);
+
+	    int insertSelective(TbmsRoleMenu record);
+	    
+	    void delete(TbmsRoleMenu roleMenu);
+	    
+	    void batchInsert(List<TbmsRoleMenu> list);
+}

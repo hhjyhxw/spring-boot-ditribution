@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="flex-layout">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+		<title>商品详情</title>
+		<link rel="stylesheet" href="../../css/reset.css">
+		<link rel="stylesheet" href="../../css/myStyle.css">
+		<style type="text/css">
+			@font-face {
+		        font-family: 'PingFang';
+			}
+
+		</style>
+	</head>
+
+	<body style="background: #fff; overflow: hidden; width: 100%;">
+		<div class="flex">
+			<div class="body">
+				<div class="goodsImg">
+					<div class="goodsPic"><img src="${pictureVisitUrl}${beanGoods.goodImage}" alt="" /></div>
+					<p>${beanGoods.name}</p>
+					<p>兑换价格 乐豆${beanGoods.score}</p>
+				</div>
+				<div class="tools">
+					<p>兑换数量：</p>
+					<div>
+						<span class="minus"></span>
+                		<span class="nums">1</span>
+                		<span class="add"></span >
+					</div>
+				</div>
+				<div class="tools">
+					<p class="address">选择地址配送地址</p>
+					<span class="arrow"></span>
+				</div>
+				<div class="tabsIntro">
+					<h2 class="tabTitle">
+						<span class="onTabTitle">商品详情</span>
+						<span>规格参数</span>
+					</h2>
+					<!--切换栏   商品详情-->
+					<div class="goodsIntro">
+						<img src="${(beanGoods.goodDetail)!}"/>
+					</div>
+					<!--切换栏   商品详情   END-->
+					<!--切换栏   规格参数-->
+					<div class="parameter">
+						${(beanGoods.goodDesc)!}
+					</div>
+					<!--切换栏   规格参数    END-->
+				</div>
+				<div class="goodsBottomMenu">
+					<ul>
+						<li><a href="#">乐豆商城</a></li>
+						<li><a href="#">商城规则</a></li>
+					</ul>
+					<div><a href="#">立即兑换</a></div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 确认兑换——弹窗HTML -->
+		<div class="modal-comfirm cardListForm"  style="display: none">
+		  	<div class="content_zhongjiang">
+		  		<p class="changeLd">消耗乐豆数：${(beanGoods.score)!0}</p>
+		  		<ul class="selectCard">
+		  			
+		  		</ul>
+		  		<div class="confirmSelectBtn openSubmitExchange">确认兑换</div>
+		  	</div>
+		</div>
+		<!-- 确认兑换——弹窗HTML END-->
+		
+		<!-- 兑换成功——弹窗HTML -->
+		<div class="modal-comfirm exchangeSuccessForm"  style="display: none;">
+		  	<div class="content_zhongjiang successWinBg">
+		  		<p class="changeLd successChange">已兑换成功<span></span></p>
+		  		<div class="dragonImg"><img src="../../images/beans/dragon.png" alt="" /></div>
+		  		<div class="confirmSelectBtn confirmBtn">确 定</div>
+		  	</div>
+		</div>
+		<!-- 兑换成功——弹窗HTML END-->
+	    
+	    <input type="hidden" id="goodsId" value="${beanGoods.id}"/>
+	    <input type="hidden" id="goodsScore" value="${beanGoods.goodsScore}"/>
+	    
+	    <!-- needCard==0,可以兑换；needCard==1, 判断cardCount<=0,不能兑换-->
+	    <input type="hidden" id="cardCount" value="0"/>
+	    <input type="hidden" id="needCard" value="${(beanGoods.needCard)!'1'}"/>
+	</body>
+	<script src="../../js/jquery-2.1.4.js"></script>
+	<script src="../../js/global.js"></script>
+	<script src="../../js/beans/basepath.js"></script>
+	<script src="../../js/beans/goodsDetaill.js"></script>
+</html>

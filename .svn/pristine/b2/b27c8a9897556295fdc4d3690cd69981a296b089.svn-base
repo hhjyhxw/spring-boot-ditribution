@@ -1,0 +1,74 @@
+package com.icloud.model.business;
+
+
+public class ZlArea {
+    private Long id;
+
+    private Long no;
+
+    private String areaname;
+
+    private Long topno;
+
+    private String areacode;
+
+    private Long arealevel;
+
+    private String typename;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getNo() {
+        return no;
+    }
+
+    public void setNo(Long no) {
+        this.no = no;
+    }
+
+    public String getAreaname() {
+        return areaname;
+    }
+
+    public void setAreaname(String areaname) {
+        this.areaname = areaname == null ? null : areaname.trim();
+    }
+
+    public Long getTopno() {
+        return topno;
+    }
+
+    public void setTopno(Long topno) {
+        this.topno = topno;
+    }
+
+    public String getAreacode() {
+        return areacode;
+    }
+
+    public void setAreacode(String areacode) {
+        this.areacode = areacode == null ? null : areacode.trim();
+    }
+
+    public Long getArealevel() {
+        return arealevel;
+    }
+
+    public void setArealevel(Long arealevel) {
+        this.arealevel = arealevel;
+    }
+
+    public String getTypename() {
+        return typename;
+    }
+
+    public void setTypename(String typename) {
+        this.typename = typename == null ? null : typename.trim();
+    }
+}

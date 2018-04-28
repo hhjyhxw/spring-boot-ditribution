@@ -1,0 +1,209 @@
+package com.icloud.web.business.front.address;
+
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSONObject;
+import com.icloud.common.ResponseUtils;
+import com.icloud.model.business.BeanAddress;
+import com.icloud.model.business.BeanArea;
+import com.icloud.service.business.BeanAddressService;
+import com.icloud.service.business.BeanAreaService;
+import com.icloud.web.AppBaseController;
+import com.thoughtworks.xstream.mapper.Mapper.Null;
+
+@Controller
+@RequestMapping(value = "${frontPath}/address")
+public class BeanAddressFrontController extends AppBaseController{
+
+	@Autowired
+	private BeanAddressService beanAddressService;
+	
+	@Autowired
+	private BeanAreaService beanAreaService;
+	
+	@RequestMapping("/getArea")
+	public void getArea(HttpServletRequest request,
+			HttpServletResponse response,BeanArea t) throws Exception {
+		List<BeanArea> beanAreas = beanAreaService.findList(t);
+		JSONObject jsonObject = new JSONObject();
+		
+		
+		for (BeanArea beanArea : beanAreas) {
+			if (t.getId() == beanArea.getId()) {
+				jsonObject.put("beanArea", beanArea);
+			}
+		}
+		ResponseUtils.renderJson(response, jsonObject.toJSONString());
+	}
+	
+	
+	
+	/**
+	 * 进入收货地址编辑
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping("/toAddrEdit")
+	public String toAddressEdit(HttpServletRequest request,HttpServletResponse response,
+			BeanAddress address) throws Exception {
+		//获取用户Id
+		address.setUserId(getMemberId());
+		log.warn("toAddressEdit -> userId:" + address.getUserId());
+		if (address.getId() != null) {
+			address = beanAddressService.findByKey(address.getId());
+		    
+		}else {
+			//设置这三个参数是为了防止检验空值报错，并无实际意义
+			address.setProvinceId(0);
+			address.setCityId(0);
+			address.setCountyId(0);
+		}
+		
+		log.warn("address：" + address.toString());
+		
+		request.setAttribute("address", address);
+		return "front/address/bean_address_edit";
+	}
+	
+	/**
+	 * 通过parentId获取同一个parentId下的所以省、市、区
+	 * @param request
+	 * @param response
+	 * @param t
+	 * @throws Exception
+	 */
+	@RequestMapping("/findArea")
+	public void findArea(HttpServletRequest request,HttpServletResponse response,BeanArea t) throws Exception {
+		log.warn("parentId:" + t.getParentId());
+	    int pid = 0;
+	    //如果传人的parentId不为空，则赋值给pid
+		if (t.getParentId() != null) {
+			pid = t.getParentId();
+		}else {
+			pid = 999999;
+		}
+
+		
+		List<BeanArea> beanAreas = beanAreaService.findList(t);
+		List<BeanArea> areaList = new ArrayList<>();
+		
+		for (BeanArea beanArea : beanAreas) {
+			if (pid == beanArea.getParentId()) {
+				areaList.add(beanArea);
+			}
+		}
+		
+		Map<String, Object> areaMap = new HashMap<>();
+		areaMap.put("areas", areaList);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("data", areaMap);
+		
+		ResponseUtils.renderJson(response, jsonObject.toJSONString());
+		
+	}
+	
+	/**
+	 * 保存地址信息
+	 * @param beanAddr
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/saveAddr")
+	public String saveAddress(BeanAddress beanAddr) throws Exception {
+		
+	    log.warn("saveAddress -> userId:" + beanAddr.getId());
+        beanAddr.setUserId(getMemberId());
+		if (beanAddr.getId() != null) {
+			beanAddressService.update(beanAddr);
+		}else {
+			beanAddressService.save(beanAddr);
+		}
+		return "redirect:getAddrList";
+	}
+	
+	/**
+	 * 获取地址列表
+	 * @param request
+	 * @param response
+	 * @param t
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/getAddrList")
+	public String getAddressList(HttpServletRequest request,HttpServletResponse response,
+			BeanAddress t) throws Exception {
+		//获取用户的userId
+//		String userId = request.getParameter("userId");
+		//log.warn("传人参数：userId:" + userId);
+		//t.setUserId(1L);
+		//根据用户userId查出该用户所以的收货地址
+		t.setUserId(getMemberId());
+		log.warn("getAddressList -> userId:" + t.getUserId());
+		List<BeanAddress> beanAddresses = beanAddressService.findList(t);
+		
+		request.setAttribute("addrs", beanAddresses);
+		return "front/address/bean_address_list";
+	}
+	
+	/**
+	 * 删除地址
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 * @throws Exception
+	 */
+	@RequestMapping("/deleteAddr")
+	public String deleteAddr(HttpServletRequest request,HttpServletResponse response) throws Exception, Exception {
+		String idStr = request.getParameter("id");
+		log.warn("传入删除的地址id：" + idStr);
+		beanAddressService.delete(Long.valueOf(idStr));
+		return "redirect:getAddrList";
+	}
+	////
+	//设置默认地址
+	@RequestMapping("/setDefaultAddr")
+	public String setDefaultAddress(BeanAddress t) throws Exception {
+		log.warn("addressId：" + t.getId());
+		Long addressId = t.getId();
+		t.setUserId(getMemberId());
+		
+		//获取对应用户的默认地址
+		t.setId(null);
+		List<BeanAddress> defaultAddress = beanAddressService.findList(t);
+		if (defaultAddress != null && defaultAddress.size() > 0) {
+			for (BeanAddress beanAddress : defaultAddress) {
+				//修改地址为非默认地址
+				if ("1".equals(beanAddress.getDefaultAddr())) {
+					beanAddress.setDefaultAddr("0");
+					beanAddressService.update(beanAddress);
+				}
+				
+			}
+		}
+		
+		//设置默认地址
+		BeanAddress beanAddress = beanAddressService.findByKey(addressId);
+		beanAddress.setDefaultAddr("1");
+		beanAddressService.update(beanAddress);
+		return "redirect:getAddrList";
+	}
+	
+	
+}

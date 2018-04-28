@@ -1,0 +1,56 @@
+package com.icloud.web.business.front.address;
+
+
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.icloud.model.business.BeanAddress;
+import com.icloud.service.business.BeanAddressService;
+import com.icloud.service.business.BeanAreaService;
+import com.icloud.web.AppBaseController;
+
+@Controller
+@RequestMapping(value = "${frontPath}/exChangeAddress")
+public class OrderAddressController extends AppBaseController{
+
+	@Autowired
+	private BeanAddressService beanAddressService;
+	
+	@Autowired
+	private BeanAreaService beanAreaService;
+	
+	@RequestMapping("/saveAddr")
+	public String saveAddress(BeanAddress beanAddr,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		log.warn("进入 saveAddr");
+	    
+        System.out.println(beanAddr);
+		if (beanAddr.getId() != null) {
+			beanAddressService.update(beanAddr);
+		}else {
+			beanAddressService.save(beanAddr);
+		}
+		return "redirect:getAddrList";
+	}
+	
+	@RequestMapping("/myAddressList")
+	public String myAddressList(HttpServletRequest request,HttpServletResponse response,
+			BeanAddress t) throws Exception {
+		//获取用户的userId
+//		String userId = request.getParameter("userId");
+		//log.warn("传人参数：userId:" + userId);
+		//t.setUserId(1L);
+		//根据用户userId查出该用户所以的收货地址
+		log.warn("userId:" + t.getUserId());
+		List<BeanAddress> beanAddresses = beanAddressService.findList(t);
+		request.setAttribute("addrs", beanAddresses);
+		request.setAttribute("userId", t.getUserId());
+		return "front/address/bean_address_list";
+	}
+}

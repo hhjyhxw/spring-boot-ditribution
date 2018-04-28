@@ -1,0 +1,17 @@
+package com.icloud.dao.business;
+
+import com.icloud.model.business.ZlWxFans;
+
+public interface ZlWxFansMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(ZlWxFans record);
+
+    int insertSelective(ZlWxFans record);
+
+    ZlWxFans selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(ZlWxFans record);
+
+    int updateByPrimaryKey(ZlWxFans record);
+}

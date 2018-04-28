@@ -1,0 +1,130 @@
+/**
+ * @author
+ * @version
+ * 2018年2月27日 下午5:57:07
+ */
+package com.icloud.service.interfaces.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.icloud.common.ConfigUtil;
+import com.icloud.common.HttpUtils;
+import com.icloud.common.JsonToMapUtil;
+import com.icloud.service.interfaces.CouponInterfaceService;
+import com.icloud.vo.BeanCouponVo;
+
+/**
+ * 类名称: CouponInterfaceServiceImpl
+ * 类描述: 紫光优惠券接口实现
+ * 创建人: zhangdehai
+ * 创建时间:2018年2月27日 下午5:57:07
+ */
+public class CouponInterfaceServiceImpl implements CouponInterfaceService{
+	
+	private final static Logger log = LoggerFactory.getLogger(CouponInterfaceServiceImpl.class);
+	/**
+	* Description:查询优惠券列表
+	* @author zhangdehai
+	* @param openid
+	* @param type 0:可用抵价券，1：已消耗，2：全部
+	* @date 2018年2月27日下午5:58:22
+	 */
+	public List<BeanCouponVo> queryBeanCouponList(String openid,String type){
+		NameValuePair openidPair = new BasicNameValuePair("openid",openid);
+		NameValuePair typePair = new BasicNameValuePair("type",type);
+		List<NameValuePair> pair = new ArrayList<NameValuePair>();
+		pair.add(openidPair);
+		pair.add(typePair);
+		String result  = "";
+		try{
+			result = HttpUtils.postMethod(ConfigUtil.get("yccqQueryCouponsListUrl"), pair);
+			if(result!=null){
+				JSONObject jsonObject = JSON.parseObject(result);
+				//code状态码，0：成功，1：失败
+				if("0".equals(jsonObject.get("code"))){
+					JSONArray data = jsonObject.getJSONArray("data");
+					List<BeanCouponVo> couponList = data.toJavaList(BeanCouponVo.class);
+					return couponList;
+				}else{
+					log.error(jsonObject.get("msg")!=null?jsonObject.get("msg").toString():"获取优惠券列表失败");
+					return null;
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	* Description:查询优惠券列表
+	* @author zhangdehai
+	* @param openid
+	* @param type 0:可用抵价券，1：已消耗，2：全部
+	* @date 2018年2月27日下午5:58:22
+	 */
+	public String queryBeanCouponJsonString(String openid,String type){
+		NameValuePair openidPair = new BasicNameValuePair("openid",openid);
+		NameValuePair typePair = new BasicNameValuePair("type",type);
+		List<NameValuePair> pair = new ArrayList<NameValuePair>();
+		pair.add(openidPair);
+		pair.add(typePair);
+		String result  = "";
+		try{
+			result = HttpUtils.postMethod(ConfigUtil.get("yccqQueryCouponsListUrl"), pair);
+			if(result!=null){
+				JSONObject jsonObject = JSON.parseObject(result);
+				//code状态码，0：成功，1：失败
+				if("0".equals(jsonObject.get("code"))){
+					JSONArray data = jsonObject.getJSONArray("data");
+					if(data!=null){
+						return JSON.toJSONString(data);
+					}
+					log.error("优惠券列表为空");
+				}else{
+					log.error(jsonObject.get("msg")!=null?jsonObject.get("msg").toString():"获取优惠券列表失败");
+					return null;
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	* Description:消费优惠券
+	* @author zhangdehai
+	* @param ticketId 卡券唯一标识
+	* @param openid 用户openid
+	* @return  
+	* @date 2018年2月27日下午6:00:30
+	 */
+	public Map<String,String> consumeCoupon(String ticket_id,String openid) {
+		NameValuePair openidPair = new BasicNameValuePair("openid",openid);
+		NameValuePair ticket_idPair = new BasicNameValuePair("ticket_id",ticket_id);
+		List<NameValuePair> pair = new ArrayList<NameValuePair>();
+		pair.add(openidPair);
+		pair.add(ticket_idPair);
+		String result  = "";
+		try{
+			result = HttpUtils.postMethod(ConfigUtil.get("yccqConsumerCouponsUrl"), pair);
+			if(result!=null){
+				return JsonToMapUtil.getMapFromJson(result);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}

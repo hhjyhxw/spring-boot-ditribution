@@ -1,0 +1,14 @@
+package com.icloud.dao.bms;
+
+import java.util.List;
+
+import com.icloud.model.bms.TbmsAdminRole;
+
+public interface TbmsAdminRoleMapper {
+
+	int deleleByAdmin(Long adminId);
+	
+	int batchInsert(List<TbmsAdminRole> list);
+	
+	int insert(TbmsAdminRole bmsAdminRole);
+}

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icloud.dao.business.BeanAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.icloud.model.business.BeanAddress" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="county_id" property="countyId" jdbcType="INTEGER" />
+    <result column="county_name" property="countyName" jdbcType="VARCHAR" />
+    <result column="towns_id" property="townsId" jdbcType="INTEGER" />
+    <result column="towns_name" property="townsName" jdbcType="VARCHAR" />
+    <result column="detail_address" property="detailAddress" jdbcType="VARCHAR" />
+    <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="default_addr" property="defaultAddr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, name, phone, province_id, province_name, city_id, city_name, county_id, 
+    county_name, towns_id, towns_name, detail_address, zip_code, default_addr
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bean_address
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_bean_address
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.icloud.model.business.BeanAddress" >
+    insert into t_bean_address (id, user_id, name, 
+      phone, province_id, province_name, 
+      city_id, city_name, county_id, 
+      county_name, towns_id, towns_name, 
+      detail_address, zip_code, default_addr
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{provinceId,jdbcType=INTEGER}, #{provinceName,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=INTEGER}, #{cityName,jdbcType=VARCHAR}, #{countyId,jdbcType=INTEGER}, 
+      #{countyName,jdbcType=VARCHAR}, #{townsId,jdbcType=INTEGER}, #{townsName,jdbcType=VARCHAR}, 
+      #{detailAddress,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{defaultAddr,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.icloud.model.business.BeanAddress" >
+    insert into t_bean_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="countyName != null" >
+        county_name,
+      </if>
+      <if test="townsId != null" >
+        towns_id,
+      </if>
+      <if test="townsName != null" >
+        towns_name,
+      </if>
+      <if test="detailAddress != null" >
+        detail_address,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="defaultAddr != null" >
+        default_addr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=INTEGER},
+      </if>
+      <if test="countyName != null" >
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsId != null" >
+        #{townsId,jdbcType=INTEGER},
+      </if>
+      <if test="townsName != null" >
+        #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null" >
+        #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultAddr != null" >
+        #{defaultAddr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icloud.model.business.BeanAddress" >
+    update t_bean_address
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyId != null" >
+        county_id = #{countyId,jdbcType=INTEGER},
+      </if>
+      <if test="countyName != null" >
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsId != null" >
+        towns_id = #{townsId,jdbcType=INTEGER},
+      </if>
+      <if test="townsName != null" >
+        towns_name = #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null" >
+        detail_address = #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultAddr != null" >
+        default_addr = #{defaultAddr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icloud.model.business.BeanAddress" >
+    update t_bean_address
+    set user_id = #{userId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_id = #{countyId,jdbcType=INTEGER},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      towns_id = #{townsId,jdbcType=INTEGER},
+      towns_name = #{townsName,jdbcType=VARCHAR},
+      detail_address = #{detailAddress,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      default_addr = #{defaultAddr,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

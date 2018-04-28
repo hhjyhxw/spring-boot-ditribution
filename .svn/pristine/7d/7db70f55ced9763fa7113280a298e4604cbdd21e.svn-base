@@ -1,0 +1,106 @@
+package com.icloud.model.business;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class TbeanOrderItem {
+    private Long id;
+
+    private Long orderId;
+
+    private Long goodId;
+
+    private String goodName;
+
+    private Long score;
+
+    private Long coupon;
+
+    private String goodImage;
+
+    private Long goodQuantities;
+    
+    private Date createTime;
+
+    private Date modifyTime;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public Long getGoodId() {
+        return goodId;
+    }
+
+    public void setGoodId(Long goodId) {
+        this.goodId = goodId;
+    }
+
+    public String getGoodName() {
+        return goodName;
+    }
+
+    public void setGoodName(String goodName) {
+        this.goodName = goodName == null ? null : goodName.trim();
+    }
+
+    public Long getScore() {
+        return score;
+    }
+
+    public void setScore(Long score) {
+        this.score = score;
+    }
+
+    public Long getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(Long coupon) {
+        this.coupon = coupon;
+    }
+
+    public String getGoodImage() {
+        return goodImage;
+    }
+
+    public void setGoodImage(String goodImage) {
+        this.goodImage = goodImage == null ? null : goodImage.trim();
+    }
+
+    public Long getGoodQuantities() {
+        return goodQuantities;
+    }
+
+    public void setGoodQuantities(Long goodQuantities) {
+        this.goodQuantities = goodQuantities;
+    }
+    
+    public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+}

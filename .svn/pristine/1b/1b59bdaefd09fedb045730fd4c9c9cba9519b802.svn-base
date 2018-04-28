@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icloud.dao.bms.BmsAdminMapper" >
+  <resultMap id="BaseResultMap" type="com.icloud.model.bms.BmsAdmin" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="password_prompt" property="passwordPrompt" jdbcType="VARCHAR" />
+    <result column="pass_word" property="passWord" jdbcType="VARCHAR" />
+    <result column="is_lock" property="isLock" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, account, password_prompt, pass_word, is_lock, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bms_admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_bms_admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.icloud.model.bms.BmsAdmin" >
+    insert into t_bms_admin (id, account, password_prompt, 
+      pass_word, is_lock, create_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{passwordPrompt,jdbcType=VARCHAR}, 
+      #{passWord,jdbcType=VARCHAR}, #{isLock,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.icloud.model.bms.BmsAdmin" >
+    insert into t_bms_admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="passwordPrompt != null" >
+        password_prompt,
+      </if>
+      <if test="passWord != null" >
+        pass_word,
+      </if>
+      <if test="isLock != null" >
+        is_lock,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordPrompt != null" >
+        #{passwordPrompt,jdbcType=VARCHAR},
+      </if>
+      <if test="passWord != null" >
+        #{passWord,jdbcType=VARCHAR},
+      </if>
+      <if test="isLock != null" >
+        #{isLock,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icloud.model.bms.BmsAdmin" >
+    update t_bms_admin
+    <set >
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordPrompt != null" >
+        password_prompt = #{passwordPrompt,jdbcType=VARCHAR},
+      </if>
+      <if test="passWord != null" >
+        pass_word = #{passWord,jdbcType=VARCHAR},
+      </if>
+      <if test="isLock != null" >
+        is_lock = #{isLock,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icloud.model.bms.BmsAdmin" >
+    update t_bms_admin
+    set account = #{account,jdbcType=VARCHAR},
+      password_prompt = #{passwordPrompt,jdbcType=VARCHAR},
+      pass_word = #{passWord,jdbcType=VARCHAR},
+      is_lock = #{isLock,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查询列表 -->
+	<select id="findForList" parameterType="com.icloud.model.bms.BmsAdmin" resultMap="BaseResultMap">
+		 select 
+		 <include refid="Base_Column_List" />
+   	 from t_bms_admin t
+		<where>
+			<if test="account!=null">
+				and t.account like concat(concat('%',#{account}),'%')
+			</if>
+		</where>
+		ORDER BY t.create_date desc
+	</select>
+	
+	<!-- 分页查询 -->
+	<select id="findByPage" parameterType="com.icloud.model.bms.BmsAdmin"
+		resultMap="BaseResultMap">
+		select 
+		 <include refid="Base_Column_List" />
+  	 	 from t_bms_admin t
+		<where>
+			<if test="account!=null">
+				and t.account like concat(concat('%',#{account}),'%')
+			</if>
+		</where>
+	</select>
+	
+	<!-- 通过账号密码查找 -->
+	<select id="findForConditions" parameterType="com.icloud.model.bms.BmsAdmin"
+		resultMap="BaseResultMap">
+		select t.id, t.account, t.pass_word,
+		t.is_lock, t.password_prompt,t.create_date from T_BMS_ADMIN t where
+		t.account=#{account} and t.pass_word=#{passWord}
+	</select>
+	
+	<!-- 通过账号密码查找 -->
+	<select id="findCountByAccount" parameterType="com.icloud.model.bms.BmsAdmin"
+		resultType="Integer">
+		select count(1) from t_bms_admin t where t.account=#{account}
+	</select>
+</mapper>

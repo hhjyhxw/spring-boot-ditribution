@@ -1,0 +1,71 @@
+package com.icloud.service.business;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.icloud.dao.business.BeanGoodsMapper;
+import com.icloud.exceptions.BeanException;
+import com.icloud.model.business.BeanGoods;
+import com.icloud.model.business.BeanGoodsWithBLOBs;
+
+@Service
+public class BeanGoodsService{
+	
+	@Autowired
+	private BeanGoodsMapper beanGoodsMapper;
+	
+	public void save(BeanGoodsWithBLOBs t) throws Exception {
+		// TODO Auto-generated method stub
+		beanGoodsMapper.insert(t);
+	}
+
+	public void update(BeanGoodsWithBLOBs t) throws Exception {
+		beanGoodsMapper.updateByPrimaryKeySelective(t);
+	}
+
+	public List<BeanGoods> findList(BeanGoods t)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return beanGoodsMapper.findForList(t);
+	}
+
+	public Integer findCount(BeanGoodsWithBLOBs t) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void delete(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		beanGoodsMapper.deleteByPrimaryKey(id);
+	}
+
+	public BeanGoodsWithBLOBs findByKey(Integer id) {
+		// TODO Auto-generated method stub
+		return beanGoodsMapper.selectByPrimaryKey(id);
+	}
+
+	public PageInfo<BeanGoods> findByPage(int pageNo, int pageSize,
+			BeanGoods t) throws Exception {
+		 PageHelper.startPage(pageNo, pageSize);
+		 PageInfo<BeanGoods> page = new PageInfo<BeanGoods>(beanGoodsMapper.findForList(t));
+		 return page;
+	}
+
+	@Transactional
+	public int updateGoodsStore(BeanGoods beanGoods,Integer exChangeNum){
+		beanGoods = findByKey(beanGoods.getId());
+		if(beanGoods.getStore()-beanGoods.getFreezeStore()<exChangeNum){
+			throw new BeanException("商品库存不足");
+		}
+		beanGoods.setNum(beanGoods.getFreezeStore());
+		beanGoods.setFreezeStore(beanGoods.getFreezeStore()!=null?beanGoods.getFreezeStore()+exChangeNum:exChangeNum);
+		beanGoods.setRealSales(beanGoods.getRealSales()!=null?beanGoods.getRealSales()+exChangeNum:exChangeNum);
+		beanGoods.setVirtlSales(beanGoods.getVirtlSales()!=null?beanGoods.getVirtlSales()+exChangeNum:exChangeNum);
+		return beanGoodsMapper.updateGoodsStore(beanGoods);
+	}
+}

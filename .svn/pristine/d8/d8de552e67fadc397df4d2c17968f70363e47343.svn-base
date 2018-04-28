@@ -1,0 +1,101 @@
+
+$.fn.ready( function(){
+		//1、异步获取乐豆
+		getMyBeansCount();
+		//2、异步获取卡券数量
+		getMyCardsCount();
+		//3、获取分类对应商品
+			var goodsClassId = $(".classActive").attr("id");
+			//默认第一个
+			goodsListJson(goodsClassId);
+			//点击获取
+			$(".goodsClass").click(function(){
+				goodsClassId=$(this).attr("id");
+				goodsListJson(goodsClassId);
+				$(this).siblings(".classActive").removeClass("classActive");
+				$(this).addClass("classActive");
+			});
+		//4、跳转游戏
+		$(".active").click(function(){
+			window.location.href="";
+		});	
+});
+
+//异步获取乐豆
+function getMyBeansCount(){
+	 $.ajax({
+			url : getBasePath()+'/frontpage/beanCoupon/queryBeans',
+			method : 'post',
+			dataType : 'json',
+			timeout:5000,
+			success : function(data) {
+				if ('success' == data.status) {
+					$('#smokeBeansCount').val(data.smokeBeansCount);
+				} 
+			},
+			error : function() {
+				
+			}
+		});
+}
+//异步获取优惠券数量
+function getMyCardsCount(){
+	 $.ajax({
+			url : getBasePath()+'/frontpage/beanCoupon/queryCouponsCount',
+			data : {
+				"type":"0"
+			},
+			method : 'post',
+			dataType : 'json',
+			timeout:5000,
+			success : function(data) {
+				if ('success' == data.status) {
+					$('#myCardCount').val(data.cardCount+"张");
+				} 
+			},
+			error : function() {
+				
+			}
+		});
+}
+
+//异步获取商品列表
+function goodsListJson(goodsClassId){
+	var resultString = '';
+	 $.ajax({
+			url : getBasePath()+'/frontpage/beanCoupon/goodsListJson',
+			data : {
+				"goodsclassId":goodsclassId
+			},
+			method : 'post',
+			dataType : 'json',
+			timeout:5000,
+			async:false,
+			success : function(data) {
+				if ('success' == data.status) {
+					$.each(data.beanGoodsList, function(i, n){
+						resultString+='<li>';
+						resultString+='<a href="#">';
+						resultString+='<div class="productPics"><img src="${pictureVisitUrl}/"'+n.goodImage+' alt="" /></div>';
+						resultString+='<p class="productName">'+n.name+'</p>';
+						resultString+='<p class="numberLb">乐豆<span>'+n.score+'</span></p>';
+						resultString+='</a>';
+						resultString+='</li>';
+					});
+					$(".rightProducts").html(resultString);
+				} else{
+					resultString+='<li>';
+					resultString+='暂无商品';
+					resultString+='</li>';
+					$(".rightProducts").html("");
+				}
+			},
+			error : function() {
+				resultString+='<li>';
+				resultString+='暂无商品';
+				resultString+='</li>';
+				$(".rightProducts").html("");
+			}
+		});
+}
+ 

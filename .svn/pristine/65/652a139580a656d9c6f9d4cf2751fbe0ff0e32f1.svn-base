@@ -1,0 +1,96 @@
+service_domain=hhh
+
+
+#product ftp
+filepath=/data/hyzy/tomcatbin/webapps/mall/
+user=hyzy
+password=HRZY&syivlaHt
+server=119.29.72.226
+port=2121
+#image visitUrl
+#imageserver=http://www.haiyunzy.com/mall/
+imageserver=http://res.haiyunzy.com/mall/
+default_page_size=10
+
+#long bi exchange RMB; long=RMB*scoreRate
+scoreRate=100
+
+#weixin_pay text
+#appid=wxd3b5bc9144a9e263
+#appsecret=fa8ddd73d9287db6892bfcf84182a968
+#prePayUrl=http://wx.haiyunzy.com/hyzyactivities/phone/toPay
+#mchid=10021166
+#partnerKey=
+#notifyUrl=http://wx.haiyunzy.com/hyzyactivities/phone/weChatNotify
+
+#weixin_pay product
+appid=wx64c5ebb35c4a5341
+appsecret=efa0d399f5142ad2394b386aac69f582
+prePayUrl=http://www.haiyunzy.com/hyzyactivities/phone/toPay
+mchId=1229871602
+partnerKey=hyzy1111111111111111111111111111
+notifyUrl=http://www.haiyunzy.com/hyzyactivities/phone/weChatNotify
+coupon_stock_id=3149201
+coupon_money=1
+
+#longbi_pay
+sid=100131
+key=8bba7d5ea13170ef167e7e56e74b975c
+#refund 
+rechargetype=952
+#consume
+consumetype=953
+#add
+addrRchargetype=951
+queryUrl=http://119.29.134.124:8098/api/dcurrency/query.do
+rechargeUrl=http://119.29.134.124:8098/api/dcurrency/recharge.do
+consumeUrl=http://119.29.134.124:8098/api/dcurrency/consume.do
+
+
+
+#go to haiyunzhiyou to regerster url
+rediretFirstPage=http://www.haiyunzy.com/phone/index!list.action
+
+
+#hour to update uppayorder to close ;defualt 8hours
+time=0.2
+
+#templateId, paysucess to message to user
+pay_success_template_id=DBYOZss3XJpVWAchZ954RQzSwzsod2Rm86pv0HS3DCU
+pay_success_go_url=http://www.haiyunzy.com/hyzyactivities/phone/goodsList
+
+#send activity message to all member
+send_activity_template_id=mki-E1BZ0BgiY6EJFSCppzde2W8C2U7Qy2BESrEvxvY
+#Thread count
+threadNum=5
+#activity url
+activity_url=http://www.haiyunzy.com/hyzyactivities/phone/goodsList
+
+#wx
+menu_create_url=https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN
+menu_delete_url=https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN
+access_token_url=https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
+oauth2_access_token_url=https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
+fans_get_code=https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect
+user_info=https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN
+
+
+#\u4e0a\u4f20\u56fe\u7247\u5230\u5fae\u4fe1\u670d\u52a1\u5668
+uplaoad_image=https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=ACCESS_TOKEN
+#\u5ba2\u670d\u6d88\u606f\u53d1\u9001\u63a5\u53e3
+custom_send_url=https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=ACCESS_TOKEN
+#imcc host
+imcchost=211.159.184.84
+imcchostport=7003
+hosttel=15709
+hostnumber=wxccb43a09acc5a5c8
+
+
+#\u5904\u7406\u6d88\u606f\u6765\u6e90\u7684sendType \u4e0e service
+#\u771f\u9f99\u4e50\u8c46\u9875\u9762\u8df3\u8f6c
+zlld=com.icloud.service.deal.impl.ZhenLongLeDouDealServiceImpl
+#\u9f99\u5e01\u5546\u57ce\u8df3\u8f6c
+lbsc=defaults
+
+#\u5224\u65ad\u662f\u5426\u9650\u5236\u53d1\u9001\u4e00\u6b21\uff0c1\u662f\uff0c0\u4e0d\u662f
+isLimit=1

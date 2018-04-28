@@ -1,0 +1,89 @@
+package com.icloud.service.bms;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.icloud.dao.bms.TbmsMenuMapper;
+import com.icloud.model.bms.TbmsAdmin;
+import com.icloud.model.bms.TbmsMenu;
+
+@Service
+public class MenuService{
+
+	@Autowired
+	private TbmsMenuMapper bmsMenuMapper;
+	public List<TbmsMenu> selectMenuByUser(TbmsAdmin admin) {
+		// TODO Auto-generated method stub
+		return bmsMenuMapper.selectMenuByUser(admin);
+	}
+	
+	public List<TbmsMenu> selectParentMenu() {
+		// TODO Auto-generated method stub
+		return bmsMenuMapper.selectParentMenu();
+	}
+	
+	public int insertSelective(TbmsMenu record) {
+		// TODO Auto-generated method stub
+		return bmsMenuMapper.insertSelective(record);
+	}
+	
+	public int selectCountByName(String menuName) {
+		// TODO Auto-generated method stub
+		return bmsMenuMapper.selectCountByName(menuName);
+	}
+	public List<TbmsMenu> selectAllList() {
+		// TODO Auto-generated method stub
+		return bmsMenuMapper.selectAllList();
+	}
+	
+	public int countByParent(Long id) {
+		// TODO Auto-generated method stub
+		return bmsMenuMapper.countByParent(id);
+	}
+	
+	public List<TbmsMenu> selectByRole(Long roleId) {
+		// TODO Auto-generated method stub
+		return bmsMenuMapper.selectByRole(roleId);
+	}
+
+	public void save(TbmsMenu t) throws Exception {
+		// TODO Auto-generated method stub
+		bmsMenuMapper.insert(t);
+		
+	}
+
+	public void update(TbmsMenu t) throws Exception {
+		// TODO Auto-generated method stub
+		bmsMenuMapper.updateByPrimaryKeySelective(t);
+	}
+
+	public List<TbmsMenu> findList(TbmsMenu t) throws Exception {
+		// TODO Auto-generated method stub
+		return bmsMenuMapper.findForList(t);
+	}
+
+
+	public void delete(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		bmsMenuMapper.deleteByPrimaryKey(id);
+	}
+
+	public TbmsMenu findByKey(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return bmsMenuMapper.selectByPrimaryKey(id);
+	}
+
+	public PageInfo<TbmsMenu> findByPage(int pageNo, int pageSize, TbmsMenu t)
+			throws Exception {
+		 PageHelper.startPage(pageNo, pageSize);
+		 PageInfo<TbmsMenu> page = new PageInfo<TbmsMenu>(bmsMenuMapper.findForList(t));
+		return page;
+	}
+
+	
+
+}

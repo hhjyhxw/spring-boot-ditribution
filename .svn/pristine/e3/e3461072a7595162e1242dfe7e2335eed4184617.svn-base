@@ -1,0 +1,31 @@
+package com.icloud.dao.business;
+
+import java.util.List;
+
+import com.icloud.model.business.BeanOrder;
+
+public interface BeanOrderMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(BeanOrder record);
+
+    int insertSelective(BeanOrder record);
+
+    BeanOrder selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(BeanOrder record);
+
+    int updateByPrimaryKey(BeanOrder record);
+    
+    /***
+     * 
+    * Description:获取下一个订单序列值
+    * @author zhangdehai
+    * @return  
+    * @date 2018年2月9日上午11:42:54
+     */
+    public String getOrderNo();
+    
+    
+    public List<BeanOrder> findForList(BeanOrder t);
+}

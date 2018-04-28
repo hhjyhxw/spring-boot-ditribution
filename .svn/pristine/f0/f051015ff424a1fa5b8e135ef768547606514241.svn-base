@@ -1,0 +1,50 @@
+service_domain=hhh
+
+#\u56fe\u7247\u8bbf\u95ee \u57df\u540d+\u5e94\u7528\u540d
+#pictureVisitUrl=http://ld.thewm.cn/zlbean/
+pictureVisitUrl=http://res.thewm.cn/zlbean/
+#\u6587\u4ef6\u8def\u5f84
+uploadPath=/uploadpath/goodimage/
+
+
+#\u524d\u7aef\u57fa\u7840\u8def\u5f84
+frontPath=/frontpage
+#\u540e\u53f0\u57fa\u7840\u8def\u5f84,
+backPath=/backpage
+
+#\u5173\u6ce8\u516c\u4f17\u53f7\u9875\u9762 \u5f85\u5b9a
+subscibeUrl=/frontpage/subscibe/index
+
+#\u5fae\u4fe1appid \u6682\u65f6\u4e0d\u4f7f\u7528
+appid=wxaa13dc461510723a
+appsecret=
+
+#\u8c03\u7528\u771f\u9f99\u63a5\u53e3\u83b7\u53d6\u7528\u6237openid\u4fe1\u606f\u7b49
+getUserInfo=https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=http://wx.thewm.cn/thirdInterface/thirdInterface!autoLogin3.action&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
+infokey=57C2C03D30DA412A74FF2B461E382317
+
+
+#\u771f\u9f99\u4e50\u8c46 \u67e5\u8be2 \u5145\u503c \u6d88\u8d39\u63a5\u53e3
+queryFansBeansUrl=http://wx.thewm.cn/integral/integralManage!getUserIntegral.action
+rechargeFansBeansUrl=http://wx.thewm.cn/integral/integralManage!addIntegral.action
+consumeFansBeansUrl=http://wx.thewm.cn/integral/integralManage!consumeIntegral.action
+#\u4e50\u8c46\u63a5\u53e3appid,\u4e0ekey \u5728\u771f\u9f99\u7cfb\u7edf  WXCARD_CHANNEL_MANAGE \u6e20\u9053\u8868\u7ba1\u7406\uff0c\u7528\u4e8e\u533a\u5206\u4e0d\u540c\u6e20\u9053 \u8c03\u7528\u771f\u9f99\u4e50\u8c46\u63a5\u53e3\u60c5\u51b5
+app_id=ldsc
+#\u4e50\u8c46\u63a5\u53e3\u7b7e\u540dkey 
+app_key=ldscxslilpolkjafjkdsdf
+
+
+#imcc host \u6682\u65f6\u4e0d\u4f7f\u7528
+#imcchost=211.159.184.84
+#imcchostport=7003
+#hosttel=15709
+#hostnumber=wxccb43a09acc5a5c8
+
+
+#\u70df\u8349\u4f20\u5947\u63a5\u53e3\u8fde\u63a5
+#\u67e5\u8be2\u7528\u6237\u5361\u5238\u63a5\u53e3url
+yccqQueryCouponsListUrl=http://yccq.zlongwang.com/yccq/api/ticket/getTicket
+#\u6d88\u8d39\u5361\u5238\u63a5\u53e3url
+yccqConsumerCouponsUrl=http://yccq.zlongwang.com/yccq/api/ticket/subTicket
+#\u7b7e\u540dkey
+yccq_key=YCCQTicket

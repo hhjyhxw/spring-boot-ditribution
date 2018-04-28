@@ -1,0 +1,66 @@
+package com.icloud.service.business;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageInfo;
+import com.icloud.dao.business.BeanOrderMapper;
+import com.icloud.model.business.BeanOrder;
+import com.icloud.service.BaseService;
+
+@Service
+public class BeanOrderService implements BaseService<BeanOrder>{
+
+	@Autowired
+	private BeanOrderMapper beanOrderMapper;
+	
+	@Override
+	public void save(BeanOrder t) throws Exception {
+		// TODO Auto-generated method stub
+		beanOrderMapper.insert(t);
+	}
+
+	@Override
+	public void update(BeanOrder t) throws Exception {
+		// TODO Auto-generated method stub
+		beanOrderMapper.updateByPrimaryKey(t);
+	}
+
+	@Override
+	public List<BeanOrder> findList(BeanOrder t) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer findCount(BeanOrder t) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BeanOrder findByKey(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PageInfo<BeanOrder> findByPage(int pageNo, int pageSize, BeanOrder t)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public String getLastOrderNo() throws Exception {
+		return beanOrderMapper.getOrderNo();
+	}
+
+}

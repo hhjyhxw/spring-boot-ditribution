@@ -1,0 +1,24 @@
+package com.icloud.dao.bms;
+
+import java.util.List;
+
+import com.icloud.dao.BaseDao;
+import com.icloud.model.bms.TbmsAdmin;
+
+public interface TbmsAdminMapper extends BaseDao<TbmsAdmin>{
+    int deleteByPrimaryKey(Long id);
+
+    int insert(TbmsAdmin record);
+
+    int insertSelective(TbmsAdmin record);
+
+    TbmsAdmin selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(TbmsAdmin record);
+
+    int updateByPrimaryKey(TbmsAdmin record);
+    
+    public List<TbmsAdmin> findForConditions(TbmsAdmin record);
+    
+    Integer findCountByAccount(TbmsAdmin record);
+}

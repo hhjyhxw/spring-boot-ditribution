@@ -1,0 +1,44 @@
+package com.icloud.web.business.front.user;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.icloud.service.business.BeanFansService;
+import com.icloud.web.AppBaseController;
+
+@Controller
+@RequestMapping(value = "${frontPath}/user")
+public class BeanUserFrontController extends AppBaseController{
+	
+	
+	@Autowired
+	private BeanFansService beanFansService;
+	
+	/**
+	* Description:个人中心
+	* @author zhangdehai
+	* @throws Exception  
+	* @date 2018年2月27日下午5:01:37
+	 */
+	@RequestMapping(value = "/myCenter")
+	public String myCenter() throws Exception{
+		return "front/user/myCenter";
+	}
+	
+	
+	/**
+	* Description:异步查询我的乐豆
+	* @author zhangdehai
+	* @throws Exception  
+	* @date 2018年2月27日下午5:13:18
+	 */
+	@RequestMapping(value = "/queryBeans")
+	@ResponseBody
+	public String queryBeans() throws Exception{
+		return "front/goods/goodsList";
+	}
+	 
+	
+}

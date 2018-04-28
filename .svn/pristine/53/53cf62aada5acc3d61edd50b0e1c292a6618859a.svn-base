@@ -1,0 +1,81 @@
+package com.icloud.service.bms;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.icloud.dao.bms.TbmsRoleMapper;
+import com.icloud.model.bms.TbmsRole;
+
+@Service
+public class RoleService {
+
+	@Autowired
+	private TbmsRoleMapper bmsRoleMapper;
+	
+	
+
+	public int insertSelective(TbmsRole record) {
+		// TODO Auto-generated method stub
+		return bmsRoleMapper.insertSelective(record);
+	}
+
+
+	public List<TbmsRole> selectByAdmin(Long adminId) {
+		// TODO Auto-generated method stub
+		return bmsRoleMapper.selectByAdmin(adminId);
+	}
+
+	public List<TbmsRole> selectAll() {
+		// TODO Auto-generated method stub
+		return bmsRoleMapper.selectAll();
+	}
+
+
+	public void save(TbmsRole t) throws Exception {
+		// TODO Auto-generated method stub
+		bmsRoleMapper.insert(t);
+	}
+
+
+	public void update(TbmsRole t) throws Exception {
+		// TODO Auto-generated method stub
+		bmsRoleMapper.updateByPrimaryKey(t);
+	}
+
+
+	public List<TbmsRole> findList(TbmsRole t) throws Exception {
+		// TODO Auto-generated method stub
+		return bmsRoleMapper.findForList(t);
+	}
+
+
+	public void delete(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		bmsRoleMapper.deleteByPrimaryKey(id);
+	}
+
+
+	public TbmsRole findByKey(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return bmsRoleMapper.selectByPrimaryKey(id);
+	
+	}
+
+	public PageInfo<TbmsRole> findByPage(int pageNo, int pageSize, TbmsRole t)
+			throws Exception {
+		 PageHelper.startPage(pageNo, pageSize);
+		 PageInfo<TbmsRole> page = new PageInfo<TbmsRole>(bmsRoleMapper.findForList(t));
+		 return page;
+	}
+
+
+	public int selectCountByName(String roleName) {
+		// TODO Auto-generated method stub
+		return bmsRoleMapper.selectCountByName(roleName);
+	}
+
+}

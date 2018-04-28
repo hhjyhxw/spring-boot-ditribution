@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icloud.dao.business.TbeanOrderItemMapper" >
+  <resultMap id="BaseResultMap" type="com.icloud.model.business.TbeanOrderItem" >
+    <id column="ID" property="id" jdbcType="NUMERIC" />
+    <result column="ORDER_ID" property="orderId" jdbcType="NUMERIC" />
+    <result column="GOOD_ID" property="goodId" jdbcType="NUMERIC" />
+    <result column="GOOD_NAME" property="goodName" jdbcType="VARCHAR" />
+    <result column="SCORE" property="score" jdbcType="NUMERIC" />
+    <result column="COUPON" property="coupon" jdbcType="NUMERIC" />
+    <result column="GOOD_IMAGE" property="goodImage" jdbcType="VARCHAR" />
+    <result column="GOOD_QUANTITIES" property="goodQuantities" jdbcType="NUMERIC" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_ID, GOOD_ID, GOOD_NAME, SCORE, COUPON, GOOD_IMAGE, GOOD_QUANTITIES, CREATE_TIME, 
+    MODIFY_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BEAN_ORDER_ITEM
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_BEAN_ORDER_ITEM
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.icloud.model.business.TbeanOrderItem" >
+  <selectKey keyProperty="id" resultType="Long" order="BEFORE">
+			select seq_t_bean_order_item.nextval from dual
+	</selectKey>
+    insert into T_BEAN_ORDER_ITEM (ID, ORDER_ID, GOOD_ID, 
+      GOOD_NAME, SCORE, COUPON, 
+      GOOD_IMAGE, GOOD_QUANTITIES, CREATE_TIME, 
+      MODIFY_TIME)
+    values (#{id,jdbcType=NUMERIC}, #{orderId,jdbcType=NUMERIC}, #{goodId,jdbcType=NUMERIC}, 
+      #{goodName,jdbcType=VARCHAR}, #{score,jdbcType=NUMERIC}, #{coupon,jdbcType=NUMERIC}, 
+      #{goodImage,jdbcType=VARCHAR}, #{goodQuantities,jdbcType=NUMERIC}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icloud.model.business.TbeanOrderItem" >
+    insert into T_BEAN_ORDER_ITEM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID,
+      </if>
+      <if test="goodName != null" >
+        GOOD_NAME,
+      </if>
+      <if test="score != null" >
+        SCORE,
+      </if>
+      <if test="coupon != null" >
+        COUPON,
+      </if>
+      <if test="goodImage != null" >
+        GOOD_IMAGE,
+      </if>
+      <if test="goodQuantities != null" >
+        GOOD_QUANTITIES,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=NUMERIC},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=NUMERIC},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=NUMERIC},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=NUMERIC},
+      </if>
+      <if test="coupon != null" >
+        #{coupon,jdbcType=NUMERIC},
+      </if>
+      <if test="goodImage != null" >
+        #{goodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodQuantities != null" >
+        #{goodQuantities,jdbcType=NUMERIC},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icloud.model.business.TbeanOrderItem" >
+    update T_BEAN_ORDER_ITEM
+    <set >
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=NUMERIC},
+      </if>
+      <if test="goodId != null" >
+        GOOD_ID = #{goodId,jdbcType=NUMERIC},
+      </if>
+      <if test="goodName != null" >
+        GOOD_NAME = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        SCORE = #{score,jdbcType=NUMERIC},
+      </if>
+      <if test="coupon != null" >
+        COUPON = #{coupon,jdbcType=NUMERIC},
+      </if>
+      <if test="goodImage != null" >
+        GOOD_IMAGE = #{goodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodQuantities != null" >
+        GOOD_QUANTITIES = #{goodQuantities,jdbcType=NUMERIC},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icloud.model.business.TbeanOrderItem" >
+    update T_BEAN_ORDER_ITEM
+    set ORDER_ID = #{orderId,jdbcType=NUMERIC},
+      GOOD_ID = #{goodId,jdbcType=NUMERIC},
+      GOOD_NAME = #{goodName,jdbcType=VARCHAR},
+      SCORE = #{score,jdbcType=NUMERIC},
+      COUPON = #{coupon,jdbcType=NUMERIC},
+      GOOD_IMAGE = #{goodImage,jdbcType=VARCHAR},
+      GOOD_QUANTITIES = #{goodQuantities,jdbcType=NUMERIC},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

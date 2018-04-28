@@ -1,0 +1,17 @@
+package com.icloud.dao.business;
+
+import com.icloud.model.business.TbeanAddress;
+
+public interface TbeanAddressMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(TbeanAddress record);
+
+    int insertSelective(TbeanAddress record);
+
+    TbeanAddress selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(TbeanAddress record);
+
+    int updateByPrimaryKey(TbeanAddress record);
+}

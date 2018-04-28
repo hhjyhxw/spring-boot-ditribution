@@ -1,0 +1,164 @@
+
+$.fn.ready( function(){
+		//1、异步获取优惠券列表
+		getMyCardList();
+		//2、兑换时选择 优惠券
+		$(".cardlist").click(function(){
+			var goodsClassId=$(this).attr("id");
+			goodsListJson(goodsClassId);
+			$(this).siblings(".classActive").removeClass("selectOne");
+			$(this).addClass("selectOne");
+			$(this).siblings(".classActive").find("span").removeClass("selectDot");
+			$(this).find("span").addClass("selectDot");
+		});
+		//3、商品加一
+		$(".add").click(function(){
+			var nums = $(".nums").val();
+			if(nums>=100){
+				nums = 100;
+			}
+			$(".nums").val(nums);
+		});
+		//4、商品减一
+		$(".minus").click(function(){
+			var nums = $(".nums").val();
+			if(nums<=0){
+				nums = 1;
+			}
+			$(".nums").val(nums);
+		});
+		//5、切换或者新增地址
+		$(".address").click(function(){
+			window.location.href="";
+			 window.location.href=getBasePath()+"/frontpage/user/exChangeAaddress?url="+encodeURIComponent(window.location.href);
+		});
+		//6、点击确认兑换，选择抵扣券
+		$(".openSubmitExchange").click(function(){
+			var nums = $(".nums").val();
+			var goodsScore = $("#goodsScore").val();
+			$(".changeLd").text("消耗乐豆数："+nums*goodsScore);
+			$(".cardListForm").show();
+		});
+		//7、确认兑换
+		$(".confirmBtn").click(function(){
+			var nums = $(".nums").val();
+			nums = nums>100?100:nums;
+			nums = nums<=0?1:nums;
+			$(".nums").val(nums);
+			var goodsId = $("#goodsId").val();
+			//库存校验
+			var b = checkGoodsStore(goodsId,nums);
+			if(!b){
+				alert("库存不足");
+				return;
+			}
+			//needCard==0,不想抵扣券可以兑换；1需要抵扣券才可以兑换
+			var needCard = $("#needCard").val();
+			var cardCount = $("#cardCount").val();
+			if(needCard==1 && cardCount==0){
+				alert("你没有抵扣券不能兑换");
+				return;
+			}
+			//地址校验
+			var address = $(".address").text();
+			if(address==''){
+				alert("地址不能为空");
+				return;
+			}
+			//去兑换
+			var ticket_id = $(".selectOne").attr("id");
+			var value = $(".selectOne").attr("value");
+			exChangeGoods(ticket_id,value);
+		});
+		
+});
+
+//库存校验
+function checkGoodsStore(goodsId,exChangeNum){
+	var b = false;
+	 $.ajax({
+			url : getBasePath()+'/frontpage/beanCoupon/goodsListJson',
+			data : {
+				"goodsId":goodsId,"exChangeNum":exChangeNum
+			},
+			method : 'post',
+			dataType : 'json',
+			timeout:5000,
+			async:false,
+			success : function(data) {
+				if ('success' == data.status) {
+					b = true;
+				}
+			},
+			error : function() {
+				
+			}
+		});
+}
+
+
+//调用兑换接口 String ticket_id,Integer ticketValue,Integer goodsId,Integer exChangeNum
+function exChangeGoods(ticket_id,ticketValue,goodsId,exChangeNum){
+	 //关闭优惠券列表
+	$(".cardListForm").hide();
+	//数据加载中弹窗
+	 $.ajax({
+			url : getBasePath()+'/frontpage/beanCoupon/exChangeGoods',
+			data : {
+				"ticket_id":ticket_id,"ticketValue":ticketValue,"goodsId":goodsId,"exChangeNum":exChangeNum
+			},
+			method : 'post',
+			dataType : 'json',
+			timeout:5000,
+			async:false,
+			success : function(data) {
+				if ('success' == data.status) {
+					$(".successChange").text("兑换成功");
+					$(".exchangeSuccessForm").show();
+					return;
+				}
+				$(".successChange").text("兑换失败");
+				$(".exchangeSuccessForm").show();
+			},
+			error : function() {
+				$(".successChange").text("兑换失败");
+				$(".exchangeSuccessForm").show();
+			}
+		});
+}
+
+//异步获取我的未使用优惠券列表
+function getMyCardList(){
+	var resultStrin = '';
+	 $.ajax({
+			url : getBasePath()+'/frontpage/beanCoupon/queryCouponsList',
+			data : {
+				"type":"0"
+			},
+			method : 'post',
+			dataType : 'json',
+			timeout:5000,
+			success : function(data) {
+				if (data!=null) {
+					$.each(data.beanGoodsList, function(i, n){
+						resultStrin+='<li>可选乐豆抵扣券</li>';
+						if(i==0){
+							resultStrin+='<li class="cardlist selectOne" id="'+n.ticket_id+'" value="'+n.value+'"><span class="selectDot"></span>'+n.value+n.name+'</li>';
+						}else{
+							resultStrin+='<li class="cardlist" id="'+n.ticket_id+'" value="'+n.value+'"><span></span>'+n.value+n.name+'</li>';
+						}
+					});
+					$(".selectCard").html(resultStrin);
+				}
+				if(resultStrin!=''){
+					//设置优惠券数量大于0，用于页面判断是否可以兑换商品
+					$(".cardCount").val(1);
+				}
+			},
+			error : function() {
+				
+			}
+		});
+}
+
+ 

@@ -1,0 +1,64 @@
+package com.icloud.web.business.front.goods;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.icloud.model.business.BeanAdvert;
+import com.icloud.model.business.BeanGoods;
+import com.icloud.model.business.BeanGoodsWithBLOBs;
+import com.icloud.service.business.BeanAdvertService;
+import com.icloud.service.business.BeanGoodsService;
+import com.icloud.web.AppBaseController;
+
+@Controller
+@RequestMapping(value = "${frontPath}/beanGoods")
+public class BeanGoodFrontController extends AppBaseController{
+	
+	@Autowired
+	private BeanGoodsService beanGoodsService;
+	@Autowired
+	private BeanAdvertService beanAdvertService;
+	
+	/**
+	* Description:商品列表页
+	* @author zhangdehai
+	* @param id
+	* @return
+	* @throws Exception  
+	* @date 2018年2月27日下午4:43:42
+	 */
+	@RequestMapping(value = "/goodsList")
+	public String goodsList(Integer id) throws Exception{
+		BeanGoods t = new BeanGoods();
+		t.setStatus("1");//上架的
+		t.setDeleteStatus("0");//没有被删除的
+		List<BeanGoods> beanGoodsList = beanGoodsService.findList(t);
+		
+		BeanAdvert beanAdvertParam = new BeanAdvert();
+		beanAdvertParam.setStatus("1");
+		List<BeanAdvert> beanAdvertList = beanAdvertService.findList(beanAdvertParam);
+		request.setAttribute("beanGoodsList", beanGoodsList);
+		request.setAttribute("beanAdvertList", beanAdvertList);
+		return "front/goods/goodsList";
+	}
+	
+	
+	/**
+	* Description:商品详情页
+	* @author zhangdehai
+	* @param id
+	* @return  
+	 * @throws Exception 
+	* @date 2018年2月27日下午4:19:34
+	 */
+	@RequestMapping(value = "/goodsDetail")
+	public String goodsDetail(Integer id) throws Exception{
+		BeanGoodsWithBLOBs beanGoods = beanGoodsService.findByKey(id);
+		request.setAttribute("beanGoods", beanGoods);
+		return "front/goods/goodsDetail";
+	}
+
+}

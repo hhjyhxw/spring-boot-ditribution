@@ -1,0 +1,17 @@
+package com.icloud.dao.business;
+
+import com.icloud.model.business.ZlArea;
+
+public interface ZlAreaMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(ZlArea record);
+
+    int insertSelective(ZlArea record);
+
+    ZlArea selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(ZlArea record);
+
+    int updateByPrimaryKey(ZlArea record);
+}

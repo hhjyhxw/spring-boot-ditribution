@@ -1,0 +1,17 @@
+service_domain=hhh
+
+#\u524d\u7aef\u57fa\u7840\u8def\u5f84
+frontPath=/frontpage
+
+
+#weixin_pay product
+appid=wx64c5ebb35c4a5341
+appsecret=efa0d399f5142ad2394b386aac69f582
+
+
+#imcc host
+imcchost=211.159.184.84
+imcchostport=7003
+hosttel=15709
+hostnumber=wxccb43a09acc5a5c8
+

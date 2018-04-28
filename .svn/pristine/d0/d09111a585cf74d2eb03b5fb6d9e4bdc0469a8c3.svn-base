@@ -1,0 +1,58 @@
+package com.icloud.web.business.front.order;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.icloud.model.business.BeanOrder;
+import com.icloud.service.business.BeanOrderService;
+import com.icloud.web.AppBaseController;
+
+@Controller
+@RequestMapping(value = "${frontPath}/beanGoods")
+public class BeanOrderFrontController extends AppBaseController{
+	
+	@Autowired
+	private BeanOrderService beanOrderService;
+
+	/**
+	* Description:我的订单列表
+	* @author zhangdehai
+	* @throws Exception  
+	* @date 2018年2月27日下午5:10:43
+	 */
+	@RequestMapping(value = "/orderList")
+	public String orderList() throws Exception{
+		BeanOrder t = new BeanOrder();
+		t.setUserId(getMemberId());
+		List<BeanOrder> beanOrderList = beanOrderService.findList(t);
+		request.setAttribute("beanOrderList", beanOrderList);
+		return "front/order/orderList";
+	}
+
+	
+	/**
+	* Description:兑换商品
+	* 1、在页面判断 是否存在卡券
+	* 2、在页面判断乐豆是否足够
+	* @author zhangdehai
+	* @param ticket_id 代金券id
+	* @param goodsId	商品Id
+	* @param exChangeNum 兑换数量
+	* @return
+	* @date 2018年2月28日上午10:10:26
+	 */
+	@RequestMapping(value = "/exChangeGoods")
+	@ResponseBody
+	public String exChangeGoods(String ticket_id,Integer goodsId,Integer exChangeNum) throws Exception{
+		BeanOrder t = new BeanOrder();
+		t.setUserId(getMemberId());
+		List<BeanOrder> beanOrderList = beanOrderService.findList(t);
+		request.setAttribute("beanOrderList", beanOrderList);
+		return "front/order/orderList";
+	}
+	
+}

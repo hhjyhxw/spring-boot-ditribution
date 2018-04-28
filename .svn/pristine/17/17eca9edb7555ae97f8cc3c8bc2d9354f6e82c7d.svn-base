@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icloud.dao.business.ZlAreaMapper" >
+  <resultMap id="BaseResultMap" type="com.icloud.model.business.ZlArea" >
+    <id column="ID" property="id" jdbcType="NUMERIC" />
+    <result column="NO" property="no" jdbcType="NUMERIC" />
+    <result column="AREANAME" property="areaname" jdbcType="VARCHAR" />
+    <result column="TOPNO" property="topno" jdbcType="NUMERIC" />
+    <result column="AREACODE" property="areacode" jdbcType="VARCHAR" />
+    <result column="AREALEVEL" property="arealevel" jdbcType="NUMERIC" />
+    <result column="TYPENAME" property="typename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NO, AREANAME, TOPNO, AREACODE, AREALEVEL, TYPENAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ZLWX_AREA
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ZLWX_AREA
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.icloud.model.business.ZlArea" >
+    insert into ZLWX_AREA (ID, NO, AREANAME, 
+      TOPNO, AREACODE, AREALEVEL, 
+      TYPENAME)
+    values (#{id,jdbcType=NUMERIC}, #{no,jdbcType=NUMERIC}, #{areaname,jdbcType=VARCHAR}, 
+      #{topno,jdbcType=NUMERIC}, #{areacode,jdbcType=VARCHAR}, #{arealevel,jdbcType=NUMERIC}, 
+      #{typename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icloud.model.business.ZlArea" >
+    insert into ZLWX_AREA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="no != null" >
+        NO,
+      </if>
+      <if test="areaname != null" >
+        AREANAME,
+      </if>
+      <if test="topno != null" >
+        TOPNO,
+      </if>
+      <if test="areacode != null" >
+        AREACODE,
+      </if>
+      <if test="arealevel != null" >
+        AREALEVEL,
+      </if>
+      <if test="typename != null" >
+        TYPENAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=NUMERIC},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=NUMERIC},
+      </if>
+      <if test="areaname != null" >
+        #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="topno != null" >
+        #{topno,jdbcType=NUMERIC},
+      </if>
+      <if test="areacode != null" >
+        #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="arealevel != null" >
+        #{arealevel,jdbcType=NUMERIC},
+      </if>
+      <if test="typename != null" >
+        #{typename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icloud.model.business.ZlArea" >
+    update ZLWX_AREA
+    <set >
+      <if test="no != null" >
+        NO = #{no,jdbcType=NUMERIC},
+      </if>
+      <if test="areaname != null" >
+        AREANAME = #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="topno != null" >
+        TOPNO = #{topno,jdbcType=NUMERIC},
+      </if>
+      <if test="areacode != null" >
+        AREACODE = #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="arealevel != null" >
+        AREALEVEL = #{arealevel,jdbcType=NUMERIC},
+      </if>
+      <if test="typename != null" >
+        TYPENAME = #{typename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icloud.model.business.ZlArea" >
+    update ZLWX_AREA
+    set NO = #{no,jdbcType=NUMERIC},
+      AREANAME = #{areaname,jdbcType=VARCHAR},
+      TOPNO = #{topno,jdbcType=NUMERIC},
+      AREACODE = #{areacode,jdbcType=VARCHAR},
+      AREALEVEL = #{arealevel,jdbcType=NUMERIC},
+      TYPENAME = #{typename,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

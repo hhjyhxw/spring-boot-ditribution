@@ -1,0 +1,176 @@
+package com.icloud.model.business;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class TbeanGoods {
+    private Long id;
+
+    private String name;
+
+    private String goodImage;
+
+    private Long score;
+
+    private Long store;
+
+    private Long freezeStore;
+
+    private String status;
+
+    private String deleteStatus;
+
+    private Long categoriesId;
+
+    private String operator;
+
+    private String operateIp;
+
+    private Long realSales;
+
+    private Long virtlSales;
+
+    private Date createTime;
+
+    private Date modifyTime;
+
+    private Long sortNum;
+
+    private String memo;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getGoodImage() {
+        return goodImage;
+    }
+
+    public void setGoodImage(String goodImage) {
+        this.goodImage = goodImage == null ? null : goodImage.trim();
+    }
+
+    public Long getScore() {
+        return score;
+    }
+
+    public void setScore(Long score) {
+        this.score = score;
+    }
+
+    public Long getStore() {
+        return store;
+    }
+
+    public void setStore(Long store) {
+        this.store = store;
+    }
+
+    public Long getFreezeStore() {
+        return freezeStore;
+    }
+
+    public void setFreezeStore(Long freezeStore) {
+        this.freezeStore = freezeStore;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
+    }
+
+    public String getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(String deleteStatus) {
+        this.deleteStatus = deleteStatus == null ? null : deleteStatus.trim();
+    }
+
+    public Long getCategoriesId() {
+        return categoriesId;
+    }
+
+    public void setCategoriesId(Long categoriesId) {
+        this.categoriesId = categoriesId;
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator == null ? null : operator.trim();
+    }
+
+    public String getOperateIp() {
+        return operateIp;
+    }
+
+    public void setOperateIp(String operateIp) {
+        this.operateIp = operateIp == null ? null : operateIp.trim();
+    }
+
+    public Long getRealSales() {
+        return realSales;
+    }
+
+    public void setRealSales(Long realSales) {
+        this.realSales = realSales;
+    }
+
+    public Long getVirtlSales() {
+        return virtlSales;
+    }
+
+    public void setVirtlSales(Long virtlSales) {
+        this.virtlSales = virtlSales;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public Long getSortNum() {
+        return sortNum;
+    }
+
+    public void setSortNum(Long sortNum) {
+        this.sortNum = sortNum;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo == null ? null : memo.trim();
+    }
+}

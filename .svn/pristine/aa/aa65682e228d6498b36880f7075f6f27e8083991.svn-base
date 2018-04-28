@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icloud.dao.business.BeanOrderItemMapper" >
+  <resultMap id="BaseResultMap" type="com.icloud.model.business.BeanOrderItem" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="good_id" property="goodId" jdbcType="INTEGER" />
+    <result column="good_name" property="goodName" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="coupon" property="coupon" jdbcType="INTEGER" />
+    <result column="good_image" property="goodImage" jdbcType="VARCHAR" />
+    <result column="good_quantities" property="goodQuantities" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, good_id, good_name, score, coupon, good_image, good_quantities
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bean_order_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_bean_order_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.icloud.model.business.BeanOrderItem" >
+    insert into t_bean_order_item (id, order_id, good_id, 
+      good_name, score, coupon, 
+      good_image, good_quantities)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{goodId,jdbcType=INTEGER}, 
+      #{goodName,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, #{coupon,jdbcType=INTEGER}, 
+      #{goodImage,jdbcType=VARCHAR}, #{goodQuantities,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icloud.model.business.BeanOrderItem" >
+    insert into t_bean_order_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="goodId != null" >
+        good_id,
+      </if>
+      <if test="goodName != null" >
+        good_name,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="coupon != null" >
+        coupon,
+      </if>
+      <if test="goodImage != null" >
+        good_image,
+      </if>
+      <if test="goodQuantities != null" >
+        good_quantities,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="coupon != null" >
+        #{coupon,jdbcType=INTEGER},
+      </if>
+      <if test="goodImage != null" >
+        #{goodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodQuantities != null" >
+        #{goodQuantities,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icloud.model.business.BeanOrderItem" >
+    update t_bean_order_item
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        good_id = #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="goodName != null" >
+        good_name = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="coupon != null" >
+        coupon = #{coupon,jdbcType=INTEGER},
+      </if>
+      <if test="goodImage != null" >
+        good_image = #{goodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodQuantities != null" >
+        good_quantities = #{goodQuantities,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icloud.model.business.BeanOrderItem" >
+    update t_bean_order_item
+    set order_id = #{orderId,jdbcType=BIGINT},
+      good_id = #{goodId,jdbcType=INTEGER},
+      good_name = #{goodName,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      coupon = #{coupon,jdbcType=INTEGER},
+      good_image = #{goodImage,jdbcType=VARCHAR},
+      good_quantities = #{goodQuantities,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="findList" parameterType="com.icloud.model.business.BeanOrderItem" resultMap="BaseResultMap">
+		 select 
+	    <include refid="Base_Column_List" />
+	    from t_bean_order_item t
+		<where>
+			 <if test="orderId != null" >
+      		  and t.order_id =  #{orderId,jdbcType=BIGINT}
+     		 </if>
+		</where>
+		order by t.id desc
+	</select>
+  
+</mapper>

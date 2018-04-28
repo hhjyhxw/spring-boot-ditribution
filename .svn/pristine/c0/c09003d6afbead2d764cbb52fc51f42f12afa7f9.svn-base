@@ -1,0 +1,931 @@
+/*閸忣剙鍙￠弽宄扮础*/
+.m_80{margin-bottom: 200px;}
+.p_b10{padding-bottom: 10px;}
+.overflowS{overflow-y: scroll;}
+.overflowH{overflow: hidden;}
+/*妫ｆ牠銆�*/
+.headMenu{
+/* 	width: 100%;
+	min-height: 180px;
+	padding: 25px 26px 30px 35px;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#74bcf9), to(#519af3)); */
+	    width: 100%;
+    min-height: 165px;
+    padding: 10px 26px 30px 35px;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#74bcf9), to(#519af3));
+}
+.headMenu>li{
+	float: left;
+	padding: 0 53px;
+}
+.headMenu>li a{
+	display: block;
+	color: #fff;
+	font-size: 26px;
+	text-align: center;
+}
+.headMenu>li a div img{
+	display: block;
+	width: 67px;
+	height: 67px;
+	margin: 0 auto;
+}
+.headMenu>li a span{
+	display: block;
+	margin-top: 3px;
+	font-size: 22px;
+}
+.asideMenu{
+	float: left;
+	padding: 25px 12px 0;
+}
+.asideMenu span{
+    display: block; 
+    background: url(../../ldsc/img/bg_indexMenu.png) no-repeat -1px 0;
+    background-size: 141px auto;
+    width: 140px;
+    height: 133px;
+	/* background: url(../../ldsc/img/bg_indexMenu.png) no-repeat -1px 0; background-size: 100%;height:115px; */
+}
+.bgBlue{
+	background: #3595e6;
+	padding: 0 10px 30px;
+}
+.asideMenu .bgBlue>ul{
+	background: #2080d1;
+	text-align: center;
+	border-radius: 12px;
+	box-shadow: 3px 4px 5px #185e9a inset,-1px -1px 1px #185e9a inset;
+}
+.asideMenu .bgBlue>ul{
+	padding: 25px 0;
+}
+.asideMenu .bgBlue>ul li{
+	padding: 30px 8px;
+}
+.asideMenu .bgBlue>ul li a{
+	color: #fff;
+	font-size: 22px;
+}
+.rightProducts li{
+	float: left;
+	width: 225px;
+	height: 275px;
+	background: #fff;
+	border-radius: 13px;
+	padding: 10px;
+	box-sizing: border-box;
+	margin:0 10px 10px 0;
+	text-align: center;
+	
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rightProducts div.productPics{
+	width: 220px;
+	height: 180px;
+}
+.rightProducts .productPics>img{
+	width: auto;
+	max-width: 210px;
+	height: 100%;
+	display: block;
+	margin: 0 auto;
+}
+.productName{
+	font-size: 26px;
+	color: #1b1b1b;
+	padding: 2px 0;
+}
+.numberLb{
+	font-size: 22px;
+	color: #1b1b1b;
+}
+.numberLb>span{
+	color: #e7212e;
+}
+.active{
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	background: #80c8fc;
+	margin-top: 40px;
+}
+.active img{
+	width: 100%;
+	height: auto;
+	display: block;
+	box-shadow: -1px -2px 3px #568dbc,2px -2px 6px #568dbc,0 1px 6px #568dbc;
+}
+/*妫ｆ牠銆�  END*/
+/*閸熷棗鎼х拠锔藉剰*/
+.goodsImg{
+	padding:60px 60px 10px;
+	background: #e4ecff;
+}
+.goodsImg div.goodsPic{
+	width: 100%;
+	height: 340px;
+	display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.goodsImg div.goodsPic img{
+	width: auto;
+	max-width: 520px;
+	height: 100%;
+	display: block; 
+}
+.goodsImg p:nth-child(2){
+	font-size: 34px;
+	color: #000;
+	line-height: 60px;
+	text-align: center;
+}
+.goodsImg p:nth-child(3){
+	font-size: 26px;
+	color: #e82640;
+	line-height: 40px;
+	text-align: center;
+}
+.tools{
+	width: 100%;
+	height: 64px;
+	line-height: 62px;
+	padding: 0 40px;
+	font-size: 28px;
+	color: #0f0f0f;
+	background: #fff;
+	overflow: hidden;
+	border-bottom: 10px solid #e4ecff;
+}
+.tools p:nth-child(1){
+	float: left;
+}
+.tools div:nth-child(2){
+	float: right;
+}
+.tools div:nth-child(2) span:nth-of-type(1),.tools div:nth-child(2) span:nth-of-type(3){
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+	/* vertical-align: middle; */
+	margin-top: -5px;
+}
+.tools div:nth-child(2) span.minus{
+	background: url(../../ldsc/img/icon_minus.png) no-repeat 0 0;
+	background-size: 26px 26px;
+}
+.tools div:nth-child(2) span.add{
+	background: url(../../ldsc/img/icon_add.png) no-repeat 0 0;
+	background-size: 26px 26px;
+}
+.tools div:nth-child(2) span.nums{
+	font-size: 22px;
+	padding: 0 6px;
+	display: inline-block;
+}
+.tools .address{
+	float: left;
+	width: 92%;
+	overflow: auto;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	 text-align: left;
+}
+.tools .arrow{
+	float: right;
+	width: 20px;
+	height: 64px;
+	background: url(../../ldsc/img/icon_arrow2.png) no-repeat 0 12px;
+	background-size: 15px 30px;
+}
+.tabTitle{
+	width: 100%;
+	height: 70px;
+	line-height: 50px;
+	font-size: 24px;
+	color: #0e0e0e;
+	overflow: hidden; 
+	background: #fff;
+}
+.tabsIntro .tabTitle span{
+	border-bottom: 5px solid #e3edff;
+	float: left;
+	text-align: center;
+	width: 49.5%;
+}
+.tabTitle span.onTabTitle{
+	border-bottom: 5px solid #6f64ee;
+	color: #6f64ee;
+}
+.goodsIntro{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+      padding: 2px 10px;
+}
+.goodsIntro img{
+	 max-width: 640px;
+}
+.parameter{
+	display:flex;
+  	align-items: flex-start;
+    flex-direction: column-reverse;
+    font-size: 42px;
+    padding-left: 50px;
+}
+.goodsIntro ul{
+	padding: 30px 60px;
+	overflow: hidden;
+}
+.goodsIntro ul li{
+	float: left;
+}
+.goodsIntro ul li:nth-child(1){
+	width: 180px;
+	height: 190px;
+}
+.goodsIntro ul li:nth-child(1) img{
+	width: auto;
+	height: 190px;
+}
+.goodsIntro ul li:nth-child(2){
+	padding-top: 25px;
+}
+.goodsIntro ul li:nth-child(2) p{
+	padding-left: 25px;
+	line-height: 25px;
+	color: #626262;
+	font-size: 16px;
+}
+.parameter{
+	padding-top: 35px;
+	overflow: hidden;
+}
+.parameter p{
+	text-align: center;
+	line-height: 25px;
+	color: #626262;
+	font-size: 25px;
+	padding: 2 60px;
+	margin:10px 0; 
+}
+.tabsIntro{
+	margin-bottom:95px;
+}
+.goodsBottomMenu{
+	/* width: 100%;
+	height: 85px;
+	line-height: 85px;
+	padding: 0 60px;
+	background: url(../../ldsc/img/bg_bMenu.jpg) no-repeat 0 0;
+	background-size: 100% 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0; */
+	
+	    width: 100%;
+    height: 85px;
+    line-height: 85px;
+    padding: 0 60px;
+    background: url(../../ldsc/img/bg_bMenu.jpg) no-repeat 0 0;
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-top: 145px;
+    z-index: 66;
+}
+.goodsBottomMenu ul li{
+	float: left;
+	width: 50%;
+	font-size: 28px;
+}
+.goodsBottomMenu ul li a{
+	color: #fff;
+}
+.goodsBottomMenu ul li:nth-child(2) a{
+	display: block;
+	text-align: right;
+}
+.goodsBottomMenu>div{
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	margin-left: -115px;
+	width: 230px;
+	height: 75px;
+	border-radius: 20px 20px 0 0;
+	box-shadow: -2px 5px 12px #4155a9,2px 5px 12px #4155a9;
+	background: #fff;
+}
+.goodsBottomMenu>div a{
+	display: block;
+	color: #e92540;
+	text-align: center;
+	font-size: 28px;
+	margin-top: -10px;
+}
+/*閸熷棗鎼х拠锔藉剰   END*/
+/*瀵湱鐛�*/
+.modal-comfirm {
+	position: absolute;
+	z-index: 9999;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+.content_zhongjiang {
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	width: 430px;
+	border-radius: 40px;
+	background:#54a5f6;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding:15px 10px;
+	box-sizing: border-box;
+	margin-top: -40px;
+}
+.changeLd{
+	height: 90px;
+	line-height: 90px;
+	border-bottom: 2px solid #fff;
+	font-size: 38px;
+	font-weight: bold;
+	color: #fff;
+	text-align: center;
+	margin-bottom: 15px;
+}
+.selectCard{
+	padding: 0 45px;
+	font-size: 30px;
+	color: #fff;
+	overflow: hidden;
+}
+.selectCard li{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 30px ;
+/* 	color: #0060bf;
+	background: #fff; */
+	border-radius: 5px;
+	margin-bottom: 30px;
+}
+.selectCard>li:nth-child(1){
+	text-align: center;
+	color: #fff;
+	background: rgba(1,1,1,0);
+	margin-bottom: 0px;
+	height: 70px;
+	line-height: 70px;
+}
+.selectCard li span{
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	margin-right: 15px;
+	background: #015ebd;
+}
+.selectCard li span.selectDot{
+	background: #e40011;
+}
+.confirmSelectBtn{
+	width: 190px;
+	height: 60px;
+	line-height: 62px;
+	border-radius: 30px;
+	background: #fff;
+	color: #0060bf;
+	margin: 10px auto 35px;
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+}
+/*閸忔垶宕查幋鎰 瀵湱鐛�*/
+.modal-comfirm  .successWinBg{
+	background:#f0f0f0;
+}
+.successChange{
+	color: #696bf2;
+	font-weight: normal;
+	position: relative;
+}
+.successChange span{
+	position: absolute;
+	top: 28px;
+	right: 30px;
+	width: 35px;
+	height: 35px;
+	background: url(../../ldsc/img/buy_btn.png) no-repeat 0 0;
+	background-size: 100% 100%;
+}
+.dragonImg{
+	padding: 20px 15px;
+	width: 100%;
+	height: 290px;
+	
+}
+.dragonImg img{
+	display: block;
+	width: auto;
+	height: 100%;
+	margin: 0 auto;
+}
+.confirmBtn{
+	background: #686def;
+	color: #fff;
+}
+/*瀵湱鐛�   END*/
+
+/*閹存垹娈戠拋銏犲礋*/
+.oderHead{
+	width: 100%;
+	height: 100px;
+	line-height: 100px;
+	padding: 0 30px;
+	text-align: center;
+	color: #000;
+	font-size: 28px;
+	position: relative;
+	background: #fff;
+	margin-bottom: 18px;
+	font-weight: bold;
+}
+.oderHead span{
+	position: absolute;
+	left: 30px;
+	top: 31px;
+	width: 15px;
+	height: 30px;
+	background: url(../../ldsc/img/icon_arrow.png) no-repeat 0 0;
+	background-size: 100% 100%;
+}
+.orderStateTab{
+	padding: 0 60px;
+	width: 100%;
+	height: 85px;
+	line-height: 85px;
+	border-bottom: 6px solid #e3edff;
+	background: #fff;
+	font-size: 28px;
+	font-weight: bold;
+	color: #000;
+}
+.orderStateTab span{
+	display: inline-block;
+	width: 132px;
+	text-align: center;
+	margin-right: 50px;
+}
+.orderStateTab span:last-child{
+	margin-right: 0;
+}
+.orderStateTab span.onOrderState{
+	color: #4c88e5;
+	position: relative;
+}
+.orderStateTab span.onOrderState i{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 132px;
+	height: 6px;
+	background: #4c88e5;
+}
+.oderBox{
+	width: 100%;
+	height: auto;
+	background: #fff;
+	padding: 0 10px;
+	margin-bottom: 5px;
+}
+.oderUnit dl{
+	padding: 10px 20px;
+	border-bottom: 2px solid #959595;
+	overflow: hidden;
+}
+.oderUnit dl dt{
+	float: left;
+	width: 230px;
+	height: 135px;
+}
+.oderUnit dl dt img{
+	width: auto;
+	height: 100%;
+	max-width: 230px;
+}
+.oderUnit dl dd{
+	float: left;
+	width: auto;
+	height: 135px;
+}
+.oderUnit dl dd p{
+	font-size: 24px;
+	color: #000;
+	padding-left: 40px;
+	line-height: 55px;
+}
+.oderUnit dl dd p:nth-of-type(1){
+	font-size: 28px;
+	margin-top: 15px;
+}
+.oderUnit ul.state{
+	background: #fff;
+	color: #000;
+	font-size: 22px;
+	overflow: hidden;
+	height: 50px;
+}
+.oderUnit ul.state li{
+	float: left;
+	padding-left: 60px;
+	line-height: 50px;
+}
+.oderUnit ul.state li:nth-child(2){
+	float: right;
+	padding-left: 0;
+	margin: 10px 30px 0 0;
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	background: #efefef;
+	text-align: center;
+	border-radius: 15px;
+}
+/*閹存垹娈戠拋銏犲礋   END*/
+
+/*閸︽澘娼冪粻锛勬倞*/
+.addressUnit{
+	width: 100%;
+	min-height: 220px;
+	background: #fff;
+	padding: 25px 10px 10px;
+	margin-bottom: 10px;
+	color: #000;
+}
+.nameTel,.fullAddress{
+	padding: 0 40px;
+	font-size: 28px;
+	line-height: 44px;
+	overflow: hidden;
+}
+.nameTel>p:nth-child(1){
+	float: left;
+	width: 300px;
+}
+.nameTel>p:nth-child(2){
+	float: right;
+}
+.fullAddress{
+	max-height: 80px;
+	line-height: 34px;
+}
+.defaultBtn{
+	padding: 0 30px;
+	border-top: 2px solid #000;
+	line-height: 55px;
+	font-size: 26px;
+	margin-top: 20px;
+}
+.defaultBtn>p:nth-child(1){
+	float: left;
+}
+.defaultBtn>p:nth-child(1) span{
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	border: 1px solid #525252;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+.defaultBtn>p:nth-child(2){
+	float: right;
+	font-size: 24px;
+}
+.defaultBtn>p:nth-child(2) a:nth-child(2){
+	margin-left: 80px;
+}
+/*闁鑵戞担婊�璐熸妯款吇閸︽澘娼冮弽宄扮础 */
+.onDefault{
+	background: url(../../ldsc/img/bg.jpg) no-repeat 0 0;
+	background-size: 100% auto;
+	color: #fff;
+}
+.onDefault .defaultBtn{
+	border-top: 2px solid #fff;
+}
+.onDefault .defaultBtn>p:nth-child(1) span{
+	background: #fff;
+	border: 1px solid #fff;
+}
+.onDefault .defaultBtn>p:nth-child(2) a{
+	color: #fff;
+}
+/*閸︽澘娼冪粻锛勬倞     END*/
+
+/*濞ｈ濮為崷鏉挎絻*/
+.editItem{
+	overflow: hidden;
+	border-bottom: 2px solid #000;
+}
+.editItem span{
+	float: left;
+	line-height: 95px;
+	font-size: 28px;
+	color: #000;
+	width: 160px;
+	margin-right: 10px;
+}
+.editItem span i{
+	color: red;
+	padding: 0 10px ;
+}
+.editItem input{
+	float: left;
+	width: 425px;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 10px;
+	color: #333;
+	border: 1px solid #b9b9b9;
+	margin-top: 25px;
+}
+.editItem .selectProvince{
+	float: left;
+	width: 425px;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 10px;
+	color: #000;
+	border: 1px solid #b9b9b9;
+	margin-top: 25px;
+	font-size: 28px;
+	text-align: center;
+}
+.selectCity,.selectXian{
+	float: left;
+	margin-left: 7px;
+	width: 280px;
+	height: 50px;
+	padding: 0 10px;
+	color: #000;
+	font-size: 28px;
+}
+.selectCity{
+	margin-left: 28px;
+}
+.editItem input.addressEdit{
+	width: 565px;
+	height: 50px;
+	margin: 25px 0 25px 30px ;
+	font-size:100%;
+}
+.editItem input::-webkit-input-placeholder {
+閵嗭拷閵嗭拷	color: #000;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: center;
+}
+.editItem input:-moz-placeholder {
+閵嗭拷閵嗭拷	color: #000;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: center;
+}
+.editItem input:-ms-input-placeholder {
+閵嗭拷閵嗭拷	color: #000;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: center;
+}
+.editItem input:-moz-placeholder {
+閵嗭拷閵嗭拷	color: #000;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: center;
+}
+.noBorder{
+	border-bottom: 0 solid #000;
+}
+.saveAddressBtn{
+	width: 290px;
+	height: 56px;
+	line-height: 56px;
+	border-radius: 28px;
+	text-align: center;
+	font-size: 28px;
+	background: #6aabf1;
+	color: #fff;
+	margin: 0 auto;
+	margin-top: 100px;
+}
+/*濞ｈ濮為崷鏉挎絻   END*/
+
+/*娑擃亙姹夋稉顓炵妇*/
+.photo{
+	width: 100%;
+	height: 185px;
+	padding: 0 30px 0 50px;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#5795ea), to(#87cefc));
+}
+.photo img{
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	box-shadow: 3px 1px 6px #000;
+	display: inline-block;
+	margin-top: 25px;
+	
+}
+.photo span.userName{
+	display: inline-block;
+	color: #fff;
+	font-size: 36px;
+	vertical-align: middle;
+	padding: 20px 0 0 35px;
+}
+.userInfo{
+	width: 100%;
+	height: 78px;
+	color: #FFF;
+	background: url(../../ldsc/img/bg_bMenu.jpg) no-repeat 0 0;
+	padding: 0 40px 0 60px;
+	font-size: 30px;
+	overflow: hidden;
+}
+.userInfo p:nth-child(1){
+	height: 86px;
+	line-height: 86px;
+	float: left;
+}
+.userInfo p:nth-child(2){
+	float: right;
+	padding: 3px 15px;
+	border-radius: 7px;
+	background: #fff;
+	color: #6f64ee;
+	margin-top: 20px;
+}
+.userMenu li{
+	width: 100%;
+	height: 120px;
+	line-height: 110px;
+	border-bottom: 3px solid #e1e1e1;
+	padding:0 30px 0 40px;
+	background: #fff;
+}
+.userMenu li:last-child{
+	margin-bottom: 120px;
+}
+.userMenu li a{
+	color: #535353;
+	font-size: 32px;
+	display: block;
+	padding-left: 80px;
+	background: url(../../ldsc/img/icon_shop.png) no-repeat 0 45%;
+	background-size: 65px 50px;
+}
+.userMenu li:nth-of-type(2) a{
+	background: url(../../ldsc/img/icon_card.png) no-repeat 0 45%;
+}
+.userMenu li:nth-of-type(3) a{
+	background: url(../../ldsc/img/icon_manage.png) no-repeat 0 45%;
+}
+.userMenu li a span{
+	float: right;
+}
+.menu .bottomMenu{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    height: 80px;
+}
+.menu .bottomMenu li{
+	line-height: 80px;
+	box-sizing: border-box;
+    flex: 0 0 50%;
+    border-left: 5px solid #fff;
+    border-right: 5px solid #fff;
+    background: #77b2f4;
+}
+.menu .bottomMenu li a{
+	display: block;
+	font-size: 34px;
+	color: #fff;
+	text-align: center;
+}
+/*娑擃亙姹夋稉顓炵妇  END*/
+
+/*閹存垹娈戦崡鈥冲煖*/
+.p100{ padding-top: 100px; }
+.cardUnit{
+	width: 544px;
+	height: auto;
+	margin: 0 auto;
+	box-shadow:0 0 0 #fff,0 0 0 #fff,0 0 0 #fff, 0 6px 14px #d6def1;
+	margin-bottom: 40px;
+}
+.cardName{
+	height: 82px;
+	line-height: 82px;
+	font-size: 40px;
+	color: #fff;
+	text-align: center;
+	border-radius: 14px 14px 0 0;
+}
+.bgCard1{
+	background: url(../../ldsc/img/bg_card1.jpg) no-repeat 0 0;
+}
+.bgCard2{
+	background: url(../../ldsc/img/bg_card2.jpg) no-repeat 0 0;
+}
+.bgCard3{
+	background: url(../../ldsc/img/bg_card3.jpg) no-repeat 0 0;
+}
+.cardUnit p.cardCont{
+	height: 100px;
+	line-height: 100px;
+	border-bottom: 2px solid #959595;
+	font-size: 34px;
+	color: #000;
+	text-align: center;
+	background: #fff;
+}
+.otherInfos{
+	height: 65px;
+	line-height: 65px;
+	font-size: 24px;
+	color: #0f0f0f;
+	padding: 0 20px;
+	border-radius: 0 0 14px 14px;
+	background: #fff;
+	overflow: hidden;
+}
+.cardUnit .otherInfos p:nth-of-type(1){
+	float: left;
+	width: 34%;
+}
+.cardUnit .otherInfos p:nth-of-type(2){
+	float: left;
+	text-align: right;
+	width: 66%;
+}
+/*閹存垹娈戦崡鈥冲煖     END*/
+
+
+
+.modal-alert {
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: none;
+}
+
+.modal-alert .content {
+	font-size: 1.4rem;
+	padding: 1.5rem;
+	width: 80%;
+	box-sizing: border-box;
+	position: absolute;
+	left: 10%;
+	top: 30%;
+	vertical-align: middle;
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+.modal-alert .content p {
+	line-height: 1.8;
+	color: #666;
+}
+
+.modal-alert .content .btn-close {
+	display: block;
+	width: 100%;
+	height: 4rem;
+	line-height: 4rem;
+	margin-top: 1.5rem;
+	text-align: center;
+	background-color: #E13F3F;
+	color: #fff;
+	border-radius: 4px;
+}

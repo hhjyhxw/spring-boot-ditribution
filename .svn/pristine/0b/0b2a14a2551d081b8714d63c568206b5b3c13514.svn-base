@@ -1,0 +1,21 @@
+package com.icloud.dao.business;
+
+import com.icloud.dao.BaseDao;
+import com.icloud.model.business.BeanGoods;
+import com.icloud.model.business.BeanGoodsWithBLOBs;
+
+public interface BeanGoodsMapper extends BaseDao<BeanGoods>{
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(BeanGoodsWithBLOBs record);
+
+    int insertSelective(BeanGoodsWithBLOBs record);
+
+    BeanGoodsWithBLOBs selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(BeanGoodsWithBLOBs record);
+
+    int updateByPrimaryKeyWithBLOBs(BeanGoodsWithBLOBs record);
+
+    int updateByPrimaryKey(BeanGoods record);
+}
